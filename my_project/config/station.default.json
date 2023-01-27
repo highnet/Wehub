@@ -1,17 +1,27 @@
 {
-    "$schema": "../node_modules/wehub/config.schema.json",
-    "apps": [
-        {
-            "name": "1-hello-world",
-            "url": "/hub/wetouch/1-hello-world/",
-            "path": "./apps/1-hello-world/"
-        }
-    ],
-    "server": {},
-    "extensions": {
-        "Electron": {
-            "enabled": false
-        }
-    },
-    "mode": "development"
+  "$schema": "../node_modules/wehub/config.schema.json",
+  "apps": [
+    {
+      "name": "1-hello-world",
+      "url": "/hub/wetouch/1-hello-world/",
+      "path": "./apps/1-hello-world/"
+    }
+  ],
+  "server": {
+    "port": 8080,
+    "address": "localhost",
+    "ssl": false,
+    "sslKey": "/path/to/ssl/key/file",
+    "sslCertificate": "/path/to/ssl/certificate/file",
+    "allowCors": true,
+    "devOptions": {
+      "buildExtensions": true
+    }
+  },
+  "extensions": {
+    "Electron": {
+      "enabled": false
+    }
+  },
+  "mode": "development"
 }
