@@ -1,5 +1,5 @@
-# Test project following a tutorial
-https://wissen.wetouch.at/wehub-tutorial-pt-1/
+# Wehub Test Projects
+
 
 # Wehub License
 
@@ -11,3 +11,6 @@ info@wetouch.at
 http://www.wetouch.at
 
 Copyright © Wetouch Digital Kiosks 2023
+
+# Tutorial
+https://wissen.wetouch.at/wehub-tutorial-pt-1/
