@@ -2,7 +2,7 @@
 1. my_project: hello world test project
 
 # Extension Subdirectories
-1.helloworld: https://github.com/highnet/wehub-helloworld
+1. helloworld: https://github.com/highnet/wehub-helloworld
 
 # Wehub License
 weTouch e.U. - Creative Media Technology
