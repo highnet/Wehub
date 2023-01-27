@@ -1,7 +1,7 @@
 # Wehub Test Projects
 1. my_project: hello world test project
 
-#Extension Subdirectories
+# Extension Subdirectories
 1.helloworld: https://github.com/highnet/wehub-helloworld
 
 # Wehub License
