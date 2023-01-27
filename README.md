@@ -1,8 +1,10 @@
 # Wehub Test Projects
 1. my_project: hello world test project
 
-# Wehub License
+#Extension Subdirectories
+1.helloworld: https://github.com/highnet/wehub-helloworld
 
+# Wehub License
 weTouch e.U. - Creative Media Technology
 Leitermayergasse 25
 1170 Wien
