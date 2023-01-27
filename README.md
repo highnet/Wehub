@@ -1,6 +1,9 @@
 # Wehub Test Projects
 1. my_project: hello world test project
 
+# Author
+Joaquin Telleria www.highnet.xyz
+
 # Extension Subdirectories
 1. helloworld: https://github.com/highnet/wehub-helloworld
 
