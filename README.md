@@ -1,7 +1,7 @@
 # Test project following a tutorial
 https://wissen.wetouch.at/wehub-tutorial-pt-1/
 
-# Wehub
+# Wehub License
 
 weTouch e.U. - Creative Media Technology
 Leitermayergasse 25
