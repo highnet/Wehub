@@ -1,12 +1,15 @@
 import PageJsApplication from "pagejs";
-import { AppContainer } from "pagejs/components";
+import { PageContainer } from "pagejs/components";
 
 class Application extends PageJsApplication {
   screenSaverPage = "";
   screenSaverTimeout = 255;
-  start() {}
+  start() {
+    console.log("Started Application");
+    wehub.helloworld.logMessage("Hello World!");
+  }
   render() {
-    return <AppContainer></AppContainer>;
+    return <PageContainer></PageContainer>;
   }
 }
 

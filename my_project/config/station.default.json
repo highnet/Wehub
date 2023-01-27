@@ -21,6 +21,9 @@
     },
     "Logging": {
       "enabled": "$IN_PRODUCTION"
+    },
+    "WatchDog": {
+      "logInfo": false
     }
   },
   "mode": "development"
