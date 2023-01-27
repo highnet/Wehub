@@ -8,12 +8,6 @@
     }
   ],
   "server": {
-    "port": 8080,
-    "address": "localhost",
-    "ssl": false,
-    "sslKey": "/path/to/ssl/key/file",
-    "sslCertificate": "/path/to/ssl/certificate/file",
-    "allowCors": true,
     "devOptions": {
       "buildExtensions": true
     }
@@ -21,6 +15,12 @@
   "extensions": {
     "Electron": {
       "enabled": false
+    },
+    "Helloworld": {
+      "enabled": true
+    },
+    "Logging": {
+      "enabled": "$IN_PRODUCTION"
     }
   },
   "mode": "development"
