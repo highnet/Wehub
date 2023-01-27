@@ -1,0 +1,26 @@
+{
+    "name": "my_project",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "npx wehub start",
+        "release": "npx wehub release",
+        "startextension": "npx wehub startextension",
+        "startapp": "npx wehub startapp",
+        "createconfig": "npx wehub createconfig"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@wetouch/appconfig": "^1.0.27",
+        "@wetouch/electron": "^1.0.31",
+        "@wetouch/frontend": "^1.0.20",
+        "@wetouch/logging": "^1.0.16",
+        "@wetouch/pagejs": "^1.0.24",
+        "@wetouch/splashscreen": "^1.0.14",
+        "@wetouch/watchdog": "^1.0.15",
+        "wehub": "^1.1.22"
+    }
+}

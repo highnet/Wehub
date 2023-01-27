@@ -1,0 +1,17 @@
+{
+    "$schema": "../node_modules/wehub/config.schema.json",
+    "apps": [
+        {
+            "name": "1-hello-world",
+            "url": "/hub/wetouch/1-hello-world/",
+            "path": "./apps/1-hello-world/"
+        }
+    ],
+    "server": {},
+    "extensions": {
+        "Electron": {
+            "enabled": false
+        }
+    },
+    "mode": "development"
+}
