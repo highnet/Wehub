@@ -1,9 +1,21 @@
 import { Component } from "pagejs/components";
 
 export default class CalculatorComponent extends Component {
-  tagName = "h1";
+  x = () => {
+    console.log(x);
+  };
+
   render() {
-    return <h1>2+2=4</h1>;
+    return (
+      <div>
+        <h1 class="calculator-page__output-label">2+2=4</h1>
+        <button globalid="btn-x" onClick={() => this.x()}>
+          X
+        </button>
+      </div>
+    );
   }
-  ready() {}
+  ready() {
+    this.dom["btn-x"].style.color = "red";
+  }
 }

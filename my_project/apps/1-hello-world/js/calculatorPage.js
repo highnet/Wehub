@@ -5,13 +5,14 @@ export default class CalculatorPage extends Page {
   render() {
     return (
       <div>
-        <h1 id="title">WELCOME TO THE COOLÈST CALCULATOR</h1>
+        <h1 id="title" class="calculator-page__title">
+          Wehub Calculator
+        </h1>
         <CalculatorComponent />
       </div>
     );
   }
   ready() {
-    console.log(this.dom);
     this.dom["title"].style.color = "red";
   }
 }
