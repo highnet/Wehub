@@ -1,13 +1,13 @@
 import PageJsApplication from "pagejs";
 import { PageContainer } from "pagejs/components";
-
-// https://wissen.wetouch.at/wehub-tutorial-pt-4-extensions/ Catch-All Methods
+import CalculatorPage from "./calculatorPage";
 
 class Application extends PageJsApplication {
   screenSaverPage = "";
   screenSaverTimeout = 255;
 
   start() {
+    return;
     function helloServer() {
       wehub.helloworld.logMessage("Hello Server!");
     }
@@ -36,7 +36,11 @@ class Application extends PageJsApplication {
   }
 
   render() {
-    return <PageContainer />;
+    return (
+      <PageContainer>
+        <CalculatorPage />
+      </PageContainer>
+    );
   }
 }
 

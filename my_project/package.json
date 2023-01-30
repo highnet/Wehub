@@ -18,7 +18,7 @@
         "@wetouch/electron": "^1.0.31",
         "@wetouch/frontend": "^1.0.20",
         "@wetouch/logging": "^1.0.16",
-        "@wetouch/pagejs": "^1.0.24",
+        "@wetouch/pagejs": "^1.0.25",
         "@wetouch/splashscreen": "^1.0.14",
         "@wetouch/watchdog": "^1.0.15",
         "wehub": "^1.1.22"
