@@ -13,6 +13,6 @@ export default class CalculatorPage extends Page {
     );
   }
   ready() {
-    this.dom["title"].style.color = "red";
+    this.dom["btn-x"].style.color = "red";
   }
 }
