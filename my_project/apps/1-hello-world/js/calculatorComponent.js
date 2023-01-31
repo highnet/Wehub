@@ -136,7 +136,9 @@ export default class CalculatorComponent extends Component {
   ready() {
     this.cacheButtons();  // cache all input buttons in the inputButtons map
 
-    // Add event listeners for debug dom components TODO: CLEAN THIS UP
+    // this.initDebugComponents();
+
+    // Add event listeners for debug components TODO: CLEAN THIS UP
     this.getElementById("debug__toggle-button-label__identifier-labels").addEventListener("change", (change) => {
           for(let i = 0; i < Object.keys(this.buttonAttributes).length; i++){
             for (let j = 0; j < this.buttonAttributes[Object.keys(this.buttonAttributes)[i]].buttons; j++) {
@@ -153,21 +155,18 @@ export default class CalculatorComponent extends Component {
           }
     });
 
-    this.updateButtonLabelsFromDebugMenu();
+    this.initButtonLabels();
       
   }
 
-
-  updateButtonLabelsFromDebugMenu(){
-        // Synchronize button labels to default debug configuration
+  initButtonLabels(){
+      // Synchronize button labels to default configuration
       for(let i = 0; i < Object.keys(this.buttonAttributes).length; i++){
           for (let j = 0; j < this.buttonAttributes[Object.keys(this.buttonAttributes)[i]].buttons; j++) {
             this.toggleButtonLabels((Object.keys(this.buttonAttributes)[i] + "-" + j), document.querySelector('input[name="debug__button-labels"]:checked').value);
         }
       }
   }
-
-  
 
   cacheButtons(){
     // cache all input buttons in the inputButtons map
@@ -177,9 +176,11 @@ export default class CalculatorComponent extends Component {
       }
     }
   }
+
   getElementById(id) {
     return this.component.querySelector(`[internalId=${id}]`);
   }
+
   toggleButtonLabels(buttonIdentifier, buttonLabelType) {
     this.inputButtons.get(buttonIdentifier).innerHTML = this.buttonLabels[[buttonIdentifier, buttonLabelType]]
   }
