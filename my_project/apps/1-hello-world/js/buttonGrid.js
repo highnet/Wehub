@@ -13,11 +13,9 @@ export default class ButtonGrid extends Component {
     );
 
     for (var i = 0; i < this.props.buttons; i++) {
-      let newBtn = <Button>{`BTN_${i}`}</Button>;
-      console.log(newBtn);
-      newBtn.element.classes.push();
+      let newBtn = <Button>{`${this.props.identifier}-${i} BTN_${i}`}</Button>;
+      //  newBtn.element.classes.push();
       newBtn.attributes["internalId"] = this.props.identifier + "-" + i;
-      console.log(newBtn);
       component.children.push(newBtn);
     }
 
