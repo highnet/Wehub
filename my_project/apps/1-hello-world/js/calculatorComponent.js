@@ -152,9 +152,11 @@ export default class CalculatorComponent extends Component {
             }
           }
     });
-      this.updateButtonLabelsFromDebugMenu();
+
+    this.updateButtonLabelsFromDebugMenu();
       
   }
+
 
   updateButtonLabelsFromDebugMenu(){
         // Synchronize button labels to default debug configuration
@@ -164,6 +166,9 @@ export default class CalculatorComponent extends Component {
         }
       }
   }
+
+  
+
   cacheButtons(){
     // cache all input buttons in the inputButtons map
     for(let i = 0; i < Object.keys(this.buttonAttributes).length; i++){
