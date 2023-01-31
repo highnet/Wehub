@@ -21,3 +21,19 @@ body {
 .calculator-page__output-label {
   color: orange;
 }
+
+.pagejs-button {
+  background-color: #ea4c89;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  height: 40px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+}

@@ -1,4 +1,5 @@
 import { Component } from "pagejs/components";
+import ButtonGrid from "./buttonGrid";
 
 export default class CalculatorComponent extends Component {
   render() {
@@ -9,20 +10,24 @@ export default class CalculatorComponent extends Component {
           <div class="calculator-component__output__current-operand">current-operand</div>
         </div>
         <div class="calculator-component__buttons">
-          <button type="calculator-component__buttons-button" id="btn-x" class="btn">
-            X
-          </button>
+          <ButtonGrid
+            props={{
+              buttons: 32,
+              columns: 4,
+            }}
+          />
         </div>
       </div>
     );
   }
   ready() {
-    console.log("TEST");
+    /*
     let btn = this.getElementById("btn-x");
 
     btn.addEventListener("click", function () {
       console.log("x");
     });
+    */
     // this.dom["btn-x"].style.color = "red";
   }
   getElementById(id) {
