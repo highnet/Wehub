@@ -13,7 +13,7 @@ export default class ButtonGrid extends Component {
     );
 
     for (var i = 0; i < this.props.buttons; i++) {
-      let newBtn = <Button>{`${i}`}</Button>;
+      let newBtn = <Button>{`BTN_${i}`}</Button>;
       newBtn.element.classes.push("test");
       component.children.push(newBtn);
     }

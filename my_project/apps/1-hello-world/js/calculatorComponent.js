@@ -12,8 +12,8 @@ export default class CalculatorComponent extends Component {
         <div class="calculator-component__buttons">
           <ButtonGrid
             props={{
-              buttons: 32,
-              columns: 4,
+              buttons: 12,
+              columns: 3,
             }}
           />
         </div>
