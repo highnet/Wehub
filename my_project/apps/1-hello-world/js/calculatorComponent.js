@@ -12,6 +12,7 @@ export default class CalculatorComponent extends Component {
         <div class="calculator-component__buttons">
           <ButtonGrid
             props={{
+              identifier: "main-operands",
               buttons: 12,
               columns: 3,
             }}
@@ -21,6 +22,7 @@ export default class CalculatorComponent extends Component {
     );
   }
   ready() {
+    console.log(this.getElementById("main-operands-1"));
     /*
     let btn = this.getElementById("btn-x");
 
