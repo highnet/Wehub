@@ -7,8 +7,6 @@ export default class CalculatorComponent extends Component {
     MAIN_OPERANDS_BUTTON_GRIS_COLUMNS: 3,
   };
 
-  debugToggle() {}
-
   render() {
     return (
       <div class="calculator-component">
@@ -54,17 +52,18 @@ export default class CalculatorComponent extends Component {
     let debugToggleButtonLabelIdentifiers = this.getElementById("debug__toggle-button-label__identifiers");
     let debugToggleButtonLabelCalculatorLabels = this.getElementById("debug__toggle-button-label__calculator-labels");
 
-    debugToggleButtonLabelIdentifiers.addEventListener("change", this.debugToggle());
-    /*
-    let btn = this.getElementById("btn-x");
-
-    btn.addEventListener("click", function () {
-      console.log("x");
+    debugToggleButtonLabelIdentifiers.addEventListener("change", () => {
+      this.toggleButtonLabels();
     });
-    */
-    // this.dom["btn-x"].style.color = "red";
+
+    debugToggleButtonLabelCalculatorLabels.addEventListener("change", () => {
+      this.toggleButtonLabels();
+    });
   }
   getElementById(id) {
     return this.component.querySelector(`[internalId=${id}]`);
+  }
+  toggleButtonLabels() {
+    console.log("toggled");
   }
 }
