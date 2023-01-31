@@ -8,6 +8,7 @@ export default class CalculatorComponent extends Component {
   };
 
   calculatorButtons = new Map();
+  calculatorButtonLabels = [];
 
   render() {
     return (
@@ -41,11 +42,17 @@ export default class CalculatorComponent extends Component {
               name="debug__button-labels"
               id="debug__toggle-button-label__identifier-labels"
               value="identifier-labels"
-              checked="checked"
+            //  checked="checked"
             ></input>
-            <label for="button-identifiers-on">Identifier Labels</label>
-            <input type="radio" name="debug__button-labels" id="debug__toggle-button-label__calculator-labels" value="calculator-labels"></input>
-            <label for="button-identifiers-off">Calculator Labels</label>
+            <label for="debug__toggle-button-label__identifier-labels">Identifier Labels</label>
+            <input 
+            type="radio" 
+            name="debug__button-labels" 
+            id="debug__toggle-button-label__calculator-labels" 
+            value="calculator-labels" 
+            checked="checked"
+            ></input>
+            <label for="debug__toggle-button-label__calculator-labels">Calculator Labels</label>
           </fieldset>
         </div>
       </div>
@@ -53,33 +60,66 @@ export default class CalculatorComponent extends Component {
   }
 
   ready() {
+
     for (let i = 0; i < this.calculatorAttributes.MAIN_OPERANDS_BUTTON_GRID_BUTTONS; i++) {
-      // console.log(this.getElementById("main-operands-" + i));
+      this.calculatorButtons.set(("main-operands-" + i), (this.getElementById("main-operands-" + i))) ;
     }
-    this.calculatorButtons.set("main-operands-0", this.getElementById("main-operands-0"));
+
+    // define calculator button labels for all supported calculated button label types
+    this.calculatorButtonLabels = {
+      [["main-operands-0","identifier-labels"]]: "main-operands-0",
+      [["main-operands-0","calculator-labels"]]: 7,
+      [["main-operands-1","identifier-labels"]]: "main-operands-1",
+      [["main-operands-1","calculator-labels"]]: 8,
+      [["main-operands-2","identifier-labels"]]: "main-operands-2",
+      [["main-operands-2","calculator-labels"]]: 9,
+      [["main-operands-3","identifier-labels"]]: "main-operands-3",
+      [["main-operands-3","calculator-labels"]]: 4,
+      [["main-operands-4","identifier-labels"]]: "main-operands-4",
+      [["main-operands-4","calculator-labels"]]: 5,
+      [["main-operands-5","identifier-labels"]]: "main-operands-5",
+      [["main-operands-5","calculator-labels"]]: 6,
+      [["main-operands-6","identifier-labels"]]: "main-operands-6",
+      [["main-operands-6","calculator-labels"]]: 1,
+      [["main-operands-7","identifier-labels"]]: "main-operands-7",
+      [["main-operands-7","calculator-labels"]]: 2,
+      [["main-operands-8","identifier-labels"]]: "main-operands-8",
+      [["main-operands-8","calculator-labels"]]: 3,
+      [["main-operands-9","identifier-labels"]]: "main-operands-9",
+      [["main-operands-9","calculator-labels"]]: 0,
+      [["main-operands-10","identifier-labels"]]: "main-operands-10",
+      [["main-operands-10","calculator-labels"]]: ".",
+      [["main-operands-11","identifier-labels"]]: "main-operands-11",
+      [["main-operands-11","calculator-labels"]]: "-",
+    }
+
+    // cache debug dom components
     let debugToggleButtonLabelIdentifiers = this.getElementById("debug__toggle-button-label__identifier-labels");
     let debugToggleButtonLabelCalculatorLabels = this.getElementById("debug__toggle-button-label__calculator-labels");
 
+    // Add event listeners for debug dom components
     debugToggleButtonLabelIdentifiers.addEventListener("change", (change) => {
-      this.toggleButtonLabels(change.target.value);
+      for (let i = 0; i < this.calculatorAttributes.MAIN_OPERANDS_BUTTON_GRID_BUTTONS; i++) {
+        this.toggleButtonLabels(("main-operands-" + i), change.target.value);
+      }
     });
 
     debugToggleButtonLabelCalculatorLabels.addEventListener("change", (change) => {
-      this.toggleButtonLabels(change.target.value);
+      for (let i = 0; i < this.calculatorAttributes.MAIN_OPERANDS_BUTTON_GRID_BUTTONS; i++) {
+        this.toggleButtonLabels(("main-operands-" + i), change.target.value);
+      }
     });
+
+    // Synchronize button labels to default debug configuration
+      for (let i = 0; i < this.calculatorAttributes.MAIN_OPERANDS_BUTTON_GRID_BUTTONS; i++) {
+        this.toggleButtonLabels(("main-operands-" + i), document.querySelector('input[name="debug__button-labels"]:checked').value);
+      }
+      
   }
   getElementById(id) {
     return this.component.querySelector(`[internalId=${id}]`);
   }
-  toggleButtonLabels(buttonLabelType) {
-    console.log(buttonLabelType);
-    switch (buttonLabelType) {
-      case "identifier-labels":
-        this.calculatorButtons.get("main-operands-0").innerHTML = "main-operands-0";
-        break;
-      case "calculator-labels":
-        this.calculatorButtons.get("main-operands-0").innerHTML = "7";
-        break;
-    }
+  toggleButtonLabels(buttonIdentifier, buttonLabelType) {
+    this.calculatorButtons.get(buttonIdentifier).innerHTML = this.calculatorButtonLabels[[buttonIdentifier, buttonLabelType]]
   }
 }
