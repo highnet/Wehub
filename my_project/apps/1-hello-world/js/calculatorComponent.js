@@ -9,9 +9,7 @@ export default class CalculatorComponent extends Component {
     return (
       <div>
         <h1 class="calculator-page__output-label">2+2=4</h1>
-        <Button id="btn-x" onClick={() => this.x()}>
-          X
-        </Button>
+        <Button id="btn-x">X</Button>
       </div>
     );
   }
