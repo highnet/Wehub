@@ -1,15 +1,18 @@
-import { Component, Button } from "pagejs/components";
+import { Component } from "pagejs/components";
 
 export default class CalculatorComponent extends Component {
-  x() {
-    console.log("x");
-  }
-
   render() {
     return (
-      <div>
-        <h1 class="calculator-page__output-label">2+2=4</h1>
-        <Button id="btn-x">X</Button>
+      <div class="calculator-component">
+        <div class="calculator-component__output">
+          <div class="calculator-component__output__previous-operand">previous-operand</div>
+          <div class="calculator-component__output__current-operand">current-operand</div>
+        </div>
+        <div class="calculator-component__buttons">
+          <button type="calculator-component__buttons-button" id="btn-x" class="btn">
+            X
+          </button>
+        </div>
       </div>
     );
   }
@@ -17,9 +20,10 @@ export default class CalculatorComponent extends Component {
     console.log("TEST");
     let btn = this.getElementById("btn-x");
 
-    btn.on("released", () => {
-      this.x();
+    btn.addEventListener("click", function () {
+      console.log("x");
     });
+    // this.dom["btn-x"].style.color = "red";
   }
   getElementById(id) {
     return this.component.querySelector(`[internalId=${id}]`);
