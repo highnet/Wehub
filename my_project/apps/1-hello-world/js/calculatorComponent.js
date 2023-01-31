@@ -2,10 +2,18 @@ import { Component } from "pagejs/components";
 import ButtonGrid from "./buttonGrid";
 
 export default class CalculatorComponent extends Component {
+  
   calculatorAttributes = {
-    MAIN_OPERANDS_BUTTON_GRID_BUTTONS: 12,
-    MAIN_OPERANDS_BUTTON_GRIS_COLUMNS: 3,
-  };
+    "main-operands": {
+      buttons: 12,
+      columns: 3,
+    },
+    "main-operators":{
+      buttons: 5,
+      columns: 1,
+    },
+      
+  }
 
   calculatorButtons = new Map();
   calculatorButtonLabels = [];
@@ -19,17 +27,17 @@ export default class CalculatorComponent extends Component {
         </div>
         <div class="calculator-component__buttons">
           <ButtonGrid
-            props={{
-              identifier: "main-operands",
-              buttons: this.calculatorAttributes.MAIN_OPERANDS_BUTTON_GRID_BUTTONS,
-              columns: this.calculatorAttributes.MAIN_OPERANDS_BUTTON_GRIS_COLUMNS,
+            props={{        
+              identifier: Object.keys(this.calculatorAttributes)[0],
+              buttons: this.calculatorAttributes[Object.keys(this.calculatorAttributes)[0]].buttons,
+              columns: this.calculatorAttributes[Object.keys(this.calculatorAttributes)[0]].columns,
             }}
           />
           <ButtonGrid
             props={{
-              identifier: "main-operators",
-              buttons: 5,
-              columns: 1,
+              identifier: Object.keys(this.calculatorAttributes)[1],
+              buttons: this.calculatorAttributes[Object.keys(this.calculatorAttributes)[1]].buttons,
+              columns: this.calculatorAttributes[Object.keys(this.calculatorAttributes)[1]].columns,
             }}
           />
         </div>
@@ -60,11 +68,14 @@ export default class CalculatorComponent extends Component {
   }
 
   ready() {
-
-    for (let i = 0; i < this.calculatorAttributes.MAIN_OPERANDS_BUTTON_GRID_BUTTONS; i++) {
-      this.calculatorButtons.set(("main-operands-" + i), (this.getElementById("main-operands-" + i))) ;
+    
+    for(let i = 0; i < Object.keys(this.calculatorAttributes).length; i++){
+      for (let j = 0; j < this.calculatorAttributes[Object.keys(this.calculatorAttributes)[i]].buttons; j++) {
+              this.calculatorButtons.set((Object.keys(this.calculatorAttributes)[i] + "-" + j), (this.getElementById(Object.keys(this.calculatorAttributes)[i] + "-" + j))) ;
     }
+  }
 
+    
     // define calculator button labels for all supported calculated button label types
     this.calculatorButtonLabels = {
       [["main-operands-0","identifier-labels"]]: "main-operands-0",
@@ -90,29 +101,50 @@ export default class CalculatorComponent extends Component {
       [["main-operands-10","identifier-labels"]]: "main-operands-10",
       [["main-operands-10","calculator-labels"]]: ".",
       [["main-operands-11","identifier-labels"]]: "main-operands-11",
-      [["main-operands-11","calculator-labels"]]: "-",
+      [["main-operands-11","calculator-labels"]]: "neg",
+      //
+      [["main-operators-0","identifier-labels"]]: "main-operators-0",
+      [["main-operators-0","calculator-labels"]]: "÷",
+      [["main-operators-1","identifier-labels"]]: "main-operators-1",
+      [["main-operators-1","calculator-labels"]]: "x",
+      [["main-operators-2","identifier-labels"]]: "main-operators-2",
+      [["main-operators-2","calculator-labels"]]: "-",
+      [["main-operators-3","identifier-labels"]]: "main-operators-3",
+      [["main-operators-3","calculator-labels"]]: "+",
+      [["main-operators-4","identifier-labels"]]: "main-operators-4",
+      [["main-operators-4","calculator-labels"]]: "enter",
     }
 
     // cache debug dom components
     let debugToggleButtonLabelIdentifiers = this.getElementById("debug__toggle-button-label__identifier-labels");
     let debugToggleButtonLabelCalculatorLabels = this.getElementById("debug__toggle-button-label__calculator-labels");
 
-    // Add event listeners for debug dom components
+    // Add event listeners for debug dom components TODO: CLEAN THIS UP
     debugToggleButtonLabelIdentifiers.addEventListener("change", (change) => {
-      for (let i = 0; i < this.calculatorAttributes.MAIN_OPERANDS_BUTTON_GRID_BUTTONS; i++) {
-        this.toggleButtonLabels(("main-operands-" + i), change.target.value);
+      for (let i = 0; i < this.calculatorAttributes[Object.keys(this.calculatorAttributes)[0]].buttons; i++) {
+        this.toggleButtonLabels((Object.keys(this.calculatorAttributes)[0] + "-" + i), change.target.value);
+      }
+      for (let i = 0; i < this.calculatorAttributes[Object.keys(this.calculatorAttributes)[1]].buttons; i++) {
+        this.toggleButtonLabels((Object.keys(this.calculatorAttributes)[1] + "-" + i), change.target.value);
       }
     });
 
     debugToggleButtonLabelCalculatorLabels.addEventListener("change", (change) => {
-      for (let i = 0; i < this.calculatorAttributes.MAIN_OPERANDS_BUTTON_GRID_BUTTONS; i++) {
-        this.toggleButtonLabels(("main-operands-" + i), change.target.value);
+      for (let i = 0; i < this.calculatorAttributes[Object.keys(this.calculatorAttributes)[0]].buttons; i++) {
+        this.toggleButtonLabels((Object.keys(this.calculatorAttributes)[0] + "-" + i), change.target.value);
+      }
+      for (let i = 0; i < this.calculatorAttributes[Object.keys(this.calculatorAttributes)[1]].buttons; i++) {
+        this.toggleButtonLabels((Object.keys(this.calculatorAttributes)[1] + "-" + i), change.target.value);
       }
     });
 
     // Synchronize button labels to default debug configuration
-      for (let i = 0; i < this.calculatorAttributes.MAIN_OPERANDS_BUTTON_GRID_BUTTONS; i++) {
-        this.toggleButtonLabels(("main-operands-" + i), document.querySelector('input[name="debug__button-labels"]:checked').value);
+      for (let i = 0; i < this.calculatorAttributes[Object.keys(this.calculatorAttributes)[0]].buttons; i++) {
+        this.toggleButtonLabels((Object.keys(this.calculatorAttributes)[0] + "-" + i), document.querySelector('input[name="debug__button-labels"]:checked').value);
+      }
+
+      for (let i = 0; i < this.calculatorAttributes[Object.keys(this.calculatorAttributes)[1]].buttons; i++) {
+        this.toggleButtonLabels((Object.keys(this.calculatorAttributes)[1] + "-" + i), document.querySelector('input[name="debug__button-labels"]:checked').value);
       }
       
   }
