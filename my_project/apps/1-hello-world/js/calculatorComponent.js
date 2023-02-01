@@ -20,7 +20,7 @@ export default class CalculatorComponent extends Component {
 
   */
 
-  buttonAttributes = {
+  buttonGridAttributes = {
     "main-operands": {
       buttons: 12,
       columns: 3,
@@ -93,17 +93,17 @@ export default class CalculatorComponent extends Component {
         </div>
         <div class="calculator-component__buttons">
           <ButtonGrid
-            props={{        
-              identifier: Object.keys(this.buttonAttributes)[0],
-              buttons: this.buttonAttributes[Object.keys(this.buttonAttributes)[0]].buttons,
-              columns: this.buttonAttributes[Object.keys(this.buttonAttributes)[0]].columns,
+            props={{
+              identifier: Object.keys(this.buttonGridAttributes)[0],
+              buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[0]].buttons,
+              columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[0]].columns,
             }}
           />
           <ButtonGrid
             props={{
-              identifier: Object.keys(this.buttonAttributes)[1],
-              buttons: this.buttonAttributes[Object.keys(this.buttonAttributes)[1]].buttons,
-              columns: this.buttonAttributes[Object.keys(this.buttonAttributes)[1]].columns,
+              identifier: Object.keys(this.buttonGridAttributes)[1],
+              buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[1]].buttons,
+              columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[1]].columns,
             }}
           />
         </div>
@@ -133,6 +133,7 @@ export default class CalculatorComponent extends Component {
     );
   }
 
+  // TODO: create a reusable function which returns all buttons
   ready() {
     this.cacheButtons();  // cache all input buttons in the inputButtons map
 
@@ -140,17 +141,17 @@ export default class CalculatorComponent extends Component {
 
     // Add event listeners for debug components TODO: CLEAN THIS UP
     this.getElementById("debug__toggle-button-label__identifier-labels").addEventListener("change", (change) => {
-          for(let i = 0; i < Object.keys(this.buttonAttributes).length; i++){
-            for (let j = 0; j < this.buttonAttributes[Object.keys(this.buttonAttributes)[i]].buttons; j++) {
-              this.toggleButtonLabels((Object.keys(this.buttonAttributes)[i] + "-" + j), change.target.value);
+          for(let i = 0; i < Object.keys(this.buttonGridAttributes).length; i++){
+            for (let j = 0; j < this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[i]].buttons; j++) {
+              this.toggleButtonLabels((Object.keys(this.buttonGridAttributes)[i] + "-" + j), change.target.value);
             }
           }
     });
 
     this.getElementById("debug__toggle-button-label__calculator-labels").addEventListener("change", (change) => {
-          for(let i = 0; i < Object.keys(this.buttonAttributes).length; i++){
-            for (let j = 0; j < this.buttonAttributes[Object.keys(this.buttonAttributes)[i]].buttons; j++) {
-              this.toggleButtonLabels((Object.keys(this.buttonAttributes)[i] + "-" + j), change.target.value);
+          for(let i = 0; i < Object.keys(this.buttonGridAttributes).length; i++){
+            for (let j = 0; j < this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[i]].buttons; j++) {
+              this.toggleButtonLabels((Object.keys(this.buttonGridAttributes)[i] + "-" + j), change.target.value);
             }
           }
     });
@@ -161,18 +162,18 @@ export default class CalculatorComponent extends Component {
 
   initButtonLabels(){
       // Synchronize button labels to default configuration
-      for(let i = 0; i < Object.keys(this.buttonAttributes).length; i++){
-          for (let j = 0; j < this.buttonAttributes[Object.keys(this.buttonAttributes)[i]].buttons; j++) {
-            this.toggleButtonLabels((Object.keys(this.buttonAttributes)[i] + "-" + j), document.querySelector('input[name="debug__button-labels"]:checked').value);
+      for(let i = 0; i < Object.keys(this.buttonGridAttributes).length; i++){
+          for (let j = 0; j < this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[i]].buttons; j++) {
+            this.toggleButtonLabels((Object.keys(this.buttonGridAttributes)[i] + "-" + j), document.querySelector('input[name="debug__button-labels"]:checked').value);
         }
       }
   }
 
   cacheButtons(){
     // cache all input buttons in the inputButtons map
-    for(let i = 0; i < Object.keys(this.buttonAttributes).length; i++){
-      for (let j = 0; j < this.buttonAttributes[Object.keys(this.buttonAttributes)[i]].buttons; j++) {
-              this.inputButtons.set((Object.keys(this.buttonAttributes)[i] + "-" + j), (this.getElementById(Object.keys(this.buttonAttributes)[i] + "-" + j))) ;
+    for(let i = 0; i < Object.keys(this.buttonGridAttributes).length; i++){
+      for (let j = 0; j < this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[i]].buttons; j++) {
+              this.inputButtons.set((Object.keys(this.buttonGridAttributes)[i] + "-" + j), (this.getElementById(Object.keys(this.buttonGridAttributes)[i] + "-" + j))) ;
       }
     }
   }
