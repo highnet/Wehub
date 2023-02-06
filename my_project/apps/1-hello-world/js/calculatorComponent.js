@@ -57,7 +57,7 @@ export default class CalculatorComponent extends Component {
             name="debug__button-labels" 
             id="debug__toggle-button-label__emoji-labels" 
             value="emoji-labels" 
-            checked="checked"
+            // checked="checked"
             ></input>
             <label for="debug__toggle-button-label__emoji-labels">Emoji Labels</label>
           </fieldset>
@@ -66,15 +66,11 @@ export default class CalculatorComponent extends Component {
     );
   }
 
-  
-
   ready() {
     this.cacheButtons();  // cache all input buttons in the inputButtons map
     this.initButtonLabels(); // initialize button labels with default values
     this.addDebugEventListeners();  // Add event listeners for debug components
     
-    console.log(this.buttonAtributes[Object.keys(this.buttonAtributes)[0]].buttons);
-
   }
 
   addDebugEventListeners(){
@@ -82,39 +78,39 @@ export default class CalculatorComponent extends Component {
 
     // button labels -> identifier labels
     this.getElementById("debug__toggle-button-label__identifier-labels").addEventListener("change", (change) => {
-      let bgButtons = this.getButtons();
-      for(let bgBtn of bgButtons){
-        this.toggleButtonLabels(bgBtn.attributes.internalid.nodeValue, change.target.value);
+      let btns = this.getButtons();
+      for(let btn of btns){
+        this.toggleButtonLabels(btn.attributes.internalid.nodeValue, change.target.value);
       }
     });
 
     // button labels -> calculator labels
     this.getElementById("debug__toggle-button-label__calculator-labels").addEventListener("change", (change) => {
-      let bgButtons = this.getButtons();
-      for(let bgBtn of bgButtons){
-        this.toggleButtonLabels(bgBtn.attributes.internalid.nodeValue, change.target.value);
+      let btns = this.getButtons();
+      for(let btn of btns){
+        this.toggleButtonLabels(btn.attributes.internalid.nodeValue, change.target.value);
       }
     });
 
     // button labels -> emoji labels
     this.getElementById("debug__toggle-button-label__emoji-labels").addEventListener("change", (change) => {
-      let bgButtons = this.getButtons();
-      for(let bgBtn of bgButtons){
-        this.toggleButtonLabels(bgBtn.attributes.internalid.nodeValue, change.target.value);
+      let btns = this.getButtons();
+      for(let btn of btns){
+        this.toggleButtonLabels(btn.attributes.internalid.nodeValue, change.target.value);
       }
     });
   }
 
   initButtonLabels(){
     // initialize button labels with default values
-    let bgButtons = this.getButtons();
-    for(let bgBtn of bgButtons){
-      this.toggleButtonLabels(bgBtn.attributes.internalid.nodeValue,document.querySelector('input[name="debug__button-labels"]:checked').value);
+    let btns = this.getButtons();
+    for(let btn of btns){
+      this.toggleButtonLabels(btn.attributes.internalid.nodeValue,document.querySelector('input[name="debug__button-labels"]:checked').value);
     }
   }
 
   cacheButtons(){
-    // cache all dynamically from button grids input buttons in the inputButtons map
+    // cache all dynamically generated buttons from buttongrids into the buttons map
     for(let i = 0; i < Object.keys(this.buttonAtributes).length; i++){
       for (let j = 0; j < this.buttonAtributes[Object.keys(this.buttonAtributes)[i]].buttons; j++) {
               this.buttons.set((Object.keys(this.buttonAtributes)[i] + "-" + j), (this.getElementById(Object.keys(this.buttonAtributes)[i] + "-" + j))) ;
