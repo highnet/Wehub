@@ -49,7 +49,7 @@ export default class CalculatorComponent extends Component {
             name="debug__button-labels" 
             id="debug__toggle-button-label__calculator-labels" 
             value="calculator-labels" 
-            // checked="checked"
+             checked="checked"
             ></input>
             <label for="debug__toggle-button-label__calculator-labels">Calculator Labels</label>
             <input 
