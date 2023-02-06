@@ -2,9 +2,70 @@ import { Component } from "pagejs/components";
 import ButtonGrid from "./buttonGrid";
 
 export default class CalculatorComponent extends Component {
+
+  buttonGridButtons = new Map();
+
+  render() {
+    return (
+      <div class="calculator-component">
+        <div class="calculator-component__output">
+          <div class="calculator-component__output__previous-operand">previous-operand</div>
+          <div class="calculator-component__output__current-operand">current-operand</div>
+        </div>
+        <div class="calculator-component__buttons">
+          <ButtonGrid
+            props={{
+              identifier: Object.keys(this.buttonGridAttributes)[0],
+              buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[0]].buttons,
+              columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[0]].columns,
+            }}
+          />
+          <ButtonGrid
+            props={{
+              identifier: Object.keys(this.buttonGridAttributes)[1],
+              buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[1]].buttons,
+              columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[1]].columns,
+            }}
+          />
+
+        </div>
+        <div class="debug">
+          <h2>DEBUG</h2>
+          <fieldset>
+            <h3>Button Labels</h3>
+            <input
+              type="radio"
+              name="debug__button-labels"
+              id="debug__toggle-button-label__identifier-labels"
+              value="identifier-labels"
+            // checked="checked"
+            ></input>
+            <label for="debug__toggle-button-label__identifier-labels">Identifier Labels</label>
+            <input 
+            type="radio" 
+            name="debug__button-labels" 
+            id="debug__toggle-button-label__calculator-labels" 
+            value="calculator-labels" 
+            // checked="checked"
+            ></input>
+            <label for="debug__toggle-button-label__calculator-labels">Calculator Labels</label>
+            <input 
+            type="radio" 
+            name="debug__button-labels" 
+            id="debug__toggle-button-label__emoji-labels" 
+            value="emoji-labels" 
+            checked="checked"
+            ></input>
+            <label for="debug__toggle-button-label__emoji-labels">Emoji Labels</label>
+          </fieldset>
+        </div>
+      </div>
+    );
+  }
+
   
   /* 
-  define button attributes
+  Define button attributes
 
   buttonAttributes = {
     [BUTTON_GRID_IDENTIFIER]: {
@@ -19,8 +80,7 @@ export default class CalculatorComponent extends Component {
   this.buttonAttributes[Object.keys(this.buttonAttributes)[1]].buttons // get button count from 1st button grid identifier
 
   */
-
-  buttonGridAttributes = {
+    buttonGridAttributes = {
     "main-operands": {
       buttons: 12,
       columns: 3,
@@ -29,11 +89,8 @@ export default class CalculatorComponent extends Component {
       buttons: 5,
       columns: 1,
     },
-      
   }
-
-  buttonGridButtons = new Map();
-
+  
   /* define calculator button labels for all supported calculated button label types
     buttonLabels takes in a button identifier, a button label type, and returns a
     button label
@@ -83,6 +140,7 @@ export default class CalculatorComponent extends Component {
       [["main-operands-11","identifier-labels"]]: "main-operands-11",
       [["main-operands-11","calculator-labels"]]: "(-)",
       [["main-operands-11","emoji-labels"]]: "(➖)",
+
       [["main-operators-0","identifier-labels"]]: "main-operators-0",
       [["main-operators-0","calculator-labels"]]: "÷",
       [["main-operators-0","emoji-labels"]]: "➗",
@@ -98,66 +156,9 @@ export default class CalculatorComponent extends Component {
       [["main-operators-4","identifier-labels"]]: "main-operators-4",
       [["main-operators-4","calculator-labels"]]: "=",
       [["main-operators-4","emoji-labels"]]: "🟰",
+
     }
 
-  render() {
-    return (
-      <div class="calculator-component">
-        <div class="calculator-component__output">
-          <div class="calculator-component__output__previous-operand">previous-operand</div>
-          <div class="calculator-component__output__current-operand">current-operand</div>
-        </div>
-        <div class="calculator-component__buttons">
-          <ButtonGrid
-            props={{
-              identifier: Object.keys(this.buttonGridAttributes)[0],
-              buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[0]].buttons,
-              columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[0]].columns,
-            }}
-          />
-          <ButtonGrid
-            props={{
-              identifier: Object.keys(this.buttonGridAttributes)[1],
-              buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[1]].buttons,
-              columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[1]].columns,
-            }}
-          />
-        </div>
-        <div class="debug">
-          <h2>DEBUG</h2>
-          <fieldset>
-            <h3>Button Labels</h3>
-            <input
-              type="radio"
-              name="debug__button-labels"
-              id="debug__toggle-button-label__identifier-labels"
-              value="identifier-labels"
-            // checked="checked"
-            ></input>
-            <label for="debug__toggle-button-label__identifier-labels">Identifier Labels</label>
-            <input 
-            type="radio" 
-            name="debug__button-labels" 
-            id="debug__toggle-button-label__calculator-labels" 
-            value="calculator-labels" 
-            // checked="checked"
-            ></input>
-            <label for="debug__toggle-button-label__calculator-labels">Calculator Labels</label>
-            <input 
-            type="radio" 
-            name="debug__button-labels" 
-            id="debug__toggle-button-label__emoji-labels" 
-            value="emoji-labels" 
-            checked="checked"
-            ></input>
-            <label for="debug__toggle-button-label__emoji-labels">Emoji Labels</label>
-          </fieldset>
-        </div>
-      </div>
-    );
-  }
-
-  // TODO: create a reusable function which returns all buttons
   ready() {
     this.cacheButtonGridButtons();  // cache all input buttons in the inputButtons map
 
