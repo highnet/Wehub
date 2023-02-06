@@ -16,9 +16,9 @@ export default class CalculatorComponent extends Component {
     return (
       <div class="calculator-component">
         <div class="calculator-component__output">
-          <div id="calculator-component__output__previous-operand"></div>
-          <div id="calculator-component__output__current-operator"></div>
-          <div id="calculator-component__output__current-operand"></div>
+          <textarea id="calculator-component__output__previous-operand" ></textarea>
+          <textarea id="calculator-component__output__current-operator" ></textarea>
+          <textarea id="calculator-component__output__current-operand" ></textarea>
         </div>
         <div class="calculator-component__buttons">
           <ButtonGrid
@@ -83,12 +83,12 @@ export default class CalculatorComponent extends Component {
   ready() {
     this.cacheButtons();  // cache all input buttons in the inputButtons map
     this.initButtonLabels(); // initialize button labels with default values
-    this.addDebugEventListeners();  // Add event listeners for debug components
     this.addButtonEventListeners();
 
     this.previousOperand = this.getElementById("calculator-component__output__previous-operand");
     this.currentOperator = this.getElementById("calculator-component__output__current-operator");
     this.currentOperand = this.getElementById("calculator-component__output__current-operand");
+    this.addDebugEventListeners();  // Add event listeners for debug components
 
   }
 
@@ -174,6 +174,13 @@ export default class CalculatorComponent extends Component {
         this.toggleButtonLabels(btn.attributes.internalid.nodeValue, change.target.value);
       }
     });
+
+    // TODO: calculator state -> previous-operand
+    console.log(this.previousOperand);
+    // subscribe to change event from the three text fields
+    // change the debug strings when the text fields change
+    // does this even work?
+
   }
 
   initButtonLabels(){
@@ -188,7 +195,7 @@ export default class CalculatorComponent extends Component {
     // cache all dynamically generated buttons from buttongrids into the buttons map
     for(let i = 0; i < Object.keys(this.buttonAtributes).length; i++){
       for (let j = 0; j < this.buttonAtributes[Object.keys(this.buttonAtributes)[i]].buttons; j++) {
-              this.buttons.set((Object.keys(this.buttonAtributes)[i] + "-" + j), (this.getElementById(Object.keys(this.buttonAtributes)[i] + "-" + j))) ;
+        this.buttons.set((Object.keys(this.buttonAtributes)[i] + "-" + j), (this.getElementById(Object.keys(this.buttonAtributes)[i] + "-" + j))) ;
       }
     }
   }
