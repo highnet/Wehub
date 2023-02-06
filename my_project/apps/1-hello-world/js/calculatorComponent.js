@@ -8,13 +8,17 @@ export default class CalculatorComponent extends Component {
   buttons = new Map();
   buttonAtributes = ButtonAttributes;
   buttonLabels = ButtonLabels;
+  previousOperand;
+  currentOperator;
+  currentOperand;
 
   render() {
     return (
       <div class="calculator-component">
         <div class="calculator-component__output">
-          <div class="calculator-component__output__previous-operand">previous-operand</div>
-          <div class="calculator-component__output__current-operand">current-operand</div>
+          <div id="calculator-component__output__previous-operand">previous-operand</div>
+          <div id="calculator-component__output__current-operator">current_operator</div>
+          <div id="calculator-component__output__current-operand">current-operand</div>
         </div>
         <div class="calculator-component__buttons">
           <ButtonGrid
@@ -70,7 +74,25 @@ export default class CalculatorComponent extends Component {
     this.cacheButtons();  // cache all input buttons in the inputButtons map
     this.initButtonLabels(); // initialize button labels with default values
     this.addDebugEventListeners();  // Add event listeners for debug components
-    
+    this.addButtonEventListeners();
+
+    this.previousOperand = this.getElementById("calculator-component__output__previous-operand");
+    this.currentOperator = this.getElementById("calculator-component__output__current-operator");
+    this.currentOperand = this.getElementById("calculator-component__output__current-operand");
+
+    console.log(this.previousOperand);
+    console.log(this.currentOperator);
+    console.log(this.currentOperand);
+
+  }
+
+  addButtonEventListeners(){
+    let btns = this.getButtons();
+    for(let btn of btns){
+     btn.on('released', () => {
+      console.log(btn.textContent);
+     })
+    }
   }
 
   addDebugEventListeners(){
