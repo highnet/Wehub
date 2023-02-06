@@ -1,0 +1,10 @@
+{
+  "main-operands": {
+    "buttons": 12,
+    "columns": 3
+  },
+  "main-operators": {
+    "buttons": 5,
+    "columns": 1
+  }
+}
