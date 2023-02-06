@@ -108,10 +108,31 @@ export default class CalculatorComponent extends Component {
     }
 
     const equalsRegex = new RegExp("^[=]$");
-    const additionRegex = new RegExp("^[+]$");
-    const divisionRegex = new RegExp("^[]$")
+    const divisionRegex = new RegExp("^[÷]$");
+    const multiplicationRegex = new RegExp("^[x]$");
+    const subtractionRegex = new RegExp("^[\\-]$");
+    const additionRegex = new RegExp("^[\\+]$");
+    
     if (equalsRegex.test(input) && this.previousOperand.textContent != "" && this.currentOperator.textContent != "" && this.currentOperand.textContent != ""){
-      console.log(this.previousOperand.textContent, this.currentOperator.textContent, this.currentOperand.textContent);
+      const leftHandSide = parseInt(this.previousOperand.textContent);
+      const rightHandSide = parseInt(this.currentOperand.textContent);
+      let result = NaN;
+      if (divisionRegex.test(this.currentOperator.textContent)){
+        console.log(leftHandSide / rightHandSide);
+        result = leftHandSide / rightHandSide;
+      } else if (multiplicationRegex.test(this.currentOperator.textContent)){
+        console.log(leftHandSide * rightHandSide);
+        result = leftHandSide * rightHandSide;
+      } else if (subtractionRegex.test(this.currentOperator.textContent)){
+        console.log(leftHandSide - rightHandSide);
+        result = leftHandSide - rightHandSide;
+      } else if (additionRegex.test(this.currentOperator.textContent)){
+        console.log(leftHandSide + rightHandSide);
+        result = leftHandSide + rightHandSide;
+      }
+      this.previousOperand.textContent = "";
+      this.currentOperator.textContent = "";
+      this.currentOperand.textContent = result;
       return;
     }
     
