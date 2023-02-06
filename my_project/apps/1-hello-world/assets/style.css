@@ -37,3 +37,8 @@ body {
   outline: none;
   padding: 10px 16px;
 }
+
+.calculator-component{
+  width: 300px;
+  margin: 0 auto;
+}

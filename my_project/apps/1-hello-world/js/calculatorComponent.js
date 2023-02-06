@@ -16,9 +16,9 @@ export default class CalculatorComponent extends Component {
     return (
       <div class="calculator-component">
         <div class="calculator-component__output">
-          <div id="calculator-component__output__previous-operand">previous-operand</div>
-          <div id="calculator-component__output__current-operator">current_operator</div>
-          <div id="calculator-component__output__current-operand">current-operand</div>
+          <div id="calculator-component__output__previous-operand"></div>
+          <div id="calculator-component__output__current-operator"></div>
+          <div id="calculator-component__output__current-operand"></div>
         </div>
         <div class="calculator-component__buttons">
           <ButtonGrid
@@ -80,10 +80,6 @@ export default class CalculatorComponent extends Component {
     this.currentOperator = this.getElementById("calculator-component__output__current-operator");
     this.currentOperand = this.getElementById("calculator-component__output__current-operand");
 
-    console.log(this.previousOperand);
-    console.log(this.currentOperator);
-    console.log(this.currentOperand);
-
   }
 
   addButtonEventListeners(){
@@ -91,8 +87,34 @@ export default class CalculatorComponent extends Component {
     for(let btn of btns){
      btn.on('released', () => {
       console.log(btn.textContent);
+      this.handleInput(btn.textContent);
      })
     }
+  }
+
+  handleInput(input){
+    const digitRegex = new RegExp("^[0-9]$");
+    if (digitRegex.test(input)){
+      this.currentOperand.textContent += input;
+      return;
+    }
+    
+    const operatorRegex = new RegExp("^[÷|x|\\-|\\+]$");
+    if (operatorRegex.test(input) && this.currentOperand.textContent != "" && !(this.previousOperand.textContent != "")){
+      this.previousOperand.textContent = this.currentOperand.textContent;
+      this.currentOperator.textContent = input;
+      this.currentOperand.textContent = "";
+      return;
+    }
+
+    const equalsRegex = new RegExp("^[=]$");
+    const additionRegex = new RegExp("^[+]$");
+    const divisionRegex = new RegExp("^[]$")
+    if (equalsRegex.test(input) && this.previousOperand.textContent != "" && this.currentOperator.textContent != "" && this.currentOperand.textContent != ""){
+      console.log(this.previousOperand.textContent, this.currentOperator.textContent, this.currentOperand.textContent);
+      return;
+    }
+    
   }
 
   addDebugEventListeners(){
