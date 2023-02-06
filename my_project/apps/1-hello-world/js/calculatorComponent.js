@@ -65,6 +65,16 @@ export default class CalculatorComponent extends Component {
             ></input>
             <label for="debug__toggle-button-label__emoji-labels">Emoji Labels</label>
           </fieldset>
+          <fieldset>
+            <h3>Calculator State</h3>
+            <label for="debug__calculator-state__previous-operand">previous-operand:</label>
+            <div id="debug__calculator-state__previous-operand"></div>
+            <label for="debug__calculator-state__current-operator">current-operator:</label>
+            <div id="debug__calculator-state__current-operator"></div>
+            <label for="debug__calculator-state__current-operand">current-operand:</label>
+            <div id="debug__calculator-state__current-operand"></div>
+          </fieldset>
+
         </div>
       </div>
     );
