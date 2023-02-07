@@ -40,7 +40,7 @@ export default class CalculatorComponent extends Component {
           ></textarea>
         </div>
         <div class="calculator-component__buttons">
-          <ButtonGrid
+            <ButtonGrid
             props={{
               identifier: Object.keys(this.buttonAtributes)[0],
               buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[0]].buttons,
@@ -54,13 +54,14 @@ export default class CalculatorComponent extends Component {
               columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[1]].columns,
             }}
           />
-            <ButtonGrid
+          <ButtonGrid
             props={{
               identifier: Object.keys(this.buttonAtributes)[2],
               buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[2]].buttons,
               columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[2]].columns,
             }}
           />
+
         </div>
         <div class="debug">
           <h2>DEBUG</h2>
@@ -182,7 +183,6 @@ export default class CalculatorComponent extends Component {
       this.currentOperand.textContent = result;
       return;
     }
-    
   }
 
   addDebugEventListeners(){
@@ -250,7 +250,7 @@ export default class CalculatorComponent extends Component {
         this.debugPreviousOperand.textContent = "∅";
     }
 
-  }; 
+  }
 
   getElementById(id) {
     return this.component.querySelector(`[internalId=${id}]`);
