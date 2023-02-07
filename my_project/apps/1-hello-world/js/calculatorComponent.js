@@ -115,12 +115,7 @@ export default class CalculatorComponent extends Component {
     this.cacheButtons();  // cache all input buttons in the inputButtons map
     this.initButtonLabels(); // initialize button labels with default values
     this.addButtonEventListeners(); // add button event listeners
-
-    // cache output doms
-    this.previousOperation = this.getElementById("calculator-component__output-previous-operation");
-    this.previousOperand = this.getElementById("calculator-component__output__previous-operand");
-    this.currentOperator = this.getElementById("calculator-component__output__current-operator");
-    this.currentOperand = this.getElementById("calculator-component__output__current-operand");
+    this.cacheOutputFields(); // cache output fields
     
     // cache debug doms
     this.debugPreviousOperation= this.getElementById("debug__calculator-state__previous-operation");
@@ -130,6 +125,14 @@ export default class CalculatorComponent extends Component {
     
     this.addDebugEventListeners();  // Add event listeners for debug components
     this.inResetState = false; // set reset state to false
+  }
+
+    // cache output fields
+  cacheOutputFields(){
+    this.previousOperation = this.getElementById("calculator-component__output-previous-operation");
+    this.previousOperand = this.getElementById("calculator-component__output__previous-operand");
+    this.currentOperator = this.getElementById("calculator-component__output__current-operator");
+    this.currentOperand = this.getElementById("calculator-component__output__current-operand");
   }
 
   addButtonEventListeners(){
@@ -194,7 +197,6 @@ export default class CalculatorComponent extends Component {
       this.handleInput(input);
       return;
     }
-    
   
     if (digitRegex.test(input)){
       this.currentOperand.textContent += input;
@@ -217,7 +219,7 @@ export default class CalculatorComponent extends Component {
     const additionRegex = new RegExp("^\\+$");
     
     if (equalsRegex.test(input)){
-      
+      if (this.previousOperand.textContent == "" && this.currentOperand.textContent == "") return;
       let leftHandSide = undefined;
       let rightHandSide = undefined;
       if (this.previousOperand.textContent != ""){
