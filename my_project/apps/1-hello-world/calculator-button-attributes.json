@@ -1,4 +1,8 @@
 {
+  "clear-functions": {
+  "buttons": 3,
+  "columns": 3
+  },
   "main-operands": {
     "buttons": 12,
     "columns": 3
@@ -6,9 +10,6 @@
   "main-operators": {
     "buttons": 5,
     "columns": 1
-  },
-  "clear-functions": {
-    "buttons": 3,
-    "columns": 3
   }
+
 }
