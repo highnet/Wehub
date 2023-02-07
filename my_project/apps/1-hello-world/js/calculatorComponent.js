@@ -159,6 +159,10 @@ export default class CalculatorComponent extends Component {
     this.inResetState = false;
   }
 
+  isCurrentOperandEmpty(){
+    return this.currentOperand.textContent == "";
+  }
+
   // handle input
   handleInput(input){
 
@@ -231,8 +235,6 @@ export default class CalculatorComponent extends Component {
       this.currentOperand.textContent = "";
       return;
     }
-
-
     
     if (equalsRegex.test(input)){
       if (this.previousOperand.textContent == "" && this.currentOperand.textContent == "") return;
@@ -259,16 +261,16 @@ export default class CalculatorComponent extends Component {
           this.currentOperator.textContent = "+";
         }
 
-        else if (this.previousOperation.textContent.includes("-")){
-          leftHandSide = parseFloat(this.currentOperand.textContent);
-          rightHandSide = parseFloat(this.previousOperation.textContent.split("-")[1]);
-          this.currentOperator.textContent = "-";
-        }
-
         else if (this.previousOperation.textContent.includes("÷")){
           leftHandSide = parseFloat(this.currentOperand.textContent);
           rightHandSide = parseFloat(this.previousOperation.textContent.split("÷")[1]);
           this.currentOperator.textContent = "÷";
+        }
+
+        else if (this.previousOperation.textContent.includes("-")){
+          leftHandSide = parseFloat(this.currentOperand.textContent);
+          rightHandSide = parseFloat(this.previousOperation.textContent.split("-")[1]);
+          this.currentOperator.textContent = "-";
         }
 
       }
