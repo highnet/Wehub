@@ -23,20 +23,24 @@ export default class CalculatorComponent extends Component {
   render() {
     return (
       <div class="calculator-component">
-        <div class="calculator-component__output">
+        <div class="calculator-component__outputs">
           <textarea
+            class="calculator-component__output"
             readonly = ""
             id = "calculator-component__output-previous-operation"
           ></textarea>
-          <textarea 
+          <textarea
+            class="calculator-component__output"
             readonly="" 
             id="calculator-component__output__previous-operand" 
           ></textarea>
           <textarea
+            class="calculator-component__output"
             readonly = "" 
             id="calculator-component__output__current-operator" 
           ></textarea>
           <textarea 
+            class="calculator-component__output"
             readonly = ""
             id="calculator-component__output__current-operand" 
           ></textarea>
