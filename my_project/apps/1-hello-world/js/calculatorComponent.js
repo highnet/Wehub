@@ -25,20 +25,20 @@ export default class CalculatorComponent extends Component {
       <div class="calculator-component">
         <div class="calculator-component__output">
           <textarea
-          readonly = ""
-          id = "calculator-component__output-previous-operation"
+            readonly = ""
+            id = "calculator-component__output-previous-operation"
           ></textarea>
           <textarea 
-          readonly="" 
-          id="calculator-component__output__previous-operand" 
+            readonly="" 
+            id="calculator-component__output__previous-operand" 
           ></textarea>
           <textarea
-          readonly = "" 
-          id="calculator-component__output__current-operator" 
+            readonly = "" 
+            id="calculator-component__output__current-operator" 
           ></textarea>
           <textarea 
-          // readonly = ""
-          id="calculator-component__output__current-operand" 
+            readonly = ""
+            id="calculator-component__output__current-operand" 
           ></textarea>
         </div>
         <div class="calculator-component__buttons">
@@ -63,7 +63,6 @@ export default class CalculatorComponent extends Component {
               columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[2]].columns,
             }}
           />
-
         </div>
         <div class="debug">
           <h2>DEBUG</h2>
@@ -74,23 +73,23 @@ export default class CalculatorComponent extends Component {
               name="debug__button-labels"
               id="debug__toggle-button-label__identifier-labels"
               value="identifier-labels"
-            // checked="checked"
+              // checked="checked"
             ></input>
             <label for="debug__toggle-button-label__identifier-labels">Identifier Labels</label>
             <input 
-            type="radio" 
-            name="debug__button-labels" 
-            id="debug__toggle-button-label__calculator-labels" 
-            value="calculator-labels" 
-             checked="checked"
+              type="radio" 
+              name="debug__button-labels" 
+              id="debug__toggle-button-label__calculator-labels" 
+              value="calculator-labels" 
+              checked="checked"
             ></input>
             <label for="debug__toggle-button-label__calculator-labels">Calculator Labels</label>
             <input 
-            type="radio" 
-            name="debug__button-labels" 
-            id="debug__toggle-button-label__emoji-labels" 
-            value="emoji-labels" 
-            // checked="checked"
+              type="radio" 
+              name="debug__button-labels" 
+              id="debug__toggle-button-label__emoji-labels" 
+              value="emoji-labels" 
+              // checked="checked"
             ></input>
             <label for="debug__toggle-button-label__emoji-labels">Emoji Labels</label>
           </fieldset>
@@ -115,60 +114,77 @@ export default class CalculatorComponent extends Component {
     this.cacheButtons();  // cache all input buttons in the inputButtons map
     this.initButtonLabels(); // initialize button labels with default values
     this.addButtonEventListeners(); // add button event listeners
-    this.cacheOutputFields(); // cache output fields
-    
-    // cache debug doms
-    this.debugPreviousOperation= this.getElementById("debug__calculator-state__previous-operation");
-    this.debugPreviousOperand= this.getElementById("debug__calculator-state__previous-operand");
-    this.debugCurrentOperator= this.getElementById("debug__calculator-state__current-operator");
-    this.debugCurrentOperand = this.getElementById("debug__calculator-state__current-operand");
-    
+    this.cacheOutputElements(); // cache output elements
+    this.cacheDebugElements(); // cache debug elements
     this.addDebugEventListeners();  // Add event listeners for debug components
     this.inResetState = false; // set reset state to false
   }
 
-    // cache output fields
-  cacheOutputFields(){
+  // cache debug elements
+  cacheDebugElements(){
+    this.debugPreviousOperation= this.getElementById("debug__calculator-state__previous-operation");
+    this.debugPreviousOperand= this.getElementById("debug__calculator-state__previous-operand");
+    this.debugCurrentOperator= this.getElementById("debug__calculator-state__current-operator");
+    this.debugCurrentOperand = this.getElementById("debug__calculator-state__current-operand");
+  }
+
+  // cache output elements
+  cacheOutputElements(){
     this.previousOperation = this.getElementById("calculator-component__output-previous-operation");
     this.previousOperand = this.getElementById("calculator-component__output__previous-operand");
     this.currentOperator = this.getElementById("calculator-component__output__current-operator");
     this.currentOperand = this.getElementById("calculator-component__output__current-operand");
   }
 
+ // add button event listeners
   addButtonEventListeners(){
     let btns = this.getButtons();
     for(let btn of btns){
-     btn.on('released', () => {
-      this.handleInput(btn.textContent);
-     })
+      btn.on('released', () => {
+        this.handleInput(btn.textContent);
+      })
     }
   }
 
   // clear the calculator
   allClear(){
-      console.log("ALL CLEAR");
-      this.previousOperation.textContent = "";
-      this.previousOperand.textContent = "";
-      this.currentOperator.textContent = "";
-      this.currentOperand.textContent = "";
-      this.inResetState = false;
+    this.previousOperation.textContent = "";
+    this.previousOperand.textContent = "";
+    this.currentOperator.textContent = "";
+    this.currentOperand.textContent = "";
   }
 
+  reset(){
+    this.allClear();
+    this.inResetState = false;
+  }
+
+  // handle input
   handleInput(input){
+    
+    // define regex patterns
+    const backspaceRegex = new RegExp("^←$");
+    const allClearRegex = new RegExp("^AC$");
+    const clearRegex = new RegExp("^C$");
+    const digitRegex = new RegExp("^[0-9]$");
+    const operatorRegex = new RegExp("^[÷|x|\\-|\\+]$");
+    const equalsRegex = new RegExp("^=$");
+    const divisionRegex = new RegExp("^÷$");
+    const multiplicationRegex = new RegExp("^x$");
+    const subtractionRegex = new RegExp("^\\-$");
+    const additionRegex = new RegExp("^\\+$");
 
     if (this.inResetState){
-      this.allClear();
+      this.reset();
       this.handleInput(input);
       return;
     }
 
-    const backspaceRegex = new RegExp("^←$");
     if (backspaceRegex.test(input) && this.currentOperand.textContent != ""){
       this.currentOperand.textContent = this.currentOperand.textContent.substring(0,this.currentOperand.textContent.length-1);
       return;
     }
 
-    const allClearRegex = new RegExp("^AC$");
     if (allClearRegex.test(input) && this.currentOperator.textContent != "" && this.currentOperand.textContent != ""){
       this.currentOperand.textContent = "";
       return;
@@ -179,7 +195,6 @@ export default class CalculatorComponent extends Component {
       return;
     }
 
-    const clearRegex = new RegExp("^C$");
     if (clearRegex.test(input) && this.currentOperator.textContent != ""){
       this.allClear();
       return;
@@ -190,7 +205,6 @@ export default class CalculatorComponent extends Component {
       return;
     }
 
-    const digitRegex = new RegExp("^[0-9]$");
     
     if (digitRegex.test(input) && this.currentOperand.textContent != "" && this.previousOperation.textContent != "" && this.currentOperator.textContent == "" && this.previousOperand.textContent == ""){
       this.allClear();
@@ -203,7 +217,6 @@ export default class CalculatorComponent extends Component {
       return;
     }
     
-    const operatorRegex = new RegExp("^[÷|x|\\-|\\+]$");
 
     if (operatorRegex.test(input) && this.currentOperand.textContent != "" && this.previousOperand.textContent == ""){
       this.currentOperator.textContent = input;
@@ -212,11 +225,7 @@ export default class CalculatorComponent extends Component {
       return;
     }
 
-    const equalsRegex = new RegExp("^=$");
-    const divisionRegex = new RegExp("^÷$");
-    const multiplicationRegex = new RegExp("^x$");
-    const subtractionRegex = new RegExp("^\\-$");
-    const additionRegex = new RegExp("^\\+$");
+
     
     if (equalsRegex.test(input)){
       if (this.previousOperand.textContent == "" && this.currentOperand.textContent == "") return;
@@ -286,6 +295,7 @@ export default class CalculatorComponent extends Component {
     }
   }
 
+  // add debug event listeners
   addDebugEventListeners(){
     // Add event listeners for debug components
 
@@ -331,7 +341,8 @@ export default class CalculatorComponent extends Component {
     previousOperandObserver.observe(this.previousOperand, mutationOptions);
   }
 
-   updateDebugCalculatorStates = () => {
+  // update debug calculator states
+  updateDebugCalculatorStates = () => {
     this.debugPreviousOperation.textContent = this.previousOperation.textContent;
     if (this.debugPreviousOperation.textContent == ""){
       this.debugPreviousOperation.textContent = "∅";
@@ -353,10 +364,12 @@ export default class CalculatorComponent extends Component {
 
   }
 
+  // get an element by id
   getElementById(id) {
     return this.component.querySelector(`[internalId=${id}]`);
   }
 
+  // initialize button labels
   initButtonLabels(){
     // initialize button labels with default values
     let btns = this.getButtons();
@@ -365,6 +378,7 @@ export default class CalculatorComponent extends Component {
     }
   }
 
+  // cache buttons
   cacheButtons(){
     // cache all dynamically generated buttons from buttongrids into the buttons map
     for(let i = 0; i < Object.keys(this.buttonAtributes).length; i++){
@@ -374,12 +388,15 @@ export default class CalculatorComponent extends Component {
     }
   }
 
+  // get buttons
   getButtons(){
     // returns buttons in an array
     return this.buttons.values();
   }
 
+  //toggle button labels
   toggleButtonLabels(buttonIdentifier, buttonLabelType) {
     this.buttons.get(buttonIdentifier).innerHTML = this.buttonLabels[[buttonIdentifier, buttonLabelType]]
   }
+
 }
