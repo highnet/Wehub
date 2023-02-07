@@ -8,17 +8,38 @@ export default class CalculatorComponent extends Component {
   buttons = new Map();
   buttonAtributes = ButtonAttributes;
   buttonLabels = ButtonLabels;
+  previousOperation;
   previousOperand;
   currentOperator;
   currentOperand;
+
+  debugPreviousOperation;
+  debugPreviousOperand;
+  debugCurrentOperator;
+  debugCurrentOperand;
+
+  
 
   render() {
     return (
       <div class="calculator-component">
         <div class="calculator-component__output">
-          <textarea id="calculator-component__output__previous-operand" ></textarea>
-          <textarea id="calculator-component__output__current-operator" ></textarea>
-          <textarea id="calculator-component__output__current-operand" ></textarea>
+          <textarea
+          readonly = ""
+          id = "calculator-component__output-previous-operation"
+          ></textarea>
+          <textarea 
+          readonly="" 
+          id="calculator-component__output__previous-operand" 
+          ></textarea>
+          <textarea
+          readonly = "" 
+          id="calculator-component__output__current-operator" 
+          ></textarea>
+          <textarea 
+          // readonly = ""
+          id="calculator-component__output__current-operand" 
+          ></textarea>
         </div>
         <div class="calculator-component__buttons">
           <ButtonGrid
@@ -67,12 +88,14 @@ export default class CalculatorComponent extends Component {
           </fieldset>
           <fieldset>
             <h3>Calculator State</h3>
+            <label for="debug__calculator-state__previous-operation">previous-operation:</label>
+            <div id="debug__calculator-state__previous-operation">∅</div>
             <label for="debug__calculator-state__previous-operand">previous-operand:</label>
-            <div id="debug__calculator-state__previous-operand"></div>
+            <div id="debug__calculator-state__previous-operand">∅</div>
             <label for="debug__calculator-state__current-operator">current-operator:</label>
-            <div id="debug__calculator-state__current-operator"></div>
+            <div id="debug__calculator-state__current-operator">∅</div>
             <label for="debug__calculator-state__current-operand">current-operand:</label>
-            <div id="debug__calculator-state__current-operand"></div>
+            <div id="debug__calculator-state__current-operand">∅</div>
           </fieldset>
 
         </div>
@@ -85,9 +108,16 @@ export default class CalculatorComponent extends Component {
     this.initButtonLabels(); // initialize button labels with default values
     this.addButtonEventListeners();
 
+    this.previousOperation = this.getElementById("calculator-component__output-previous-operation");
     this.previousOperand = this.getElementById("calculator-component__output__previous-operand");
     this.currentOperator = this.getElementById("calculator-component__output__current-operator");
     this.currentOperand = this.getElementById("calculator-component__output__current-operand");
+    
+    this.debugPreviousOperation= this.getElementById("debug__calculator-state__previous-operation");
+    this.debugPreviousOperand= this.getElementById("debug__calculator-state__previous-operand");
+    this.debugCurrentOperator= this.getElementById("debug__calculator-state__current-operator");
+    this.debugCurrentOperand = this.getElementById("debug__calculator-state__current-operand");
+    
     this.addDebugEventListeners();  // Add event listeners for debug components
 
   }
@@ -140,6 +170,8 @@ export default class CalculatorComponent extends Component {
         console.log(leftHandSide + rightHandSide);
         result = leftHandSide + rightHandSide;
       }
+
+      this.previousOperation.textContent = leftHandSide.toString().concat(this.currentOperator.textContent).concat(rightHandSide.toString());
       this.previousOperand.textContent = "";
       this.currentOperator.textContent = "";
       this.currentOperand.textContent = result;
@@ -175,12 +207,48 @@ export default class CalculatorComponent extends Component {
       }
     });
 
-    // TODO: calculator state -> previous-operand
-    console.log(this.previousOperand);
-    // subscribe to change event from the three text fields
-    // change the debug strings when the text fields change
-    // does this even work?
+    const mutationOptions = {attributes: true, childList: true, subtree: true};
+    // calculator state -> previous-operation
+    const previousOperationObserver = new MutationObserver(this.updateDebugCalculatorStates);
+    previousOperationObserver.observe(this.previousOperation, mutationOptions);
 
+    // calculator state -> previous-operand
+    const currentOperandObserver = new MutationObserver(this.updateDebugCalculatorStates);
+    currentOperandObserver.observe(this.currentOperand, mutationOptions);
+
+    // calculator state -> current-operator
+    const currentOperatorObserver = new MutationObserver(this.updateDebugCalculatorStates);
+    currentOperatorObserver.observe(this.currentOperator, mutationOptions);
+
+    // calculator state -> current-operand
+    const previousOperandObserver = new MutationObserver(this.updateDebugCalculatorStates);
+    previousOperandObserver.observe(this.previousOperand, mutationOptions);
+  }
+
+   updateDebugCalculatorStates = () => {
+    this.debugPreviousOperation.textContent = this.previousOperation.textContent;
+    if (this.debugPreviousOperation.textContent == ""){
+      this.debugPreviousOperation.textContent = "∅";
+    }
+
+    this.debugCurrentOperand.textContent = this.currentOperand.textContent;
+      if (this.debugCurrentOperand.textContent == ""){
+        this.debugCurrentOperand.textContent = "∅";
+    }
+
+    this.debugCurrentOperator.textContent = this.currentOperator.textContent;
+      if (this.debugCurrentOperator.textContent == ""){
+        this.debugCurrentOperator.textContent = "∅";
+    }
+    this.debugPreviousOperand.textContent = this.previousOperand.textContent;
+      if (this.debugPreviousOperand.textContent == ""){
+        this.debugPreviousOperand.textContent = "∅";
+    }
+
+  }; 
+
+  getElementById(id) {
+    return this.component.querySelector(`[internalId=${id}]`);
   }
 
   initButtonLabels(){
@@ -203,10 +271,6 @@ export default class CalculatorComponent extends Component {
   getButtons(){
     // returns buttons in an array
     return this.buttons.values();
-  }
-
-  getElementById(id) {
-    return this.component.querySelector(`[internalId=${id}]`);
   }
 
   toggleButtonLabels(buttonIdentifier, buttonLabelType) {
