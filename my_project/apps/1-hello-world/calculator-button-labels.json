@@ -49,5 +49,18 @@
   "main-operators-3,emoji-labels": "➕",
   "main-operators-4,identifier-labels": "main-operators-4",
   "main-operators-4,calculator-labels": "=",
-  "main-operators-4,emoji-labels": "🟰"
+  "main-operators-4,emoji-labels": "🟰",
+
+  "clear-functions-0,identifier-labels": "clear-functions-0",
+  "clear-functions-0,calculator-labels": "AC",
+  "clear-functions-0,emoji-labels": "🗑️",
+
+  "clear-functions-1,identifier-labels": "clear-functions-1",
+  "clear-functions-1,calculator-labels": "C",
+  "clear-functions-1,emoji-labels": "🆑",
+
+  "clear-functions-2,identifier-labels": "clear-functions-2",
+  "clear-functions-2,calculator-labels": "←",
+  "clear-functions-2,emoji-labels": "⬅️"
+
 }

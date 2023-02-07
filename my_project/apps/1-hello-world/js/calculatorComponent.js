@@ -17,9 +17,7 @@ export default class CalculatorComponent extends Component {
   debugPreviousOperand;
   debugCurrentOperator;
   debugCurrentOperand;
-
   
-
   render() {
     return (
       <div class="calculator-component">
@@ -54,6 +52,13 @@ export default class CalculatorComponent extends Component {
               identifier: Object.keys(this.buttonAtributes)[1],
               buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[1]].buttons,
               columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[1]].columns,
+            }}
+          />
+            <ButtonGrid
+            props={{
+              identifier: Object.keys(this.buttonAtributes)[2],
+              buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[2]].buttons,
+              columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[2]].columns,
             }}
           />
         </div>
