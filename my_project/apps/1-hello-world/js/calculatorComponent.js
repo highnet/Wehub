@@ -179,12 +179,14 @@ export default class CalculatorComponent extends Component {
 
 
     const digitRegex = new RegExp("^[0-9]$");
-    if(digitRegex.test(input) && this.previousOperation.textContent != ""){
+    
+    if (digitRegex.test(input) && this.currentOperand.textContent != "" && this.previousOperation.textContent != "" && this.currentOperator.textContent == "" && this.previousOperand.textContent == ""){
       this.allClear();
       this.handleInput(input);
       return;
     }
-
+    
+  
     if (digitRegex.test(input)){
       this.currentOperand.textContent += input;
       return;
@@ -192,9 +194,8 @@ export default class CalculatorComponent extends Component {
     
     const operatorRegex = new RegExp("^[÷|x|\\-|\\+]$");
 
-    if (operatorRegex.test(input) && this.currentOperand.textContent != "" && !(this.previousOperand.textContent != "")){
+    if (operatorRegex.test(input) && this.currentOperand.textContent != "" && this.previousOperand.textContent == ""){
       this.currentOperator.textContent = input;
-   //   this.previousOperation.textContent = this.currentOperand.textContent.toString().concat(this.currentOperator.textContent);
       this.previousOperand.textContent = this.currentOperand.textContent;
       this.currentOperand.textContent = "";
       return;
@@ -204,7 +205,7 @@ export default class CalculatorComponent extends Component {
     const divisionRegex = new RegExp("^÷$");
     const multiplicationRegex = new RegExp("^x$");
     const subtractionRegex = new RegExp("^\\-$");
-    const additionRegex = new RegExp("^\\+$");
+    const additionRegex = new RegExp("^\\+$");    
     
     if (equalsRegex.test(input) && this.previousOperand.textContent != "" && this.currentOperator.textContent != "" && this.currentOperand.textContent != ""){
       const leftHandSide = parseInt(this.previousOperand.textContent);
