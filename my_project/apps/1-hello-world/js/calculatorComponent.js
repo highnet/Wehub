@@ -18,6 +18,7 @@ export default class CalculatorComponent extends Component {
   debugPreviousOperand;
   debugCurrentOperator;
   debugCurrentOperand;
+  inResetState;
   
   render() {
     return (
@@ -126,7 +127,7 @@ export default class CalculatorComponent extends Component {
     this.debugCurrentOperand = this.getElementById("debug__calculator-state__current-operand");
     
     this.addDebugEventListeners();  // Add event listeners for debug components
-
+    this.inResetState = false;
   }
 
   addButtonEventListeners(){
@@ -148,6 +149,13 @@ export default class CalculatorComponent extends Component {
   }
 
   handleInput(input){
+
+    if (this.inResetState){
+      this.allClear();
+      this.inResetState = false;
+      this.handleInput(input);
+      return;
+    }
 
     const backspaceRegex = new RegExp("^←$");
     if (backspaceRegex.test(input) && this.currentOperand.textContent != ""){
@@ -205,30 +213,72 @@ export default class CalculatorComponent extends Component {
     const divisionRegex = new RegExp("^÷$");
     const multiplicationRegex = new RegExp("^x$");
     const subtractionRegex = new RegExp("^\\-$");
-    const additionRegex = new RegExp("^\\+$");    
+    const additionRegex = new RegExp("^\\+$");
     
-    if (equalsRegex.test(input) && this.previousOperand.textContent != "" && this.currentOperator.textContent != "" && this.currentOperand.textContent != ""){
-      const leftHandSide = parseInt(this.previousOperand.textContent);
-      const rightHandSide = parseInt(this.currentOperand.textContent);
+    if (equalsRegex.test(input)){
+      
+      let leftHandSide = undefined;
+      let rightHandSide = undefined;
+      if (this.previousOperand.textContent != ""){
+       leftHandSide = parseFloat(this.previousOperand.textContent);
+      }
+      if (this.currentOperand.textContent != ""){
+       rightHandSide = parseFloat(this.currentOperand.textContent);
+
+      }
+      if (leftHandSide == undefined && this.previousOperation.textContent != ""){
+
+        if (this.previousOperation.textContent.includes("x")){
+          leftHandSide = parseFloat(this.currentOperand.textContent);
+          rightHandSide = parseFloat(this.previousOperation.textContent.split("x")[1]);
+          this.currentOperator.textContent = "x";
+        }
+
+        else if (this.previousOperation.textContent.includes("+")){
+          leftHandSide = parseFloat(this.currentOperand.textContent);
+          rightHandSide = parseFloat(this.previousOperation.textContent.split("+")[1]);
+          this.currentOperator.textContent = "+";
+        }
+
+        else if (this.previousOperation.textContent.includes("-")){
+          leftHandSide = parseFloat(this.currentOperand.textContent);
+          rightHandSide = parseFloat(this.previousOperation.textContent.split("-")[1]);
+          this.currentOperator.textContent = "-";
+        }
+
+        else if (this.previousOperation.textContent.includes("÷")){
+          leftHandSide = parseFloat(this.currentOperand.textContent);
+          rightHandSide = parseFloat(this.previousOperation.textContent.split("÷")[1]);
+          this.currentOperator.textContent = "÷";
+        }
+
+      }
+        console.log(leftHandSide, this.currentOperator.textContent, rightHandSide);
+
+      if (leftHandSide == undefined  || leftHandSide == NaN || rightHandSide == undefined || rightHandSide == NaN) return;
+      if (this.currentOperator.textContent == "") return;
+      if (this.currentOperator.textContent == "÷" && rightHandSide == 0) {
+        this.currentOperand.textContent = "Cannot Divide by Zero."
+        this.inResetState = true;
+        return;
+      }
       let result = NaN;
       if (divisionRegex.test(this.currentOperator.textContent)){
-        console.log(leftHandSide / rightHandSide);
         result = leftHandSide / rightHandSide;
       } else if (multiplicationRegex.test(this.currentOperator.textContent)){
-        console.log(leftHandSide * rightHandSide);
         result = leftHandSide * rightHandSide;
       } else if (subtractionRegex.test(this.currentOperator.textContent)){
-        console.log(leftHandSide - rightHandSide);
         result = leftHandSide - rightHandSide;
       } else if (additionRegex.test(this.currentOperator.textContent)){
-        console.log(leftHandSide + rightHandSide);
         result = leftHandSide + rightHandSide;
       }
-
+      if (result != NaN){
       this.previousOperation.textContent = leftHandSide.toString().concat(this.currentOperator.textContent).concat(rightHandSide.toString());
       this.previousOperand.textContent = "";
       this.currentOperator.textContent = "";
       this.currentOperand.textContent = result;
+      }
+
       return;
     }
   }
