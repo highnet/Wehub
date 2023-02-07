@@ -184,12 +184,12 @@ export default class CalculatorComponent extends Component {
       return;
     }
 
-    if (backspaceRegex.test(input) && this.currentOperand.textContent != ""){
+    if (backspaceRegex.test(input) && !this.isCurrentOperandEmpty()){
       this.currentOperand.textContent = this.currentOperand.textContent.substring(0,this.currentOperand.textContent.length-1);
       return;
     }
 
-    if (allClearRegex.test(input) && this.currentOperator.textContent != "" && this.currentOperand.textContent != ""){
+    if (allClearRegex.test(input) && this.currentOperator.textContent != "" && !this.isCurrentOperandEmpty()){
       this.currentOperand.textContent = "";
       return;
     }
@@ -210,7 +210,7 @@ export default class CalculatorComponent extends Component {
     }
 
     
-    if (digitRegex.test(input) && this.currentOperand.textContent != "" && this.previousOperation.textContent != "" && this.currentOperator.textContent == "" && this.previousOperand.textContent == ""){
+    if (digitRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperation.textContent != "" && this.currentOperator.textContent == "" && this.previousOperand.textContent == ""){
       this.allClear();
       this.handleInput(input);
       return;
@@ -222,14 +222,14 @@ export default class CalculatorComponent extends Component {
     }
     
     
-    if (operatorRegex.test(input) && this.currentOperand.textContent != "" && this.previousOperand.textContent != ""){
+    if (operatorRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperand.textContent != ""){
       this.handleInput("=");
       this.handleInput(input);
       return;
     }
     
 
-    if (operatorRegex.test(input) && this.currentOperand.textContent != "" && this.previousOperand.textContent == ""){
+    if (operatorRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperand.textContent == ""){
       this.currentOperator.textContent = input;
       this.previousOperand.textContent = this.currentOperand.textContent;
       this.currentOperand.textContent = "";
@@ -243,7 +243,7 @@ export default class CalculatorComponent extends Component {
       if (this.previousOperand.textContent != ""){
        leftHandSide = parseFloat(this.previousOperand.textContent);
       }
-      if (this.currentOperand.textContent != ""){
+      if (!this.isCurrentOperandEmpty()){
        rightHandSide = parseFloat(this.currentOperand.textContent);
 
       }
@@ -293,6 +293,16 @@ export default class CalculatorComponent extends Component {
       } else if (additionRegex.test(this.currentOperator.textContent)){
         result = leftHandSide + rightHandSide;
       }
+
+      console.log(result);
+      if (result.toString().includes("e")){
+        if (result > 0){
+          this.currentOperand.textContent = "Error: Overflow"
+        } 
+        this.inResetState = true;
+        return;
+      }
+
       if (result != NaN){
       this.previousOperation.textContent = leftHandSide.toString().concat(this.currentOperator.textContent).concat(rightHandSide.toString());
       this.previousOperand.textContent = "";
