@@ -114,45 +114,47 @@ export default class CalculatorComponent extends Component {
   ready() {
     this.cacheButtons();  // cache all input buttons in the inputButtons map
     this.initButtonLabels(); // initialize button labels with default values
-    this.addButtonEventListeners();
+    this.addButtonEventListeners(); // add button event listeners
 
+    // cache output doms
     this.previousOperation = this.getElementById("calculator-component__output-previous-operation");
     this.previousOperand = this.getElementById("calculator-component__output__previous-operand");
     this.currentOperator = this.getElementById("calculator-component__output__current-operator");
     this.currentOperand = this.getElementById("calculator-component__output__current-operand");
     
+    // cache debug doms
     this.debugPreviousOperation= this.getElementById("debug__calculator-state__previous-operation");
     this.debugPreviousOperand= this.getElementById("debug__calculator-state__previous-operand");
     this.debugCurrentOperator= this.getElementById("debug__calculator-state__current-operator");
     this.debugCurrentOperand = this.getElementById("debug__calculator-state__current-operand");
     
     this.addDebugEventListeners();  // Add event listeners for debug components
-    this.inResetState = false;
+    this.inResetState = false; // set reset state to false
   }
 
   addButtonEventListeners(){
     let btns = this.getButtons();
     for(let btn of btns){
      btn.on('released', () => {
-      console.log(btn.textContent);
       this.handleInput(btn.textContent);
      })
     }
   }
 
+  // clear the calculator
   allClear(){
       console.log("ALL CLEAR");
       this.previousOperation.textContent = "";
       this.previousOperand.textContent = "";
       this.currentOperator.textContent = "";
       this.currentOperand.textContent = "";
+      this.inResetState = false;
   }
 
   handleInput(input){
 
     if (this.inResetState){
       this.allClear();
-      this.inResetState = false;
       this.handleInput(input);
       return;
     }
@@ -184,7 +186,6 @@ export default class CalculatorComponent extends Component {
       this.currentOperand.textContent = "";
       return;
     }
-
 
     const digitRegex = new RegExp("^[0-9]$");
     
@@ -258,7 +259,7 @@ export default class CalculatorComponent extends Component {
       if (leftHandSide == undefined  || leftHandSide == NaN || rightHandSide == undefined || rightHandSide == NaN) return;
       if (this.currentOperator.textContent == "") return;
       if (this.currentOperator.textContent == "÷" && rightHandSide == 0) {
-        this.currentOperand.textContent = "Cannot Divide by Zero."
+        this.currentOperand.textContent = "Error: Cannot Divide by Zero."
         this.inResetState = true;
         return;
       }
