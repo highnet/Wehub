@@ -8,6 +8,7 @@ export default class CalculatorComponent extends Component {
   buttons = new Map();
   buttonAtributes = ButtonAttributes;
   buttonLabels = ButtonLabels;
+
   previousOperation;
   previousOperand;
   currentOperator;
@@ -138,14 +139,54 @@ export default class CalculatorComponent extends Component {
     }
   }
 
+  allClear(){
+      this.previousOperation.textContent = "";
+      this.previousOperand.textContent = "";
+      this.currentOperator.textContent = "";
+      this.currentOperand.textContent = "";
+  }
+
   handleInput(input){
+    const allClearRegex = new RegExp("^AC$");
+    if (allClearRegex.test(input) && this.currentOperator.textContent != "" && this.currentOperand.textContent != ""){
+      this.currentOperand.textContent = "";
+      return;
+    }
+
+    if (allClearRegex.test(input)){
+      this.allClear();
+      return;
+    }
+
+    const clearRegex = new RegExp("^C$");
+
+    if (clearRegex.test(input) && this.currentOperator.textContent == ""){
+      this.allClear();
+      return;
+    }
+
+    if (clearRegex.test(input)){
+      this.currentOperand.textContent = "";
+      return;
+    }
+
+
     const digitRegex = new RegExp("^[0-9]$");
+
+    if(digitRegex.test && this.previousOperation.textContent != ""){
+      this.allClear();
+      this.handleInput(input);
+      return;
+    }
+
     if (digitRegex.test(input)){
       this.currentOperand.textContent += input;
       return;
     }
     
     const operatorRegex = new RegExp("^[÷|x|\\-|\\+]$");
+
+
     if (operatorRegex.test(input) && this.currentOperand.textContent != "" && !(this.previousOperand.textContent != "")){
       this.previousOperand.textContent = this.currentOperand.textContent;
       this.currentOperator.textContent = input;
@@ -153,11 +194,11 @@ export default class CalculatorComponent extends Component {
       return;
     }
 
-    const equalsRegex = new RegExp("^[=]$");
-    const divisionRegex = new RegExp("^[÷]$");
-    const multiplicationRegex = new RegExp("^[x]$");
-    const subtractionRegex = new RegExp("^[\\-]$");
-    const additionRegex = new RegExp("^[\\+]$");
+    const equalsRegex = new RegExp("^=$");
+    const divisionRegex = new RegExp("^÷$");
+    const multiplicationRegex = new RegExp("^x$");
+    const subtractionRegex = new RegExp("^\\-$");
+    const additionRegex = new RegExp("^\\+$");
     
     if (equalsRegex.test(input) && this.previousOperand.textContent != "" && this.currentOperator.textContent != "" && this.currentOperand.textContent != ""){
       const leftHandSide = parseInt(this.previousOperand.textContent);

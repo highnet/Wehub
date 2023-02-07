@@ -7,7 +7,6 @@ export default class ButtonGrid extends Component {
         style={`
             display: grid;
             grid-template-columns: repeat(${this.props.columns}, 1fr);
-            gap: 1px;
             `}
       ></div>
     );
