@@ -140,6 +140,7 @@ export default class CalculatorComponent extends Component {
   }
 
   allClear(){
+      console.log("ALL CLEAR");
       this.previousOperation.textContent = "";
       this.previousOperand.textContent = "";
       this.currentOperator.textContent = "";
@@ -147,6 +148,13 @@ export default class CalculatorComponent extends Component {
   }
 
   handleInput(input){
+
+    const backspaceRegex = new RegExp("^←$");
+    if (backspaceRegex.test(input) && this.currentOperand.textContent != ""){
+      this.currentOperand.textContent = this.currentOperand.textContent.substring(0,this.currentOperand.textContent.length-1);
+      return;
+    }
+
     const allClearRegex = new RegExp("^AC$");
     if (allClearRegex.test(input) && this.currentOperator.textContent != "" && this.currentOperand.textContent != ""){
       this.currentOperand.textContent = "";
@@ -159,8 +167,7 @@ export default class CalculatorComponent extends Component {
     }
 
     const clearRegex = new RegExp("^C$");
-
-    if (clearRegex.test(input) && this.currentOperator.textContent == ""){
+    if (clearRegex.test(input) && this.currentOperator.textContent != ""){
       this.allClear();
       return;
     }
@@ -172,8 +179,7 @@ export default class CalculatorComponent extends Component {
 
 
     const digitRegex = new RegExp("^[0-9]$");
-
-    if(digitRegex.test && this.previousOperation.textContent != ""){
+    if(digitRegex.test(input) && this.previousOperation.textContent != ""){
       this.allClear();
       this.handleInput(input);
       return;
@@ -186,10 +192,10 @@ export default class CalculatorComponent extends Component {
     
     const operatorRegex = new RegExp("^[÷|x|\\-|\\+]$");
 
-
     if (operatorRegex.test(input) && this.currentOperand.textContent != "" && !(this.previousOperand.textContent != "")){
-      this.previousOperand.textContent = this.currentOperand.textContent;
       this.currentOperator.textContent = input;
+   //   this.previousOperation.textContent = this.currentOperand.textContent.toString().concat(this.currentOperator.textContent);
+      this.previousOperand.textContent = this.currentOperand.textContent;
       this.currentOperand.textContent = "";
       return;
     }
