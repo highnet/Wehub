@@ -18,7 +18,7 @@ export default class CalculatorComponent extends Component {
   debugPreviousOperand;
   debugCurrentOperator;
   debugCurrentOperand;
-  inResetState;
+  DoHardResetStateFlag;
   
   render() {
     return (
@@ -124,7 +124,7 @@ export default class CalculatorComponent extends Component {
     this.cacheOutputElements(); // cache output elements
     this.cacheDebugElements(); // cache debug elements
     this.addDebugEventListeners();  // Add event listeners for debug components
-    this.inResetState = false; // set reset state to false
+    this.DoHardResetStateFlag = false; // set reset state to false
   }
   
   // cache debug elements
@@ -164,7 +164,7 @@ export default class CalculatorComponent extends Component {
 
   reset(){
     this.allClear();
-    this.inResetState = false;
+    this.DoHardResetStateFlag = false;
   }
 
   isCurrentOperandEmpty(){
@@ -176,6 +176,7 @@ export default class CalculatorComponent extends Component {
 
 
     // define regex patterns
+    const zeroRegex = new RegExp("^0$");
     const backspaceRegex = new RegExp("^←$");
     const allClearRegex = new RegExp("^AC$");
     const clearRegex = new RegExp("^C$");
@@ -189,105 +190,59 @@ export default class CalculatorComponent extends Component {
     const pointRegex = new RegExp("^\\.$");
     const negationRegex = new RegExp("^\\(-\\)$");
 
-    if (this.inResetState){
+    if (this.DoHardResetStateFlag){
       this.reset();
       this.handleInput(input);
+    } else if (zeroRegex.test(input) && this.currentOperand.textContent == "0"){
       return;
-    }
-    
-    if (negationRegex.test(input) && this.isCurrentOperandEmpty()){
+    } 
+    else if (negationRegex.test(input) && this.isCurrentOperandEmpty()){
       this.handleInput(0);
       this.handleInput("(-)");
-      return;
-    }
-
-    if (negationRegex.test(input) && this.previousOperation.textContent != ""){
+    } else if (negationRegex.test(input) && this.previousOperation.textContent != ""){
       this.allClear();
-      return;
-    }
-
-    if (negationRegex.test(input) && this.currentOperand.textContent.includes("-")){
+    } else if (negationRegex.test(input) && this.currentOperand.textContent.includes("-")){
       this.currentOperand.textContent =  this.currentOperand.textContent.replace("-", '');
-      return;
-    }
-
-    if (negationRegex.test(input) && !this.isCurrentOperandEmpty() && this.currentOperand.textContent[0] != "-"){
+    } else if (negationRegex.test(input) && !this.isCurrentOperandEmpty() && this.currentOperand.textContent[0] != "-"){
       this.currentOperand.textContent = "-" + this.currentOperand.textContent;
-      return;
-    }
+    } else if (pointRegex.test(input) && this.previousOperand.textContent != ""){
 
-    if (pointRegex.test(input) && this.currentOperand.textContent.charAt(this.currentOperand.textContent.length-1) == "."){
+    } 
+    else if (pointRegex.test(input) && this.currentOperand.textContent.charAt(this.currentOperand.textContent.length-1) == "."){
       this.currentOperand.textContent = this.currentOperand.textContent.replace(".", '');
-      return;
-    }
-
-    if (pointRegex.test(input) && this.isCurrentOperandEmpty()){
+    } else if (pointRegex.test(input) && this.isCurrentOperandEmpty()){
       this.handleInput(0);
       this.handleInput(input);
-      return;
-    }
-
-    if (pointRegex.test(input) && !this.currentOperand.textContent.includes(".")){
+    }else if (pointRegex.test(input) && !this.currentOperand.textContent.includes(".")){
       this.currentOperand.textContent += ".";
-      return;
-    }
-
-    if (pointRegex.test(input) && this.previousOperation.textContent != ""){
+    }else if (pointRegex.test(input) && this.previousOperation.textContent != ""){
       this.allClear();
       this.handleInput(input);
-      return;
-    }
-
-    if (backspaceRegex.test(input) && this.previousOperation.textContent != ""){
+    }else if (backspaceRegex.test(input) && this.previousOperation.textContent != ""){
       this.allClear();
-      return;
-    }
-
-    if (backspaceRegex.test(input) && !this.isCurrentOperandEmpty()){
+    }else if (backspaceRegex.test(input) && !this.isCurrentOperandEmpty()){
       this.currentOperand.textContent = this.currentOperand.textContent.substring(0,this.currentOperand.textContent.length-1);
-      return;
-    }
-
-    if (allClearRegex.test(input) && this.currentOperator.textContent != "" && !this.isCurrentOperandEmpty()){
+    }else if (allClearRegex.test(input) && this.currentOperator.textContent != "" && !this.isCurrentOperandEmpty()){
       this.currentOperand.textContent = "";
-      return;
-    }
-
-    if (allClearRegex.test(input)){
+    } else if (allClearRegex.test(input)){
       this.allClear();
-      return;
-    }
-
-    if (clearRegex.test(input) && this.previousOperation.textContent == ""){
+    }else if (clearRegex.test(input) && this.previousOperation.textContent == ""){
       this.currentOperand.textContent = "";
-      return;
-    }
-
-    if (clearRegex.test(input) && this.previousOperation.textContent != ""){
+    } else if (clearRegex.test(input) && this.previousOperation.textContent != ""){
       this.allClear();
-      return;
-    }
-    
-    if (digitRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperation.textContent != "" && this.currentOperator.textContent == "" && this.previousOperand.textContent == ""){
+    } else if (digitRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperation.textContent != "" && this.currentOperator.textContent == "" && this.previousOperand.textContent == ""){
       this.allClear();
       this.handleInput(input);
-      return;
-    }
-  
-    if (digitRegex.test(input)){
+    }else if (digitRegex.test(input)){
+      if (this.currentOperand.textContent == "0"){
+        this.currentOperand.textContent = input;
+      } else {
       this.currentOperand.textContent += input;
-      return;
-    }
-    
-    // shortcut
-    if (operatorRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperand.textContent != ""){
+      }
+    }else if (operatorRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperand.textContent != ""){
       this.handleInput("=");
       this.handleInput(input);
-      return;
-    }
-
-
-    if (operatorRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperand.textContent == ""){
+    }else if (operatorRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperand.textContent == ""){
       if (
         this.currentOperand.textContent == "0." ||
         this.currentOperand.textContent == "-0." || 
@@ -299,10 +254,9 @@ export default class CalculatorComponent extends Component {
       this.currentOperator.textContent = input;
       this.previousOperand.textContent = this.currentOperand.textContent;
       this.currentOperand.textContent = "";
-      return;
     }
     
-    if (equalsRegex.test(input)){
+    else if (equalsRegex.test(input)){
       if (this.previousOperand.textContent == "" && this.currentOperand.textContent == "") return;
       
       if (
@@ -362,7 +316,7 @@ export default class CalculatorComponent extends Component {
       if (this.currentOperator.textContent == "") return;
       if (this.currentOperator.textContent == "÷" && rightHandSide == 0) {
         this.currentOperand.textContent = "Error: Cannot Divide by Zero."
-        this.inResetState = true;
+        this.DoHardResetStateFlag = true;
         return;
       }
       let result = NaN;
@@ -381,7 +335,7 @@ export default class CalculatorComponent extends Component {
         if (result > 0){
           this.currentOperand.textContent = "Error: Overflow"
         } 
-        this.inResetState = true;
+        this.DoHardResetStateFlag = true;
         return;
       }
 
@@ -391,10 +345,7 @@ export default class CalculatorComponent extends Component {
         this.currentOperator.textContent = "";
         this.currentOperand.textContent = result;
       }
-
-      return;
     }
-
 
   }
 
