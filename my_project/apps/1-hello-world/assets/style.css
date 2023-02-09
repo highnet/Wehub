@@ -46,28 +46,17 @@ body {
   color: #000000;
   font-size: 1.5rem;
   text-align: right;
+  border: 1px solid lightgray;
+    width: 100%;
+
   
 }
-
-.calculator-component__output__current-operand:empty{
-  display:initial; 
+.calculator-component__output__previous-operation{
+  font-size: 1.4rem;
+  color: #333333;
 }
-
-.calculator-component__output__previous-operand:empty{
-  display:none; 
-}
-
-.calculator-component__output__previous-operation:empty{
-  display:none; 
-}
-
 .calculator-component__output__current-operator{
   text-align: left;
-  width: 100%;
-}
-
-.calculator-component__output__current-operator:empty{
-  display:none; 
 }
 
 .grid{
