@@ -203,7 +203,6 @@ export default class CalculatorComponent extends Component {
 
     if (negationRegex.test(input) && this.previousOperation.textContent != ""){
       this.allClear();
-      this.handleInput(input);
       return;
     }
 
@@ -234,10 +233,9 @@ export default class CalculatorComponent extends Component {
       return;
     }
 
-    if (backspaceRegex.test(input) && this.previousOperation != ""){
+    if (backspaceRegex.test(input) && this.previousOperation.textContent != ""){
       this.allClear();
       return;
-
     }
 
     if (backspaceRegex.test(input) && !this.isCurrentOperandEmpty()){
@@ -265,28 +263,34 @@ export default class CalculatorComponent extends Component {
       return;
     }
     
-    
     if (digitRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperation.textContent != "" && this.currentOperator.textContent == "" && this.previousOperand.textContent == ""){
       this.allClear();
       this.handleInput(input);
       return;
     }
-    
   
     if (digitRegex.test(input)){
       this.currentOperand.textContent += input;
       return;
     }
     
-    
+    // shortcut
     if (operatorRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperand.textContent != ""){
       this.handleInput("=");
       this.handleInput(input);
       return;
     }
-    
+
 
     if (operatorRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperand.textContent == ""){
+      if (
+        this.currentOperand.textContent == "0." ||
+        this.currentOperand.textContent == "-0." || 
+        this.currentOperand.textContent == "-0"
+        )
+        {
+          this.currentOperand.textContent = "0";
+        }
       this.currentOperator.textContent = input;
       this.previousOperand.textContent = this.currentOperand.textContent;
       this.currentOperand.textContent = "";
@@ -296,10 +300,13 @@ export default class CalculatorComponent extends Component {
     if (equalsRegex.test(input)){
       if (this.previousOperand.textContent == "" && this.currentOperand.textContent == "") return;
       
-      
-      if (this.currentOperand.textContent == "0."){
-        this.currentOperand.textContent = "0";
-      }
+      if (
+        this.currentOperand.textContent == "0." ||
+        this.currentOperand.textContent == "-0." || 
+        this.currentOperand.textContent == "-0")
+        {
+          this.currentOperand.textContent = "0";
+        }
 
       let leftHandSide = undefined;
       let rightHandSide = undefined;
@@ -374,10 +381,10 @@ export default class CalculatorComponent extends Component {
       }
 
       if (result != NaN){
-      this.previousOperation.textContent = leftHandSide.toString().concat(this.currentOperator.textContent).concat(rightHandSide.toString());
-      this.previousOperand.textContent = "";
-      this.currentOperator.textContent = "";
-      this.currentOperand.textContent = result;
+        this.previousOperation.textContent = leftHandSide.toString().concat(this.currentOperator.textContent).concat(rightHandSide.toString());
+        this.previousOperand.textContent = "";
+        this.currentOperator.textContent = "";
+        this.currentOperand.textContent = result;
       }
 
       return;
