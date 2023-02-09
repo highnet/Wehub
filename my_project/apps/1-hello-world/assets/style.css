@@ -49,15 +49,16 @@ body {
   
 }
 
+
 .calculator-component__output__current-operand:empty{
   display:initial; 
 }
 
 .calculator-component__output__previous-operand:empty{
-  display:none; 
+  display:initial; 
 }
 
-.calculator-component__output-previous-operation:empty{
+.calculator-component__output__previous-operation:empty{
   display:none; 
 }
 

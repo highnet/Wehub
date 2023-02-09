@@ -30,14 +30,14 @@ export default class CalculatorComponent extends Component {
             id = "calculator-component__output__previous-operation"
           ></textarea>
           <textarea
-            class="calculator-component__output calculator-component__output__previous-operand"
-            readonly="" 
-            id="calculator-component__output__previous-operand" 
-          ></textarea>
-          <textarea
             class="calculator-component__output calculator-component__output__current-operator"
             readonly = "" 
             id="calculator-component__output__current-operator" 
+          ></textarea>
+          <textarea
+            class="calculator-component__output calculator-component__output__previous-operand"
+            readonly="" 
+            id="calculator-component__output__previous-operand" 
           ></textarea>
           <textarea 
             class="calculator-component__output calculator-component__output__current-operand"
