@@ -148,6 +148,7 @@ export default class CalculatorComponent extends Component {
     let btns = this.getButtons();
     for(let btn of btns){
       btn.on('released', () => {
+        console.log(btn.textContent);
         this.handleInput(btn.textContent);
       })
     }
@@ -185,11 +186,27 @@ export default class CalculatorComponent extends Component {
     const subtractionRegex = new RegExp("^\\-$");
     const additionRegex = new RegExp("^\\+$");
     const pointRegex = new RegExp("^\\.$");
+    const negationRegex = new RegExp("^\\(-\\)$");
 
     if (this.inResetState){
       this.reset();
       this.handleInput(input);
       return;
+    }
+
+    if (negationRegex.test(input) && this.previousOperation.textContent != ""){
+      this.allClear();
+      this.handleInput(input);
+      return;
+    }
+
+    if (negationRegex.test(input) && this.currentOperand.textContent.includes("-")){
+      this.currentOperand.textContent =  this.currentOperand.textContent.replace("-", '');
+      return;
+    }
+
+    if (negationRegex.test(input) && !this.isCurrentOperandEmpty() && this.currentOperand.textContent[0] != "-"){
+      this.currentOperand.textContent = "-" + this.currentOperand.textContent;
     }
 
     if (pointRegex.test(input) && this.isCurrentOperandEmpty()){
@@ -273,8 +290,15 @@ export default class CalculatorComponent extends Component {
       }
       if (!this.isCurrentOperandEmpty()){
        rightHandSide = parseFloat(this.currentOperand.textContent);
-
       }
+      
+      console.log(leftHandSide, this.currentOperator.textContent, rightHandSide);
+
+      if (rightHandSide != undefined && Math.sign(rightHandSide) == -1 && this.currentOperator.textContent == "-"){
+        this.currentOperator.textContent = "+";
+        rightHandSide *= -1;
+      }
+
       if (leftHandSide == undefined && this.previousOperation.textContent != ""){
 
         if (this.previousOperation.textContent.includes("x")){
