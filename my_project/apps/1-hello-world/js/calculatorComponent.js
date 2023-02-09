@@ -197,8 +197,8 @@ export default class CalculatorComponent extends Component {
     } else if (negationRegex.test(input) && this.isCurrentOperandEmpty()){
       this.handleInput(0);
       this.handleInput("(-)");
-    } else if (negationRegex.test(input) && this.previousOperation.textContent != ""){
-      this.allClear();
+    } else if (negationRegex.test(input) && this.previousOperand.textContent == "" && this.previousOperation.textContent != ""){
+       this.allClear();
     } else if (negationRegex.test(input) && this.currentOperand.textContent.includes("-")){
       this.currentOperand.textContent =  this.currentOperand.textContent.replace("-", '');
     } else if (negationRegex.test(input) && !this.isCurrentOperandEmpty() && this.currentOperand.textContent[0] != "-"){
@@ -274,6 +274,7 @@ export default class CalculatorComponent extends Component {
       
       console.log(leftHandSide, this.currentOperator.textContent, rightHandSide);
 
+      
       if (rightHandSide != undefined && Math.sign(rightHandSide) == -1 && this.currentOperator.textContent == "-"){
         this.currentOperator.textContent = "+";
         rightHandSide *= -1;
@@ -301,7 +302,12 @@ export default class CalculatorComponent extends Component {
 
         else if (this.previousOperation.textContent.includes("-")){
           leftHandSide = parseFloat(this.currentOperand.textContent);
-          rightHandSide = parseFloat(this.previousOperation.textContent.split("-")[1]);
+          const splitted = this.previousOperation.textContent.split("-");
+          if (splitted.length == 2){
+            rightHandSide = parseFloat(splitted[1]);
+          } else if (splitted.length == 3){
+            rightHandSide = parseFloat(splitted[2]);
+          }
           this.currentOperator.textContent = "-";
         }
 
