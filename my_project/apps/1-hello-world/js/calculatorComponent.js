@@ -174,6 +174,7 @@ export default class CalculatorComponent extends Component {
   // handle input
   handleInput(input){
 
+
     // define regex patterns
     const backspaceRegex = new RegExp("^←$");
     const allClearRegex = new RegExp("^AC$");
@@ -193,7 +194,6 @@ export default class CalculatorComponent extends Component {
       this.handleInput(input);
       return;
     }
-
     
     if (negationRegex.test(input) && this.isCurrentOperandEmpty()){
       this.handleInput(0);
@@ -213,6 +213,11 @@ export default class CalculatorComponent extends Component {
 
     if (negationRegex.test(input) && !this.isCurrentOperandEmpty() && this.currentOperand.textContent[0] != "-"){
       this.currentOperand.textContent = "-" + this.currentOperand.textContent;
+      return;
+    }
+
+    if (pointRegex.test(input) && this.currentOperand.textContent.charAt(this.currentOperand.textContent.length-1) == "."){
+      this.currentOperand.textContent = this.currentOperand.textContent.replace(".", '');
       return;
     }
 
@@ -389,6 +394,8 @@ export default class CalculatorComponent extends Component {
 
       return;
     }
+
+
   }
 
   // add debug event listeners
