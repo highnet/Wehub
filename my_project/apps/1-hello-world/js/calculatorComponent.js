@@ -192,11 +192,20 @@ export default class CalculatorComponent extends Component {
       return;
     }
 
+    if (pointRegex.test(input) && this.isCurrentOperandEmpty()){
+      this.handleInput(0);
+      this.handleInput(input);
+    }
+
     if (pointRegex.test(input) && !this.currentOperand.textContent.includes(".")){
       this.currentOperand.textContent += ".";
       return;
     }
 
+    if (pointRegex.test(input) && this.previousOperation.textContent != ""){
+      this.allClear();
+      this.handleInput(input);
+    }
 
     if (backspaceRegex.test(input) && this.previousOperation != ""){
       this.allClear();
@@ -206,7 +215,6 @@ export default class CalculatorComponent extends Component {
       this.currentOperand.textContent = this.currentOperand.textContent.substring(0,this.currentOperand.textContent.length-1);
       return;
     }
-
 
     if (allClearRegex.test(input) && this.currentOperator.textContent != "" && !this.isCurrentOperandEmpty()){
       this.currentOperand.textContent = "";
