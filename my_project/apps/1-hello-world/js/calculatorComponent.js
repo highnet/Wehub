@@ -205,8 +205,9 @@ export default class CalculatorComponent extends Component {
       this.currentOperand.textContent =  this.currentOperand.textContent.replace("-", '');
     } else if (negationRegex.test(input) && !this.isCurrentOperandEmpty() && this.currentOperand.textContent[0] != "-"){
       this.currentOperand.textContent = "-" + this.currentOperand.textContent;
-    } else if (pointRegex.test(input) && this.previousOperand.textContent != ""){
-
+    } else if (pointRegex.test(input) && this.previousOperation.textContent != ""){
+      this.allClear();
+      this.handleInput(input);
     } 
     else if (pointRegex.test(input) && this.currentOperand.textContent.charAt(this.currentOperand.textContent.length-1) == "."){
       this.currentOperand.textContent = this.currentOperand.textContent.replace(".", '');
