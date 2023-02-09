@@ -126,7 +126,7 @@ export default class CalculatorComponent extends Component {
     this.addDebugEventListeners();  // Add event listeners for debug components
     this.inResetState = false; // set reset state to false
   }
-
+  
   // cache debug elements
   cacheDebugElements(){
     this.debugPreviousOperation= this.getElementById("debug__calculator-state__previous-operation");
