@@ -50,7 +50,7 @@ body {
 }
 
 .calculator-component__output__current-operand:empty{
-  display:none; 
+  display:initial; 
 }
 
 .calculator-component__output__previous-operand:empty{
