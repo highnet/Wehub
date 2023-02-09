@@ -30,7 +30,7 @@ export default class CalculatorComponent extends Component {
             id = "calculator-component__output__previous-operation"
           ></textarea>
 
-          <div class="grid grid__1x2">
+          <div class="flex">
             <textarea
               class="calculator-component__output calculator-component__output__previous-operand"
               readonly="" 
