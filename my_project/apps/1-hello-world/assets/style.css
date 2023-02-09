@@ -51,12 +51,22 @@ body {
 
   
 }
+
+.calculator-component__output__previous-operand{
+  width: 90%;
+}
+
 .calculator-component__output__previous-operation{
   font-size: 1.4rem;
   color: #333333;
 }
 .calculator-component__output__current-operator{
   text-align: left;
+  width: 10%;
+}
+
+.flex{
+  display: flex;
 }
 
 .grid{
