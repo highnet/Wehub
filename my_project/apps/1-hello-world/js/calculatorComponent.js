@@ -171,27 +171,6 @@ export default class CalculatorComponent extends Component {
     return this.currentOperand.textContent == "";
   }
 
-  InputStates = {
-      RESET : "RESET",
-      ZERO : "ZERO",
-      NEGATION : "NEGATION",
-      POINT : "POINT",
-      BACKSPACE : "BACKSPACE",
-      ALLCLEAR : "ALLCLEAR",
-      CLEAR : "CLEAR",
-      DIGIT : "DIGIT",
-      OPERATOR : "OPERATOR",
-      EQUALS : "EQUALS",
-  }
-
-  getInputState(inputState){
-    for (const [key, value] of Object.entries(inputState)) {
-        if (value){
-          return key;
-        }
-    }
-  }
-
   // handle input
   handleInput(input){
 
@@ -210,57 +189,11 @@ export default class CalculatorComponent extends Component {
     const pointRegex = new RegExp("^\\.$");
     const negationRegex = new RegExp("^\\(-\\)$");
 
-    let InputState ={
-      RESET : this.DoHardResetStateFlag,
-      ZERO : zeroRegex.test(input),
-      NEGATION : negationRegex.test(input),
-      POINT : pointRegex.test(input),
-      BACKSPACE : backspaceRegex.test(input),
-      ALLCLEAR : allClearRegex.test(input),
-      CLEAR : clearRegex.test(input),
-      DIGIT : digitRegex.test(input),
-      OPERATOR : operatorRegex.test(input),
-      EQUALS : equalsRegex.test(input),
-    }
 
-    switch(this.getInputState(InputState)){
-        case this.InputStates.RESET:
-          console.log("reset");
-            this.reset();
-            this.handleInput(input);
-        break;
-        case this.InputStates.ZERO:
-          console.log("zero");
-        break;
-        case this.InputStates.NEGATION:
-          console.log("negation");
-        break;
-        case this.InputStates.POINT:
-          console.log("point");
-        break;
-        case this.InputStates.BACKSPACE:
-          console.log("backspace");
-        break;
-        case this.InputStates.ALLCLEAR:
-          console.log("allclear");
-        break;
-        case this.InputStates.CLEAR:
-          console.log("clear");
-        break;
-        case this.InputStates.DIGIT:
-          console.log("digit");
-        break;
-        case this.InputStates.OPERATOR:
-          console.log("operator");
-        break;
-        case this.InputStates.EQUALS:
-          console.log("equals");
-        break;
-
-    }
-
-
-     if (zeroRegex.test(input) && this.currentOperand.textContent == "0"){
+    if (this.DoHardResetStateFlag){
+      this.reset();
+      this.handleInput(input);
+    } else if (zeroRegex.test(input) && this.currentOperand.textContent == "0"){
       return
     } else if (negationRegex.test(input) && this.isCurrentOperandEmpty()){
       this.handleInput(0);
