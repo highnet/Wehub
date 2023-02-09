@@ -25,22 +25,22 @@ export default class CalculatorComponent extends Component {
       <div class="calculator-component">
         <div class="calculator-component__outputs">
           <textarea
-            class="calculator-component__output"
+            class="calculator-component__output calculator-component__output__previous-operation"
             readonly = ""
-            id = "calculator-component__output-previous-operation"
+            id = "calculator-component__output__previous-operation"
           ></textarea>
           <textarea
-            class="calculator-component__output"
+            class="calculator-component__output calculator-component__output__previous-operand"
             readonly="" 
             id="calculator-component__output__previous-operand" 
           ></textarea>
           <textarea
-            class="calculator-component__output"
+            class="calculator-component__output calculator-component__output__current-operator"
             readonly = "" 
             id="calculator-component__output__current-operator" 
           ></textarea>
           <textarea 
-            class="calculator-component__output"
+            class="calculator-component__output calculator-component__output__current-operand"
             readonly = ""
             id="calculator-component__output__current-operand" 
           ></textarea>
@@ -134,7 +134,7 @@ export default class CalculatorComponent extends Component {
 
   // cache output elements
   cacheOutputElements(){
-    this.previousOperation = this.getElementById("calculator-component__output-previous-operation");
+    this.previousOperation = this.getElementById("calculator-component__output__previous-operation");
     this.previousOperand = this.getElementById("calculator-component__output__previous-operand");
     this.currentOperator = this.getElementById("calculator-component__output__current-operator");
     this.currentOperand = this.getElementById("calculator-component__output__current-operand");
