@@ -194,6 +194,13 @@ export default class CalculatorComponent extends Component {
       return;
     }
 
+    
+    if (negationRegex.test(input) && this.isCurrentOperandEmpty()){
+      this.handleInput(0);
+      this.handleInput("(-)");
+      return;
+    }
+
     if (negationRegex.test(input) && this.previousOperation.textContent != ""){
       this.allClear();
       this.handleInput(input);
@@ -207,11 +214,13 @@ export default class CalculatorComponent extends Component {
 
     if (negationRegex.test(input) && !this.isCurrentOperandEmpty() && this.currentOperand.textContent[0] != "-"){
       this.currentOperand.textContent = "-" + this.currentOperand.textContent;
+      return;
     }
 
     if (pointRegex.test(input) && this.isCurrentOperandEmpty()){
       this.handleInput(0);
       this.handleInput(input);
+      return;
     }
 
     if (pointRegex.test(input) && !this.currentOperand.textContent.includes(".")){
@@ -222,10 +231,13 @@ export default class CalculatorComponent extends Component {
     if (pointRegex.test(input) && this.previousOperation.textContent != ""){
       this.allClear();
       this.handleInput(input);
+      return;
     }
 
     if (backspaceRegex.test(input) && this.previousOperation != ""){
       this.allClear();
+      return;
+
     }
 
     if (backspaceRegex.test(input) && !this.isCurrentOperandEmpty()){
@@ -283,6 +295,12 @@ export default class CalculatorComponent extends Component {
     
     if (equalsRegex.test(input)){
       if (this.previousOperand.textContent == "" && this.currentOperand.textContent == "") return;
+      
+      
+      if (this.currentOperand.textContent == "0."){
+        this.currentOperand.textContent = "0";
+      }
+
       let leftHandSide = undefined;
       let rightHandSide = undefined;
       if (this.previousOperand.textContent != ""){
