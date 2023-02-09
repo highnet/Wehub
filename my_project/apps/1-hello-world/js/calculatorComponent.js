@@ -225,7 +225,9 @@ export default class CalculatorComponent extends Component {
 
     switch(this.getInputState(InputState)){
         case this.InputStates.RESET:
-          console.log("digit");
+          console.log("reset");
+            this.reset();
+            this.handleInput(input);
         break;
         case this.InputStates.ZERO:
           console.log("zero");
@@ -258,10 +260,7 @@ export default class CalculatorComponent extends Component {
     }
 
 
-    if (this.DoHardResetStateFlag){
-      this.reset();
-      this.handleInput(input);
-    } else if (zeroRegex.test(input) && this.currentOperand.textContent == "0"){
+     if (zeroRegex.test(input) && this.currentOperand.textContent == "0"){
       return
     } else if (negationRegex.test(input) && this.isCurrentOperandEmpty()){
       this.handleInput(0);
