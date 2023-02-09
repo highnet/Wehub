@@ -37,7 +37,6 @@ body {
 .calculator-component{
   width: 300px;
   margin: 0 auto;
-  border: 1px solid #E5E5E5;
 }
 
 .calculator-component__output{
@@ -49,6 +48,22 @@ body {
   text-align: right;
   
 }
-.calculator-component__output:empty{
-  display: none;
+
+.calculator-component__output__current-operand:empty{
+  display:none; 
 }
+
+.calculator-component__output__previous-operand:empty{
+  display:none; 
+}
+
+.calculator-component__output-previous-operation:empty{
+  display:none; 
+}
+
+.calculator-component__output__current-operator:empty{
+  display:none; 
+}
+
+
+
