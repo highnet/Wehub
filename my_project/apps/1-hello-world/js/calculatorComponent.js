@@ -29,16 +29,20 @@ export default class CalculatorComponent extends Component {
             readonly = ""
             id = "calculator-component__output__previous-operation"
           ></textarea>
-          <textarea
-            class="calculator-component__output calculator-component__output__current-operator"
-            readonly = "" 
-            id="calculator-component__output__current-operator" 
-          ></textarea>
-          <textarea
-            class="calculator-component__output calculator-component__output__previous-operand"
-            readonly="" 
-            id="calculator-component__output__previous-operand" 
-          ></textarea>
+
+          <div class="grid grid__1x2">
+            <textarea
+              class="calculator-component__output calculator-component__output__previous-operand"
+              readonly="" 
+              id="calculator-component__output__previous-operand" 
+            ></textarea>
+            <textarea
+              class="calculator-component__output calculator-component__output__current-operator"
+              readonly = "" 
+              id="calculator-component__output__current-operator" 
+            ></textarea>
+          </div>
+          
           <textarea 
             class="calculator-component__output calculator-component__output__current-operand"
             readonly = ""
@@ -203,13 +207,13 @@ export default class CalculatorComponent extends Component {
       return;
     }
 
-    if (clearRegex.test(input) && this.currentOperator.textContent != ""){
-      this.allClear();
+    if (clearRegex.test(input) && this.previousOperation.textContent == ""){
+      this.currentOperand.textContent = "";
       return;
     }
 
-    if (clearRegex.test(input)){
-      this.currentOperand.textContent = "";
+    if (clearRegex.test(input) && this.previousOperation.textContent != ""){
+      this.allClear();
       return;
     }
 

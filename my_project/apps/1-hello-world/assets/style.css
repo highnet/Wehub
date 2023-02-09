@@ -49,21 +49,33 @@ body {
   
 }
 
-
 .calculator-component__output__current-operand:empty{
   display:initial; 
 }
 
 .calculator-component__output__previous-operand:empty{
-  display:initial; 
+  display:none; 
 }
 
 .calculator-component__output__previous-operation:empty{
   display:none; 
 }
 
+.calculator-component__output__current-operator{
+  text-align: left;
+  width: 100%;
+}
+
 .calculator-component__output__current-operator:empty{
   display:none; 
+}
+
+.grid{
+  display: grid;
+}
+
+.grid__1x2{
+  grid-template-columns: 1fr 1fr;
 }
 
 
