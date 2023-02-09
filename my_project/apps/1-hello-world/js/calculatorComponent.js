@@ -29,7 +29,6 @@ export default class CalculatorComponent extends Component {
             readonly = ""
             id = "calculator-component__output__previous-operation"
           ></textarea>
-
           <div class="flex">
             <textarea
               class="calculator-component__output calculator-component__output__previous-operand"
@@ -185,6 +184,7 @@ export default class CalculatorComponent extends Component {
     const multiplicationRegex = new RegExp("^x$");
     const subtractionRegex = new RegExp("^\\-$");
     const additionRegex = new RegExp("^\\+$");
+    const pointRegex = new RegExp("^\\.$");
 
     if (this.inResetState){
       this.reset();
@@ -192,10 +192,21 @@ export default class CalculatorComponent extends Component {
       return;
     }
 
+    if (pointRegex.test(input) && !this.currentOperand.textContent.includes(".")){
+      this.currentOperand.textContent += ".";
+      return;
+    }
+
+
+    if (backspaceRegex.test(input) && this.previousOperation != ""){
+      this.allClear();
+    }
+
     if (backspaceRegex.test(input) && !this.isCurrentOperandEmpty()){
       this.currentOperand.textContent = this.currentOperand.textContent.substring(0,this.currentOperand.textContent.length-1);
       return;
     }
+
 
     if (allClearRegex.test(input) && this.currentOperator.textContent != "" && !this.isCurrentOperandEmpty()){
       this.currentOperand.textContent = "";
@@ -216,13 +227,14 @@ export default class CalculatorComponent extends Component {
       this.allClear();
       return;
     }
-
+    
     
     if (digitRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperation.textContent != "" && this.currentOperator.textContent == "" && this.previousOperand.textContent == ""){
       this.allClear();
       this.handleInput(input);
       return;
     }
+    
   
     if (digitRegex.test(input)){
       this.currentOperand.textContent += input;
