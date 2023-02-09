@@ -189,7 +189,6 @@ export default class CalculatorComponent extends Component {
     const pointRegex = new RegExp("^\\.$");
     const negationRegex = new RegExp("^\\(-\\)$");
 
-
     if (this.DoHardResetStateFlag){
       this.reset();
       this.handleInput(input);
