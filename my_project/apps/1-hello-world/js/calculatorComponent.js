@@ -324,7 +324,8 @@ export default class CalculatorComponent extends Component {
       this.currentOperand.textContent = this.currentOperand.textContent.replace("-", '');
     } else if (negation && !currentOperandIsEmpty && !currentOperandIsNegative) {
       this.currentOperand.textContent = "-" + this.currentOperand.textContent;
-    } else if (point && !previousOperationIsEmpty) {
+    } else if (point && !previousOperationIsEmpty && previousOperandIsEmpty) {
+      console.log("HERE 0");
       this.allClear();
       this.handleInput(input);
     } else if (point && currentOperandDoesHaveNonTrailingFloatingPoint) {
@@ -334,9 +335,6 @@ export default class CalculatorComponent extends Component {
       this.handleInput(input);
     } else if (point && !currentOperandDoesHaveNonTrailingFloatingPoint) {
       this.currentOperand.textContent += ".";
-    } else if (point && !previousOperationIsEmpty) {
-      this.allClear();
-      this.handleInput(input);
     } else if (backspace && !previousOperationIsEmpty) {
       this.allClear();
     } else if (backspace && !currentOperandIsEmpty) {
