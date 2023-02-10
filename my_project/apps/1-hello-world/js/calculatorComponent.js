@@ -126,7 +126,6 @@ export default class CalculatorComponent extends Component {
     this.addDebugEventListeners();  // Add event listeners for debug components
     this.DoHardResetStateFlag = false; // set reset state to false
 
-
     this.handleInput(0);
     this.handleInput(1);
     this.handleInput(2);
@@ -223,15 +222,11 @@ export default class CalculatorComponent extends Component {
 
   doesCurrentOperandHaveNonTrailingFloatingPoint() {
     return this.doesOutputFieldHaveNonTrailingFloatingPoint(this.currentOperand);
-
   }
 
   doesOutputFieldHaveNonTrailingFloatingPoint(outputField) {
     return outputField.textContent.charAt(outputField.textContent.length - 1) == ".";
   }
-
-
-  // TODO: MIGRATE THIS TO AN EVENT SYSTEM
 
   // handle input
   handleInput(input) {
@@ -257,6 +252,15 @@ export default class CalculatorComponent extends Component {
     const previousOperationIsEmpty = this.isPreviousOperationEmpty();
     const currentOperandIsNegative = this.isCurrentOperandNegative();
     const currentOperandDoesHaveNonTrailingFloatingPoint = this.doesCurrentOperandHaveNonTrailingFloatingPoint();
+
+    const zero = zeroRegex.test(input);
+    const negation = negationRegex.test(input);
+    const point = pointRegex.test(input);
+    const backspace = backspaceRegex.test(input);
+    const allclear = allClearRegex.test(input);
+    const clear = clearRegex.test(input);
+    const digit = digitRegex.test(input);
+    const equals = equalsRegex.test(input);
 
     if (doHardResetStateFlagIsRaised) {
       this.reset();
@@ -340,7 +344,6 @@ export default class CalculatorComponent extends Component {
       }
 
       console.log(leftHandSide, this.currentOperator.textContent, rightHandSide);
-
 
       if (rightHandSide != undefined && Math.sign(rightHandSide) == -1 && this.currentOperator.textContent == "-") {
         this.currentOperator.textContent = "+";
