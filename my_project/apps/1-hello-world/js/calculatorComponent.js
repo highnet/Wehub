@@ -250,46 +250,54 @@ export default class CalculatorComponent extends Component {
     const pointRegex = new RegExp("^\\.$");
     const negationRegex = new RegExp("^\\(-\\)$");
 
-    if (this.isDoHardResetStateFlagRaised()){
+    const doHardResetStateFlagIsRaised = this.isDoHardResetStateFlagRaised();
+    const currentOperandIsZero = this.isCurrentOperandZero();
+    const currentOperandIsEmpty = this.isCurrentOperandEmpty();
+    const previousOperandIsEmpty = this.isPreviousOperandEmpty();
+    const previousOperationIsEmpty = this.isPreviousOperationEmpty();
+    const currentOperandIsNegative = this.isCurrentOperandNegative();
+    const currentOperandDoesHaveNonTrailingFloatingPoint = this.doesCurrentOperandHaveNonTrailingFloatingPoint();
+
+    if (doHardResetStateFlagIsRaised){
       this.reset();
       this.handleInput(input);
-    } else if (zeroRegex.test(input) && this.isCurrentOperandZero()){
+    } else if (zeroRegex.test(input) && currentOperandIsZero){
       return
-    } else if (negationRegex.test(input) && this.isCurrentOperandEmpty()){
+    } else if (negationRegex.test(input) && currentOperandIsEmpty){
       this.handleInput(0);
       this.handleInput("(-)");
-    } else if (negationRegex.test(input) && this.isPreviousOperandEmpty() && !this.isPreviousOperationEmpty()){
+    } else if (negationRegex.test(input) && previousOperandIsEmpty && !previousOperationIsEmpty){
        this.allClear();
-    } else if (negationRegex.test(input) && this.isCurrentOperandNegative()){
+    } else if (negationRegex.test(input) && currentOperandIsNegative){
       this.currentOperand.textContent =  this.currentOperand.textContent.replace("-", '');
-    } else if (negationRegex.test(input) && !this.isCurrentOperandEmpty() && !this.isCurrentOperandNegative()){
+    } else if (negationRegex.test(input) && !currentOperandIsEmpty && !currentOperandIsNegative){
       this.currentOperand.textContent = "-" + this.currentOperand.textContent;
-    } else if (pointRegex.test(input) && !this.isPreviousOperationEmpty()){
+    } else if (pointRegex.test(input) && !previousOperationIsEmpty){
       this.allClear();
       this.handleInput(input);
-    } else if (pointRegex.test(input) && this.doesCurrentOperandHaveNonTrailingFloatingPoint()){
+    } else if (pointRegex.test(input) && currentOperandDoesHaveNonTrailingFloatingPoint){
       this.currentOperand.textContent = this.currentOperand.textContent.replace(".", '');
-    } else if (pointRegex.test(input) && this.isCurrentOperandEmpty()){
+    } else if (pointRegex.test(input) && currentOperandIsEmpty){
       this.handleInput(0);
       this.handleInput(input);
-    } else if (pointRegex.test(input) && !this.doesCurrentOperandHaveFloatingPoint()){
+    } else if (pointRegex.test(input) && !currentOperandDoesHaveNonTrailingFloatingPoint){
       this.currentOperand.textContent += ".";
-    } else if (pointRegex.test(input) && !this.isPreviousOperationEmpty()){
+    } else if (pointRegex.test(input) && !previousOperationIsEmpty){
       this.allClear();
       this.handleInput(input);
-    } else if (backspaceRegex.test(input) && !this.isPreviousOperationEmpty()){
+    } else if (backspaceRegex.test(input) && !previousOperationIsEmpty){
       this.allClear();
-    } else if (backspaceRegex.test(input) && !this.isCurrentOperandEmpty()){
+    } else if (backspaceRegex.test(input) && !currentOperandIsEmpty){
       this.currentOperand.textContent = this.currentOperand.textContent.substring(0,this.currentOperand.textContent.length-1);
-    } else if (allClearRegex.test(input) && !this.isPreviousOperandEmpty() && !this.isCurrentOperandEmpty()){
+    } else if (allClearRegex.test(input) && !previousOperandIsEmpty && !currentOperandIsEmpty){
       this.currentOperand.textContent = "";
     } else if (allClearRegex.test(input)){
       this.allClear();
-    } else if (clearRegex.test(input) && this.isPreviousOperationEmpty()){
+    } else if (clearRegex.test(input) && previousOperationIsEmpty){
       this.currentOperand.textContent = "";
-    } else if (clearRegex.test(input) && !this.isPreviousOperationEmpty()){
+    } else if (clearRegex.test(input) && !previousOperationIsEmpty){
       this.allClear();
-    } else if (digitRegex.test(input) && !this.isCurrentOperandEmpty()&& !this.isPreviousOperationEmpty() && this.isPreviousOperandEmpty()){
+    } else if (digitRegex.test(input) && !currentOperandIsEmpty && !previousOperationIsEmpty && previousOperandIsEmpty){
       this.allClear();
       this.handleInput(input);
     } else if (digitRegex.test(input)){
@@ -298,10 +306,10 @@ export default class CalculatorComponent extends Component {
       } else {
       this.currentOperand.textContent += input;
       }
-    } else if (operatorRegex.test(input) && !this.isCurrentOperandEmpty() && !this.isPreviousOperandEmpty()){
+    } else if (operatorRegex.test(input) && !currentOperandIsEmpty && !previousOperandIsEmpty){
       this.handleInput("=");
       this.handleInput(input);
-    } else if (operatorRegex.test(input) && !this.isCurrentOperandEmpty() && this.isPreviousOperandEmpty()){
+    } else if (operatorRegex.test(input) && !currentOperandIsEmpty && previousOperandIsEmpty){
       if (
         this.currentOperand.textContent == "0." ||
         this.currentOperand.textContent == "-0." || 
