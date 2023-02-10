@@ -245,14 +245,7 @@ export default class CalculatorComponent extends Component {
     const pointRegex = new RegExp("^\\.$");
     const negationRegex = new RegExp("^\\(-\\)$");
 
-    const doHardResetStateFlagIsRaised = this.isDoHardResetStateFlagRaised();
-    const currentOperandIsZero = this.isCurrentOperandZero();
-    const currentOperandIsEmpty = this.isCurrentOperandEmpty();
-    const previousOperandIsEmpty = this.isPreviousOperandEmpty();
-    const previousOperationIsEmpty = this.isPreviousOperationEmpty();
-    const currentOperandIsNegative = this.isCurrentOperandNegative();
-    const currentOperandDoesHaveNonTrailingFloatingPoint = this.doesCurrentOperandHaveNonTrailingFloatingPoint();
-
+    // test regex patterns
     const zero = zeroRegex.test(input);
     const negation = negationRegex.test(input);
     const point = pointRegex.test(input);
@@ -263,6 +256,17 @@ export default class CalculatorComponent extends Component {
     const operator = operatorRegex.test(input);
     const equals = equalsRegex.test(input);
 
+    // evaluate calculator's state
+    const doHardResetStateFlagIsRaised = this.isDoHardResetStateFlagRaised();
+    const currentOperandIsZero = this.isCurrentOperandZero();
+    const currentOperandIsEmpty = this.isCurrentOperandEmpty();
+    const previousOperandIsEmpty = this.isPreviousOperandEmpty();
+    const previousOperationIsEmpty = this.isPreviousOperationEmpty();
+    const currentOperandIsNegative = this.isCurrentOperandNegative();
+    const currentOperandDoesHaveNonTrailingFloatingPoint = this.doesCurrentOperandHaveNonTrailingFloatingPoint();
+
+    // react to the input
+    //  input + old_state -> new_state + output
     if (doHardResetStateFlagIsRaised) {
       this.reset();
       this.handleInput(input);
