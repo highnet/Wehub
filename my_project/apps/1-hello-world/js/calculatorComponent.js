@@ -168,7 +168,11 @@ export default class CalculatorComponent extends Component {
   }
 
   isCurrentOperandEmpty(){
-    return this.currentOperand.textContent == "";
+    return this.isOutputFieldEmpty(this.currentOperand);
+  }
+
+  isOutputFieldEmpty(outputField){
+    return outputField.textContent == "";
   }
 
   // handle input
@@ -189,6 +193,7 @@ export default class CalculatorComponent extends Component {
     const pointRegex = new RegExp("^\\.$");
     const negationRegex = new RegExp("^\\(-\\)$");
 
+    
     if (this.DoHardResetStateFlag){
       this.reset();
       this.handleInput(input);
@@ -228,7 +233,7 @@ export default class CalculatorComponent extends Component {
       this.currentOperand.textContent = "";
     } else if (clearRegex.test(input) && this.previousOperation.textContent != ""){
       this.allClear();
-    } else if (digitRegex.test(input) && !this.isCurrentOperandEmpty() && this.previousOperation.textContent != "" && this.currentOperator.textContent == "" && this.previousOperand.textContent == ""){
+    } else if (digitRegex.test(input) && !this.isCurrentOperandEmpty()&& this.previousOperation.textContent != "" && this.currentOperator.textContent == "" && this.previousOperand.textContent == ""){
       this.allClear();
       this.handleInput(input);
     } else if (digitRegex.test(input)){
