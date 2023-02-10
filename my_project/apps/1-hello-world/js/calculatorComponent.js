@@ -308,7 +308,10 @@ export default class CalculatorComponent extends Component {
     } else if (digit) {
       if (this.currentOperand.textContent == "0") {
         this.currentOperand.textContent = input;
-      } else {
+      } else if (this.currentOperand.textContent == "-0") {
+        this.currentOperand.textContent = "-" + input;
+      }
+      else {
         this.currentOperand.textContent += input;
       }
     } else if (operator && !currentOperandIsEmpty && !previousOperandIsEmpty) {
