@@ -35,14 +35,10 @@ body {
   padding: 10px 16px;
 }
 
-.calculator-component__buttons__main-buttons{
-  width: 250px;
-}
-
 .calculator-component {
-  width: 300px;
   margin: 0 auto;
   border: 1px solid lightblue;
+  width: 50vw;
 }
 
 .calculator-component__output {
@@ -76,10 +72,7 @@ body {
   display: flex;
 }
 
-.grid {
+.main-grid {
   display: grid;
-}
-
-.grid__1x2 {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 5fr 1fr;
 }

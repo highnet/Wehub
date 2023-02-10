@@ -57,7 +57,7 @@ export default class CalculatorComponent extends Component {
                 columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[0]].columns,
               }}
             />
-          <div class ="grid grid__1x2">
+          <div class ="main-grid">
             <div class="calculator-component__buttons__main-buttons">
               <ButtonGrid
                 props={{
