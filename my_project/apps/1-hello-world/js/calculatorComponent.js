@@ -71,7 +71,10 @@ export default class CalculatorComponent extends Component {
             }}
           />
         </div>
-        <div class="debug">
+        <div
+          class="debug"
+        //hidden="true"
+        >
           <h2>DEBUG</h2>
           <fieldset>
             <h3>Button Labels</h3>
@@ -113,7 +116,7 @@ export default class CalculatorComponent extends Component {
           </fieldset>
 
         </div>
-      </div>
+      </div >
     );
   }
 
@@ -333,17 +336,15 @@ export default class CalculatorComponent extends Component {
       this.previousOperand.textContent = this.currentOperand.textContent;
       this.currentOperand.textContent = "";
     } else if (equals) {
-      if (this.previousOperand.textContent == "" && this.currentOperand.textContent == "") return;
+      if (previousOperandIsEmpty && currentOperandIsEmpty) return;
 
-      if (
-        this.currentOperand.textContent == "0." ||
-        this.currentOperand.textContent == "-0." ||
-        this.currentOperand.textContent == "-0") {
+      if (this.currentOperand.textContent == "0." || this.currentOperand.textContent == "-0." || this.currentOperand.textContent == "-0") {
         this.currentOperand.textContent = "0";
       }
 
       let leftHandSide = undefined;
       let rightHandSide = undefined;
+
       if (this.previousOperand.textContent != "") {
         leftHandSide = parseFloat(this.previousOperand.textContent);
       }
