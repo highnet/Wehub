@@ -49,27 +49,42 @@ export default class CalculatorComponent extends Component {
           ></textarea>
         </div>
         <div class="calculator-component__buttons">
+          
           <ButtonGrid
-            props={{
-              identifier: Object.keys(this.buttonAtributes)[0],
-              buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[0]].buttons,
-              columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[0]].columns,
-            }}
-          />
+              props={{
+                identifier: Object.keys(this.buttonAtributes)[0],
+                buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[0]].buttons,
+                columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[0]].columns,
+              }}
+            />
+          <div class ="grid grid__1x2">
+            <div class="calculator-component__buttons__main-buttons">
+              <ButtonGrid
+                props={{
+                  identifier: Object.keys(this.buttonAtributes)[1],
+                  buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[1]].buttons,
+                  columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[1]].columns,
+                }}
+              />
+              </div>
+              <div class="calculator-component__buttons__side-buttons">
+              <ButtonGrid
+                props={{
+                  identifier: Object.keys(this.buttonAtributes)[2],
+                  buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[2]].buttons,
+                  columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[2]].columns,
+                }}
+              />
+            </div>
+          </div>
           <ButtonGrid
-            props={{
-              identifier: Object.keys(this.buttonAtributes)[1],
-              buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[1]].buttons,
-              columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[1]].columns,
-            }}
-          />
-          <ButtonGrid
-            props={{
-              identifier: Object.keys(this.buttonAtributes)[2],
-              buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[2]].buttons,
-              columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[2]].columns,
-            }}
-          />
+                class = "equals-operator"
+                props={{
+                  identifier: Object.keys(this.buttonAtributes)[3],
+                  buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[3]].buttons,
+                  columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[3]].columns,
+                }}
+              />
         </div>
         <div
           class="debug"
@@ -136,6 +151,31 @@ export default class CalculatorComponent extends Component {
     this.handleInput(1);
     this.handleInput(2);
     this.handleInput('=');
+
+
+    this.getElementById("clear-functions-0").style.backgroundColor = "#fcd745";
+    this.getElementById("clear-functions-1").style.backgroundColor = "#fcd745";
+    this.getElementById("clear-functions-2").style.backgroundColor = "#fcd745";
+
+    this.getElementById("main-operators-0").style.backgroundColor = "#fcd745";
+    this.getElementById("main-operators-1").style.backgroundColor = "#fcd745";
+    this.getElementById("main-operators-2").style.backgroundColor = "#fcd745";
+    this.getElementById("main-operators-3").style.backgroundColor = "#fcd745";
+
+    this.getElementById("equals-operator-0").style.backgroundColor = "#fc7c45";
+
+    this.getElementById("main-operands-0").style.backgroundColor = "#22d522";
+    this.getElementById("main-operands-1").style.backgroundColor = "#22d522";
+    this.getElementById("main-operands-2").style.backgroundColor = "#22d522";
+    this.getElementById("main-operands-3").style.backgroundColor = "#22d522";
+    this.getElementById("main-operands-4").style.backgroundColor = "#22d522";
+    this.getElementById("main-operands-5").style.backgroundColor = "#22d522";
+    this.getElementById("main-operands-6").style.backgroundColor = "#22d522";
+    this.getElementById("main-operands-7").style.backgroundColor = "#22d522"; 
+    this.getElementById("main-operands-8").style.backgroundColor = "#22d522";
+    this.getElementById("main-operands-9").style.backgroundColor = "#22d522";
+    this.getElementById("main-operands-10").style.backgroundColor = "#22d522";
+    this.getElementById("main-operands-11").style.backgroundColor = "#22d522";
 
   }
 

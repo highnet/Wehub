@@ -8,7 +8,11 @@
     "columns": 3
   },
   "main-operators": {
-    "buttons": 5,
+    "buttons": 4,
+    "columns": 1
+  },
+  "equals-operator":{
+    "buttons": 1,
     "columns": 1
   }
 

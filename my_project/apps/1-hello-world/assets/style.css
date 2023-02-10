@@ -2,7 +2,7 @@ html,
 body {
   overflow: scroll;
   background: rgb(111, 137, 200);
-  background: linear-gradient(90deg, rgba(111, 137, 200, 1) 0%, rgba(75, 129, 208, 1) 43%, rgba(87, 69, 252, 1) 100%);
+  background: linear-gradient(90deg, rgba(111, 137, 200, 1) 0%, rgba(75, 129, 208, 1) 43%, #5745fc 100%);
   background-repeat: no-repeat;
   color: white;
   text-align: center;
@@ -33,6 +33,10 @@ body {
   margin: 1px 1px 1px 1px;
   outline: none;
   padding: 10px 16px;
+}
+
+.calculator-component__buttons__main-buttons{
+  width: 250px;
 }
 
 .calculator-component {
