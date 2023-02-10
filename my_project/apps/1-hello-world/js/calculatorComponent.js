@@ -125,6 +125,16 @@ export default class CalculatorComponent extends Component {
     this.cacheDebugElements(); // cache debug elements
     this.addDebugEventListeners();  // Add event listeners for debug components
     this.DoHardResetStateFlag = false; // set reset state to false
+    
+    
+    this.handleInput(0);
+    this.handleInput(1);
+    this.handleInput(2);
+    this.handleInput('+');
+    this.handleInput(1);
+    this.handleInput(2);
+    this.handleInput('=');
+
   }
   
   // cache debug elements
@@ -187,19 +197,44 @@ export default class CalculatorComponent extends Component {
     return this.doesOutputFieldMatch(this.currentOperand, "0");
   }
 
+  isCurrentOperandNegative(){
+    return this.isOutputFieldNegative(this.currentOperand);
+  }
+
   isOutputFieldEmpty(outputField){
     return this.doesOutputFieldMatch(outputField, "");
+  }
+
+  doesCurrentOperandHaveFloatingPoint(){
+    return this.doesOutputFieldHaveFloatingPoint(this.currentOperand);
   }
 
   doesOutputFieldMatch(outputField, match){
     return outputField.textContent == match;
   }
 
-  isCurrentOperato
+  isOutputFieldNegative(outputField){
+    return outputField.textContent.includes("-");
+  }
+
+  doesOutputFieldHaveFloatingPoint(outputField){
+    return outputField.textContent.includes(".");
+  }
+
+  doesCurrentOperandHaveNonTrailingFloatingPoint(){
+    return  this.doesOutputFieldHaveNonTrailingFloatingPoint(this.currentOperand);
+
+  }
+
+  doesOutputFieldHaveNonTrailingFloatingPoint(outputField){
+    return outputField.textContent.charAt(outputField.textContent.length-1) == ".";
+  }
+
+
+  // TODO: MIGRATE THIS TO AN EVENT SYSTEM
 
   // handle input
   handleInput(input){
-
     // define regex patterns
     const zeroRegex = new RegExp("^0$");
     const backspaceRegex = new RegExp("^←$");
@@ -215,7 +250,6 @@ export default class CalculatorComponent extends Component {
     const pointRegex = new RegExp("^\\.$");
     const negationRegex = new RegExp("^\\(-\\)$");
 
-    
     if (this.isDoHardResetStateFlagRaised()){
       this.reset();
       this.handleInput(input);
@@ -226,19 +260,19 @@ export default class CalculatorComponent extends Component {
       this.handleInput("(-)");
     } else if (negationRegex.test(input) && this.isPreviousOperandEmpty() && !this.isPreviousOperationEmpty()){
        this.allClear();
-    } else if (negationRegex.test(input) && this.currentOperand.textContent.includes("-")){
+    } else if (negationRegex.test(input) && this.isCurrentOperandNegative()){
       this.currentOperand.textContent =  this.currentOperand.textContent.replace("-", '');
-    } else if (negationRegex.test(input) && !this.isCurrentOperandEmpty() && this.currentOperand.textContent[0] != "-"){
+    } else if (negationRegex.test(input) && !this.isCurrentOperandEmpty() && !this.isCurrentOperandNegative()){
       this.currentOperand.textContent = "-" + this.currentOperand.textContent;
     } else if (pointRegex.test(input) && !this.isPreviousOperationEmpty()){
       this.allClear();
       this.handleInput(input);
-    } else if (pointRegex.test(input) && this.currentOperand.textContent.charAt(this.currentOperand.textContent.length-1) == "."){
+    } else if (pointRegex.test(input) && this.doesCurrentOperandHaveNonTrailingFloatingPoint()){
       this.currentOperand.textContent = this.currentOperand.textContent.replace(".", '');
     } else if (pointRegex.test(input) && this.isCurrentOperandEmpty()){
       this.handleInput(0);
       this.handleInput(input);
-    } else if (pointRegex.test(input) && !this.currentOperand.textContent.includes(".")){
+    } else if (pointRegex.test(input) && !this.doesCurrentOperandHaveFloatingPoint()){
       this.currentOperand.textContent += ".";
     } else if (pointRegex.test(input) && !this.isPreviousOperationEmpty()){
       this.allClear();
