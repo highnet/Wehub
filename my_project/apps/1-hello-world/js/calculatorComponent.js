@@ -139,26 +139,7 @@ export default class CalculatorComponent extends Component {
     );
   }
 
-  ready() {
-    this.output = NaN;
-    this.DoHardResetStateFlag = false; // set reset state to false
-
-    this.cacheButtons();  // cache all input buttons in the inputButtons map
-    this.initButtonLabels(); // initialize button labels with default values
-    this.addButtonEventListeners(); // add button event listeners
-    this.cacheOutputElements(); // cache output elements
-    this.cacheDebugElements(); // cache debug elements
-    this.addDebugEventListeners();  // Add event listeners for debug components
-
-    this.handleInput(0);
-    this.handleInput(1);
-    this.handleInput(2);
-    this.handleInput('+');
-    this.handleInput(1);
-    this.handleInput(2);
-    this.handleInput('=');
-
-
+  styleButtons(){
     this.getElementById("clear-functions-0").style.backgroundColor = "#fcd745";
     this.getElementById("clear-functions-1").style.backgroundColor = "#fcd745";
     this.getElementById("clear-functions-2").style.backgroundColor = "#fcd745";
@@ -182,6 +163,36 @@ export default class CalculatorComponent extends Component {
     this.getElementById("main-operands-9").style.backgroundColor = "#22d522";
     this.getElementById("main-operands-10").style.backgroundColor = "#22d522";
     this.getElementById("main-operands-11").style.backgroundColor = "#22d522";
+  }
+
+  init(){
+    this.output = NaN; // set output to NaN
+    this.DoHardResetStateFlag = false; // set reset state to false
+  }
+
+  ready() {
+
+    this.init();
+    this.cacheButtons();  // cache all input buttons in the inputButtons map
+    this.initButtonLabels(); // initialize button labels with default values
+    this.addButtonEventListeners(); // add button event listeners
+    this.cacheOutputElements(); // cache output elements
+    this.cacheDebugElements(); // cache debug elements
+    this.addDebugEventListeners();  // Add event listeners for debug components
+    this.styleButtons();
+
+
+    this.handleInput(0);
+
+    this.handleInput(1);
+    this.handleInput(2);
+    this.handleInput('+');
+    this.handleInput(3);
+    this.handleInput(4);
+    this.handleInput('=');
+
+
+
 
   }
 
