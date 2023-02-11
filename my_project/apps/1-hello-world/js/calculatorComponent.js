@@ -18,7 +18,9 @@ export default class CalculatorComponent extends Component {
   debugPreviousOperand;
   debugCurrentOperator;
   debugCurrentOperand;
+
   DoHardResetStateFlag;
+  output;
 
   render() {
     return (
@@ -121,13 +123,15 @@ export default class CalculatorComponent extends Component {
           <fieldset>
             <h3>Calculator State</h3>
             <label for="debug__calculator-state__previous-operation">previous-operation:</label>
-            <div id="debug__calculator-state__previous-operation">∅</div>
+            <div id="debug__calculator-state__previous-operation"></div>
             <label for="debug__calculator-state__previous-operand">previous-operand:</label>
-            <div id="debug__calculator-state__previous-operand">∅</div>
+            <div id="debug__calculator-state__previous-operand"></div>
             <label for="debug__calculator-state__current-operator">current-operator:</label>
-            <div id="debug__calculator-state__current-operator">∅</div>
+            <div id="debug__calculator-state__current-operator"></div>
             <label for="debug__calculator-state__current-operand">current-operand:</label>
-            <div id="debug__calculator-state__current-operand">∅</div>
+            <div id="debug__calculator-state__current-operand"></div>
+            <label for="debug__calculator-state__output">output:</label>
+            <div id="debug__calculator-state__output"></div>
           </fieldset>
 
         </div>
@@ -136,13 +140,15 @@ export default class CalculatorComponent extends Component {
   }
 
   ready() {
+    this.output = NaN;
+    this.DoHardResetStateFlag = false; // set reset state to false
+
     this.cacheButtons();  // cache all input buttons in the inputButtons map
     this.initButtonLabels(); // initialize button labels with default values
     this.addButtonEventListeners(); // add button event listeners
     this.cacheOutputElements(); // cache output elements
     this.cacheDebugElements(); // cache debug elements
     this.addDebugEventListeners();  // Add event listeners for debug components
-    this.DoHardResetStateFlag = false; // set reset state to false
 
     this.handleInput(0);
     this.handleInput(1);
@@ -185,6 +191,8 @@ export default class CalculatorComponent extends Component {
     this.debugPreviousOperand = this.getElementById("debug__calculator-state__previous-operand");
     this.debugCurrentOperator = this.getElementById("debug__calculator-state__current-operator");
     this.debugCurrentOperand = this.getElementById("debug__calculator-state__current-operand");
+    this.debugOutput = this.getElementById("debug__calculator-state__output");
+
   }
 
   // cache output elements
@@ -436,6 +444,7 @@ export default class CalculatorComponent extends Component {
       if (this.currentOperator.textContent == "÷" && rightHandSide == 0) {
         this.currentOperand.textContent = "Error: Cannot Divide by Zero."
         this.DoHardResetStateFlag = true;
+        this.output = NaN;
         return;
       }
       let result = NaN;
@@ -455,6 +464,7 @@ export default class CalculatorComponent extends Component {
           this.currentOperand.textContent = "Error: Overflow"
         }
         this.DoHardResetStateFlag = true;
+        this.output = NaN;
         return;
       }
 
@@ -463,6 +473,7 @@ export default class CalculatorComponent extends Component {
         this.previousOperand.textContent = "";
         this.currentOperator.textContent = "";
         this.currentOperand.textContent = result;
+        this.output = result;
       }
     }
 
@@ -517,23 +528,15 @@ export default class CalculatorComponent extends Component {
   // update debug calculator states
   updateDebugCalculatorStates = () => {
     this.debugPreviousOperation.textContent = this.previousOperation.textContent;
-    if (this.debugPreviousOperation.textContent == "") {
-      this.debugPreviousOperation.textContent = "∅";
-    }
 
     this.debugCurrentOperand.textContent = this.currentOperand.textContent;
-    if (this.debugCurrentOperand.textContent == "") {
-      this.debugCurrentOperand.textContent = "∅";
-    }
 
     this.debugCurrentOperator.textContent = this.currentOperator.textContent;
-    if (this.debugCurrentOperator.textContent == "") {
-      this.debugCurrentOperator.textContent = "∅";
-    }
+
     this.debugPreviousOperand.textContent = this.previousOperand.textContent;
-    if (this.debugPreviousOperand.textContent == "") {
-      this.debugPreviousOperand.textContent = "∅";
-    }
+
+    this.debugOutput.textContent = this.output.toString();
+
 
   }
 
