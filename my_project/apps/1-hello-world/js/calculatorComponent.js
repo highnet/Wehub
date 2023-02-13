@@ -472,9 +472,7 @@ export default class CalculatorComponent extends Component {
 
       console.log(result);
       if (result.toString().includes("e")) {
-        if (result > 0) {
-          this.currentOperand.textContent = "Error: Overflow"
-        }
+        this.currentOperand.textContent = "Error: Overflow"
         this.DoHardResetStateFlag = true;
         this.output = NaN;
         return;
