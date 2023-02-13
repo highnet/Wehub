@@ -43,8 +43,8 @@ h1{
 
 .calculator-component {
   margin: 0 auto;
-  width: 25vw;
-  z-index: 1;
+  width: 50vw;
+  z-index: 2;
   position: relative;
   min-width: 225px;
 }
@@ -53,7 +53,7 @@ h1{
   border: 2px solid lightblue;
   border-radius: 3%;
   box-shadow: 0px 0px 5px 10px rgba(255, 255, 255, 0.1);
-  z-index: 1;
+  z-index: 2;
   position: relative;
 }
 
@@ -61,7 +61,7 @@ h1{
     border: 2px solid lightblue;
   border-radius: 3%;
   box-shadow: 0px 0px 5px 10px rgba(255, 255, 255, 0.1);
-  z-index: 1;
+  z-index: 2;
   position: relative;
   background: rgba(102, 102, 102, 0.8);
 
@@ -72,7 +72,7 @@ h1{
   border: transparent;
   resize: none;
   color: #000000;
-  width: 100%;
+  width: 90%;
   height: 26px;
   padding-left: 1rem;
 
@@ -111,15 +111,16 @@ h1{
 
 
 .tv {
-  position: relative;
+  position: absolute;
   height: 480px;
+  width: 100%;
   background: #89CFF0;
   border-radius: 50% / 10%;
   color: white;
   text-align: center;
   text-indent: .1em;
   transform: translateY(-4.57in);
-  z-index: 0;
+  z-index: 1;
 }
 .tv:before {
   content: '';
@@ -131,3 +132,22 @@ h1{
   background: inherit;
   border-radius: 5% / 50%;
 }
+
+.bubbles { 
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.bubble {
+  z-index: 1;
+
+  /* Modify size here: */
+  --size: 100px;
+
+  position: relative;
+  width: calc(var(--size) * 0.5);;
+  height: calc(var(--size) * 1);
+  background: white;
+  border-radius: 40px;
+}
+

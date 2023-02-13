@@ -88,7 +88,14 @@ export default class CalculatorComponent extends Component {
                 }}
               />
         </div>
-        <div class="tv"></div>
+        <div class="tv">
+          <div class="bubbles">
+            <div class="bubble bubble__right"></div>
+            <div class="bubble bubble__left"></div>
+          </div>
+
+        </div>
+
 
         <div
           class="debug"
