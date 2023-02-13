@@ -153,20 +153,17 @@ export default class CalculatorComponent extends Component {
       let btn = this.getElementById("main-operators-" + i.toString());
       btn.style.backgroundColor = mainOperatorsColor;
       btn.style.fontSize = "1.2rem";
-
     }
 
     for(let i = 0; i < 12; i++){
       let btn = this.getElementById("main-operands-" + i.toString());
       btn.style.backgroundColor = mainOperandsColor;
       btn.style.fontSize = "1.2rem";
-
     }
 
     let btn = this.getElementById("equals-operator-0");
     btn.style.backgroundColor = equalsOperatorColor;
     btn.style.fontSize = "1.4rem";
-
 
   }
 
