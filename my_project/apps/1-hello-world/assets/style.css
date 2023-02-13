@@ -47,6 +47,7 @@ h1{
   z-index: 2;
   position: relative;
   min-width: 225px;
+  margin-top: 100px;
 }
 
 .calculator-component__buttons {
@@ -63,7 +64,7 @@ h1{
   box-shadow: 0px 0px 5px 10px rgba(255, 255, 255, 0.1);
   z-index: 2;
   position: relative;
-  background: rgba(102, 102, 102, 0.8);
+  background: rgba(102, 102, 102, 0.95);
 
 }
 
@@ -134,15 +135,18 @@ h1{
 }
 
 .bubbles { 
+  position: relative;
+  z-index: -1;
   display: flex;
   justify-content: space-evenly;
+  translate: 0in -7vw;
 }
 
 .bubble {
-  z-index: 1;
+  z-index: 0;
 
   /* Modify size here: */
-  --size: 100px;
+  --size: 20vw;
 
   position: relative;
   width: calc(var(--size) * 0.5);;
