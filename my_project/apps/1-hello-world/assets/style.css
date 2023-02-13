@@ -1,22 +1,30 @@
 html,
 body {
   overflow: scroll;
-  background: rgb(111, 137, 200);
-  background: linear-gradient(90deg, rgba(111, 137, 200, 1) 0%, rgba(75, 129, 208, 1) 43%, #5745fc 100%);
-  background-repeat: no-repeat;
-  color: white;
-  text-align: center;
   margin: 0;
   padding: 0;
   user-select: none;
   touch-action: pan-x pan-y;
   width: 100%;
   height: 100%;
+  background-color: #e5e5f7;
+  background-image:  
+    linear-gradient(rgba(68, 76, 247, 0.2) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(68, 76, 247, 0.2) 2px, transparent 2px),
+    linear-gradient(rgba(68, 76, 247, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(68, 76, 247, 0.2) 1px, rgba(229, 229, 247, 0.2) 1px);
+  background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+
 }
 
 .page {
-  opacity: 0;
   display: none;
+  opacity: 0;
+}
+
+h1{
+  text-align: center;
 }
 
 .pagejs-button {
@@ -31,6 +39,7 @@ body {
   margin: 1px 1px 1px 1px;
   outline: none;
   padding: 10px 16px;
+  text-align: center;
 }
 
 .calculator-component {
@@ -49,25 +58,31 @@ body {
   border: transparent;
   resize: none;
   color: #000000;
-  font-size: 1.5rem;
   text-align: right;
   width: 100%;
   height: 30px;
 
 }
 
+.calculator-component__output__current-operator {
+  text-align: left;
+  width: 10%;
+  font-size: 1.7rem;
+
+}
+
+.calculator-component__output__current-operand {
+  font-size: 1.8rem;
+}
+
 .calculator-component__output__previous-operand {
+  font-size: 1.7rem;
   width: 90%;
 }
 
 .calculator-component__output__previous-operation {
   font-size: 1.4rem;
   color: #333333;
-}
-
-.calculator-component__output__current-operator {
-  text-align: left;
-  width: 10%;
 }
 
 .flex {
