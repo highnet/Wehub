@@ -231,6 +231,7 @@ export default class CalculatorComponent extends Component {
     this.previousOperand.textContent = "";
     this.currentOperator.textContent = "";
     this.currentOperand.textContent = "";
+    this.output = NaN;
   }
 
   reset() {
