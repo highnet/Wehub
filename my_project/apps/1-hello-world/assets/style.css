@@ -43,7 +43,7 @@ h1{
 
 .calculator-component {
   margin: 0 auto;
-  width: 50vw;
+  width: 25vw;
 }
 
 .calculator-component__buttons {
@@ -71,7 +71,7 @@ h1{
 
 .calculator-component__output__current-operator {
   text-align: left;
-  width: 10%;
+  width: 10%; 
   font-size: 1.7rem;
 
 }
