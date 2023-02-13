@@ -100,7 +100,6 @@ export default class CalculatorComponent extends Component {
               name="debug__button-labels"
               id="debug__toggle-button-label__identifier-labels"
               value="identifier-labels"
-            // checked="checked"
             ></input>
             <label for="debug__toggle-button-label__identifier-labels">Identifier Labels</label>
             <input
@@ -116,7 +115,6 @@ export default class CalculatorComponent extends Component {
               name="debug__button-labels"
               id="debug__toggle-button-label__emoji-labels"
               value="emoji-labels"
-            // checked="checked"
             ></input>
             <label for="debug__toggle-button-label__emoji-labels">Emoji Labels</label>
           </fieldset>
@@ -540,7 +538,6 @@ export default class CalculatorComponent extends Component {
 
     this.debugOutput.textContent = this.output.toString();
 
-
   }
 
   // get an element by id
@@ -553,8 +550,7 @@ export default class CalculatorComponent extends Component {
     // initialize button labels with default values
     let btns = this.getButtons();
     for (let btn of btns) {
-      //this.toggleButtonLabels(btn.attributes.internalid.nodeValue, document.querySelector('input[name="debug__button-labels"]:checked').value);
-      this.toggleButtonLabels(btn.attributes.internalid.nodeValue, "calculator-labels");
+        this.toggleButtonLabels(btn.attributes.internalid.nodeValue, "calculator-labels");
     }
   }
 

@@ -94,6 +94,3 @@ h1{
   grid-template-columns: 5fr 1fr;
 }
 
-.debug{
-  visibility: hidden;
-}
