@@ -176,7 +176,6 @@ export default class CalculatorComponent extends Component {
   }
 
   ready() {
-
     this.init();
     this.cacheButtons();  // cache all input buttons in the inputButtons map
     this.initButtonLabels(); // initialize button labels with default values
