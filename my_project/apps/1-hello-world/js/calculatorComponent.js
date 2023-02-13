@@ -88,9 +88,11 @@ export default class CalculatorComponent extends Component {
                 }}
               />
         </div>
+        <div class="tv"></div>
+
         <div
           class="debug"
-        // hidden="true"
+         hidden="true"
         >
           <h2>DEBUG</h2>
           <fieldset>
@@ -138,10 +140,10 @@ export default class CalculatorComponent extends Component {
   }
 
   styleButtons(){
-    const clearFunctionsColor = "#E6C855";
-    const mainOperatorsColor = "#aad725";
-    const equalsOperatorColor = "#ff6000";
-    const mainOperandsColor = "#22d522";
+    const clearFunctionsColor = "#FFFCC9";
+    const mainOperatorsColor = "#f4c2c2";
+    const equalsOperatorColor = "#FFFCC9";
+    const mainOperandsColor = "#f47983";
 
     for(let i = 0; i < 3; i++){
       let btn = this.getElementById("clear-functions-" + i.toString());
