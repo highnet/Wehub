@@ -90,7 +90,7 @@ export default class CalculatorComponent extends Component {
         </div>
         <div
           class="debug"
-        //hidden="true"
+        // hidden="true"
         >
           <h2>DEBUG</h2>
           <fieldset>
@@ -143,20 +143,30 @@ export default class CalculatorComponent extends Component {
     const equalsOperatorColor = "#ff6000";
     const mainOperandsColor = "#22d522";
 
-
     for(let i = 0; i < 3; i++){
-      this.getElementById("clear-functions-" + i.toString()).style.backgroundColor = clearFunctionsColor;
+      let btn = this.getElementById("clear-functions-" + i.toString());
+      btn.style.backgroundColor = clearFunctionsColor;
+      btn.style.fontSize = "1.0rem";
     }
 
     for(let i = 0; i < 4; i++){
-      this.getElementById("main-operators-" + i.toString()).style.backgroundColor = mainOperatorsColor;
+      let btn = this.getElementById("main-operators-" + i.toString());
+      btn.style.backgroundColor = mainOperatorsColor;
+      btn.style.fontSize = "1.2rem";
+
     }
 
     for(let i = 0; i < 12; i++){
-      this.getElementById("main-operands-" + i.toString()).style.backgroundColor = mainOperandsColor;
+      let btn = this.getElementById("main-operands-" + i.toString());
+      btn.style.backgroundColor = mainOperandsColor;
+      btn.style.fontSize = "1.2rem";
+
     }
 
-    this.getElementById("equals-operator-0").style.backgroundColor = equalsOperatorColor;
+    let btn = this.getElementById("equals-operator-0");
+    btn.style.backgroundColor = equalsOperatorColor;
+    btn.style.fontSize = "1.4rem";
+
 
   }
 
