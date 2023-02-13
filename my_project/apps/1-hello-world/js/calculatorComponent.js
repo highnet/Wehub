@@ -140,29 +140,26 @@ export default class CalculatorComponent extends Component {
   }
 
   styleButtons(){
-    this.getElementById("clear-functions-0").style.backgroundColor = "#fcd745";
-    this.getElementById("clear-functions-1").style.backgroundColor = "#fcd745";
-    this.getElementById("clear-functions-2").style.backgroundColor = "#fcd745";
+    const clearFunctionsColor = "#E6C855";
+    const mainOperatorsColor = "#aad725";
+    const equalsOperatorColor = "#ff6000";
+    const mainOperandsColor = "#22d522";
 
-    this.getElementById("main-operators-0").style.backgroundColor = "#fcd745";
-    this.getElementById("main-operators-1").style.backgroundColor = "#fcd745";
-    this.getElementById("main-operators-2").style.backgroundColor = "#fcd745";
-    this.getElementById("main-operators-3").style.backgroundColor = "#fcd745";
 
-    this.getElementById("equals-operator-0").style.backgroundColor = "#fc7c45";
+    for(let i = 0; i < 3; i++){
+      this.getElementById("clear-functions-" + i.toString()).style.backgroundColor = clearFunctionsColor;
+    }
 
-    this.getElementById("main-operands-0").style.backgroundColor = "#22d522";
-    this.getElementById("main-operands-1").style.backgroundColor = "#22d522";
-    this.getElementById("main-operands-2").style.backgroundColor = "#22d522";
-    this.getElementById("main-operands-3").style.backgroundColor = "#22d522";
-    this.getElementById("main-operands-4").style.backgroundColor = "#22d522";
-    this.getElementById("main-operands-5").style.backgroundColor = "#22d522";
-    this.getElementById("main-operands-6").style.backgroundColor = "#22d522";
-    this.getElementById("main-operands-7").style.backgroundColor = "#22d522"; 
-    this.getElementById("main-operands-8").style.backgroundColor = "#22d522";
-    this.getElementById("main-operands-9").style.backgroundColor = "#22d522";
-    this.getElementById("main-operands-10").style.backgroundColor = "#22d522";
-    this.getElementById("main-operands-11").style.backgroundColor = "#22d522";
+    for(let i = 0; i < 4; i++){
+      this.getElementById("main-operators-" + i.toString()).style.backgroundColor = mainOperatorsColor;
+    }
+
+    for(let i = 0; i < 12; i++){
+      this.getElementById("main-operands-" + i.toString()).style.backgroundColor = mainOperandsColor;
+    }
+
+    this.getElementById("equals-operator-0").style.backgroundColor = equalsOperatorColor;
+
   }
 
   init(){
@@ -179,8 +176,7 @@ export default class CalculatorComponent extends Component {
     this.cacheOutputElements(); // cache output elements
     this.cacheDebugElements(); // cache debug elements
     this.addDebugEventListeners();  // Add event listeners for debug components
-    this.styleButtons();
-
+    this.styleButtons(); // add button color
 
     this.handleInput(0);
 
@@ -190,10 +186,6 @@ export default class CalculatorComponent extends Component {
     this.handleInput(3);
     this.handleInput(4);
     this.handleInput('=');
-
-
-
-
   }
 
   // cache debug elements
@@ -561,7 +553,8 @@ export default class CalculatorComponent extends Component {
     // initialize button labels with default values
     let btns = this.getButtons();
     for (let btn of btns) {
-      this.toggleButtonLabels(btn.attributes.internalid.nodeValue, document.querySelector('input[name="debug__button-labels"]:checked').value);
+      //this.toggleButtonLabels(btn.attributes.internalid.nodeValue, document.querySelector('input[name="debug__button-labels"]:checked').value);
+      this.toggleButtonLabels(btn.attributes.internalid.nodeValue, "calculator-labels");
     }
   }
 
