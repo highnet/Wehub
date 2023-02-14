@@ -43,7 +43,7 @@ h1{
 
 .calculator-component {
   margin: 0 auto;
-  width: 50vw;
+  width: 54vw;
   z-index: 2;
   position: relative;
   min-width: 225px;
@@ -56,6 +56,8 @@ h1{
   box-shadow: 0px 0px 5px 10px rgba(255, 255, 255, 0.1);
   z-index: 2;
   position: relative;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .calculator-component__outputs{
@@ -65,6 +67,8 @@ h1{
   z-index: 2;
   position: relative;
   background: rgba(102, 102, 102, 0.95);
+  width: 95%;
+  margin: 0 auto;
 
 }
 
@@ -74,7 +78,7 @@ h1{
   resize: none;
   color: #000000;
   width: 90%;
-  height: 26px;
+  height: 22px;
   padding-left: 1rem;
 
 }
@@ -88,6 +92,7 @@ h1{
 
 .calculator-component__output__current-operand {
   font-size: 1.6rem;
+  padding-bottom: 5px;
 }
 
 .calculator-component__output__previous-operand {

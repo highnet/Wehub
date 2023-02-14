@@ -30,24 +30,28 @@ export default class CalculatorComponent extends Component {
             class="calculator-component__output calculator-component__output__previous-operation"
             readonly=""
             id="calculator-component__output__previous-operation"
+            wrap="off"
           ></textarea>
           <div class="flex">
             <textarea
               class="calculator-component__output calculator-component__output__previous-operand"
               readonly=""
               id="calculator-component__output__previous-operand"
+              wrap="off"
             ></textarea>
             <textarea
               class="calculator-component__output calculator-component__output__current-operator"
               readonly=""
               id="calculator-component__output__current-operator"
+              wrap="off"
+              maxlength="21"
             ></textarea>
           </div>
-
           <textarea
             class="calculator-component__output calculator-component__output__current-operand"
             readonly=""
             id="calculator-component__output__current-operand"
+            wrap="off"
           ></textarea>
         </div>
         <div class="calculator-component__buttons">
@@ -380,6 +384,7 @@ export default class CalculatorComponent extends Component {
       this.allClear();
       this.handleInput(input);
     } else if (digit) {
+      if (this.currentOperand.textContent.length >= 21) return;
       if (this.currentOperand.textContent == "0") {
         this.currentOperand.textContent = input;
       } else if (this.currentOperand.textContent == "-0") {
