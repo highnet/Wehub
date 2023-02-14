@@ -395,8 +395,7 @@ export default class CalculatorComponent extends Component {
     // react to the input
     //  input + old_state -> new_state + [output]
     if (!poweredIsOn){
-      return;
-    }
+      return;}
     else if (doHardResetStateFlagIsRaised) {
       this.reset();
       this.handleInput(input);
