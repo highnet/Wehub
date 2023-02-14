@@ -14,11 +14,15 @@ export default class CalculatorComponent extends Component {
   currentOperator;
   currentOperand;
 
+
+  sidePower;
+
   debugPreviousOperation;
   debugPreviousOperand;
   debugCurrentOperator;
   debugCurrentOperand;
 
+  poweredOn;
   DoHardResetStateFlag;
   output;
 
@@ -195,7 +199,28 @@ export default class CalculatorComponent extends Component {
 
   }
 
+  togglePower(){
+
+    this.poweredOn = !this.poweredOn;
+    if (this.poweredOn){
+      this.handleInput(0);
+    }
+    console.log("poweredOn:", this.poweredOn);
+  }
+
+  cacheSideButtons() {
+    this.sidePower = this.getElementById("side-0");
+  }
+
+  addSideButtonsEventListeners(){
+    this.sidePower.on('released', () => {
+      this.reset();
+      this.togglePower();
+    })
+  }
+
   init(){
+    this.poweredOn = false;
     this.output = NaN; // set output to NaN
     this.DoHardResetStateFlag = false; // set reset state to false
   }
@@ -204,15 +229,21 @@ export default class CalculatorComponent extends Component {
 
     // set
     this.init();
+
+
     this.cacheButtons();  // cache all input buttons in the inputButtons map
     this.initButtonLabels(); // initialize button labels with default values
     this.addButtonEventListeners(); // add button event listeners
+    
+    this.cacheSideButtons();
+    this.addSideButtonsEventListeners();
+
     this.cacheOutputElements(); // cache output elements
     this.cacheDebugElements(); // cache debug elements
     this.addDebugEventListeners();  // Add event listeners for debug components
     this.styleButtons(); // add button color
 
-
+    this.togglePower();
     // go
     this.handleInput(0);
 
@@ -319,6 +350,10 @@ export default class CalculatorComponent extends Component {
     return outputField.textContent.charAt(outputField.textContent.length - 1) == ".";
   }
 
+  isPoweredOn(){
+    return this.poweredOn;
+  }
+
   // handle input
   handleInput(input) {
     // define regex patterns
@@ -348,6 +383,7 @@ export default class CalculatorComponent extends Component {
     const equals = equalsRegex.test(input);
 
     // evaluate calculator's state
+    const poweredIsOn = this.isPoweredOn();
     const doHardResetStateFlagIsRaised = this.isDoHardResetStateFlagRaised();
     const currentOperandIsZero = this.isCurrentOperandZero();
     const currentOperandIsEmpty = this.isCurrentOperandEmpty();
@@ -358,7 +394,10 @@ export default class CalculatorComponent extends Component {
 
     // react to the input
     //  input + old_state -> new_state + [output]
-    if (doHardResetStateFlagIsRaised) {
+    if (!poweredIsOn){
+      return;
+    }
+    else if (doHardResetStateFlagIsRaised) {
       this.reset();
       this.handleInput(input);
     } else if (zero && currentOperandIsZero) {
