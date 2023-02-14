@@ -227,17 +227,8 @@ export default class CalculatorComponent extends Component {
   }
 
   playRandomUIClick(){
-
-    const audio0 = new Audio("./assets/audio/ui-click-0.mp3");
-    const audio1 = new Audio("./assets/audio/ui-click-1.mp3");
-
-    let  x = (Math.floor(Math.random() * 2) == 0);
-    if(x){
-      audio0.play();
-    }else{
-      audio1.play();
-    }
-        
+    if (!this.poweredOn) return;
+    this.sounds[Math.floor(Math.random()*this.sounds.length)].play();  
   }
 
   addButtonSounds(){    
@@ -255,6 +246,21 @@ export default class CalculatorComponent extends Component {
   }
 
   cacheSounds(){
+    const audio0 = new Audio("./assets/audio/ui-click-0.mp3");
+    const audio1 = new Audio("./assets/audio/ui-click-1.mp3");
+    const audio2 = new Audio("./assets/audio/ui-click-2.mp3");
+    const audio3 = new Audio("./assets/audio/ui-click-3.mp3");
+    const audio4 = new Audio("./assets/audio/ui-click-4.mp3");
+    const audio5 = new Audio("./assets/audio/ui-click-5.mp3");
+    const audio6 = new Audio("./assets/audio/ui-click-6.mp3");
+
+    this.sounds.push(audio0);
+    this.sounds.push(audio1);
+    this.sounds.push(audio2);
+    this.sounds.push(audio3);
+    this.sounds.push(audio4);
+    this.sounds.push(audio5);
+    this.sounds.push(audio6);
 
   }
 
