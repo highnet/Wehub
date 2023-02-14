@@ -5,15 +5,14 @@ import ButtonLabels from "../calculator-button-labels.json";
 
 export default class CalculatorComponent extends Component {
 
-  buttons = new Map();
-  buttonAtributes = ButtonAttributes;
-  buttonLabels = ButtonLabels;
+  buttonGridButtons = new Map();
+  buttonGridAttributes = ButtonAttributes;
+  buttonGridLabels = ButtonLabels;
 
   previousOperation;
   previousOperand;
   currentOperator;
   currentOperand;
-
 
   sidePower;
 
@@ -66,27 +65,27 @@ export default class CalculatorComponent extends Component {
           
           <ButtonGrid
               props={{
-                identifier: Object.keys(this.buttonAtributes)[0],
-                buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[0]].buttons,
-                columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[0]].columns,
+                identifier: Object.keys(this.buttonGridAttributes)[0],
+                buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[0]].buttons,
+                columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[0]].columns,
               }}
             />
           <div class ="main-grid">
             <div class="calculator-component__buttons__main-buttons">
               <ButtonGrid
                 props={{
-                  identifier: Object.keys(this.buttonAtributes)[1],
-                  buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[1]].buttons,
-                  columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[1]].columns,
+                  identifier: Object.keys(this.buttonGridAttributes)[1],
+                  buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[1]].buttons,
+                  columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[1]].columns,
                 }}
               />
               </div>
               <div class="calculator-component__buttons__side-buttons">
               <ButtonGrid
                 props={{
-                  identifier: Object.keys(this.buttonAtributes)[2],
-                  buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[2]].buttons,
-                  columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[2]].columns,
+                  identifier: Object.keys(this.buttonGridAttributes)[2],
+                  buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[2]].buttons,
+                  columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[2]].columns,
                 }}
               />
             </div>
@@ -94,9 +93,9 @@ export default class CalculatorComponent extends Component {
           <ButtonGrid
                 class = "equals-operator"
                 props={{
-                  identifier: Object.keys(this.buttonAtributes)[3],
-                  buttons: this.buttonAtributes[Object.keys(this.buttonAtributes)[3]].buttons,
-                  columns: this.buttonAtributes[Object.keys(this.buttonAtributes)[3]].columns,
+                  identifier: Object.keys(this.buttonGridAttributes)[3],
+                  buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[3]].buttons,
+                  columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[3]].columns,
                 }}
               />
         </div>
@@ -225,14 +224,18 @@ export default class CalculatorComponent extends Component {
     this.DoHardResetStateFlag = false; // set reset state to false
   }
 
+  addButtonSounds(){
+    const btns = document.querySelectorAll("Button");
+    console.log(btns);
+  }
+
   ready() {
 
     // set
     this.init();
 
-
-    this.cacheButtons();  // cache all input buttons in the inputButtons map
-    this.initButtonLabels(); // initialize button labels with default values
+    this.cacheButtonGridButtons();  // cache all input buttons in the inputButtons map
+    this.initButtonGridButtonLabels(); // initialize button labels with default values
     this.addButtonEventListeners(); // add button event listeners
     
     this.cacheSideButtons();
@@ -241,6 +244,8 @@ export default class CalculatorComponent extends Component {
     this.cacheOutputElements(); // cache output elements
     this.cacheDebugElements(); // cache debug elements
     this.addDebugEventListeners();  // Add event listeners for debug components
+    
+    this.addButtonSounds();
     this.styleButtons(); // add button color
 
     this.togglePower();
@@ -275,7 +280,7 @@ export default class CalculatorComponent extends Component {
 
   // add button event listeners
   addButtonEventListeners() {
-    let btns = this.getButtons();
+    let btns = this.getButtonGridButtons();
     for (let btn of btns) {
       btn.on('released', () => {
         console.log(btn.textContent);
@@ -562,7 +567,7 @@ export default class CalculatorComponent extends Component {
 
     // button labels -> identifier labels
     this.getElementById("debug__toggle-button-label__identifier-labels").addEventListener("change", (change) => {
-      let btns = this.getButtons();
+      let btns = this.getButtonGridButtons();
       for (let btn of btns) {
         this.toggleButtonLabels(btn.attributes.internalid.nodeValue, change.target.value);
       }
@@ -570,7 +575,7 @@ export default class CalculatorComponent extends Component {
 
     // button labels -> calculator labels
     this.getElementById("debug__toggle-button-label__calculator-labels").addEventListener("change", (change) => {
-      let btns = this.getButtons();
+      let btns = this.getButtonGridButtons();
       for (let btn of btns) {
         this.toggleButtonLabels(btn.attributes.internalid.nodeValue, change.target.value);
       }
@@ -578,7 +583,7 @@ export default class CalculatorComponent extends Component {
 
     // button labels -> emoji labels
     this.getElementById("debug__toggle-button-label__emoji-labels").addEventListener("change", (change) => {
-      let btns = this.getButtons();
+      let btns = this.getButtonGridButtons();
       for (let btn of btns) {
         this.toggleButtonLabels(btn.attributes.internalid.nodeValue, change.target.value);
       }
@@ -622,33 +627,33 @@ export default class CalculatorComponent extends Component {
   }
 
   // initialize button labels
-  initButtonLabels() {
+  initButtonGridButtonLabels() {
     // initialize button labels with default values
-    let btns = this.getButtons();
+    let btns = this.getButtonGridButtons();
     for (let btn of btns) {
         this.toggleButtonLabels(btn.attributes.internalid.nodeValue, "calculator-labels");
     }
   }
 
   // cache buttons
-  cacheButtons() {
+  cacheButtonGridButtons() {
     // cache all dynamically generated buttons from buttongrids into the buttons map
-    for (let i = 0; i < Object.keys(this.buttonAtributes).length; i++) {
-      for (let j = 0; j < this.buttonAtributes[Object.keys(this.buttonAtributes)[i]].buttons; j++) {
-        this.buttons.set((Object.keys(this.buttonAtributes)[i] + "-" + j), (this.getElementById(Object.keys(this.buttonAtributes)[i] + "-" + j)));
+    for (let i = 0; i < Object.keys(this.buttonGridAttributes).length; i++) {
+      for (let j = 0; j < this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[i]].buttons; j++) {
+        this.buttonGridButtons.set((Object.keys(this.buttonGridAttributes)[i] + "-" + j), (this.getElementById(Object.keys(this.buttonGridAttributes)[i] + "-" + j)));
       }
     }
   }
 
   // get buttons
-  getButtons() {
+  getButtonGridButtons() {
     // returns buttons in an array
-    return this.buttons.values();
+    return this.buttonGridButtons.values();
   }
 
   //toggle button labels
   toggleButtonLabels(buttonIdentifier, buttonLabelType) {
-    this.buttons.get(buttonIdentifier).innerHTML = this.buttonLabels[[buttonIdentifier, buttonLabelType]]
+    this.buttonGridButtons.get(buttonIdentifier).innerHTML = this.buttonGridLabels[[buttonIdentifier, buttonLabelType]]
   }
 
 }
