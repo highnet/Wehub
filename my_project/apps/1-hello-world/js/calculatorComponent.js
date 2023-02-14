@@ -8,23 +8,20 @@ export default class CalculatorComponent extends Component {
   buttonGridButtons = new Map();
   buttonGridAttributes = ButtonAttributes;
   buttonGridLabels = ButtonLabels;
-
   previousOperation;
   previousOperand;
   currentOperator;
   currentOperand;
-
   sidePower;
-
+  sideVolume;
   debugPreviousOperation;
   debugPreviousOperand;
   debugCurrentOperator;
   debugCurrentOperand;
-
   poweredOn;
+  volumeOn;
   DoHardResetStateFlag;
   output;
-
   sounds = [];
 
   render() {
@@ -114,8 +111,12 @@ export default class CalculatorComponent extends Component {
             </div>
             <div class="calculator-skin__body__buttons">
               <Button 
-              class="calculator-skin__body__buttons_power"
-              id="side-0"
+                class="calculator-skin__body__buttons_power"
+                id="side-0"
+              ></Button>
+              <Button 
+                class="calculator-skin__body__buttons_volume"
+                id="side-1"
               ></Button>
             </div>
           </div>
@@ -200,34 +201,47 @@ export default class CalculatorComponent extends Component {
 
   }
 
-  togglePower(){
 
+  toggleVolume(){
+    this.volumeOn = !this.volumeOn;
+    console.log("volumeOn:", this.volumeOn);
+  }
+
+  togglePower(){
     this.poweredOn = !this.poweredOn;
     if (this.poweredOn){
       this.handleInput(0);
     }
-    console.log("poweredOn:", this.poweredOn);
   }
 
   cacheSideButtons() {
     this.sidePower = this.getElementById("side-0");
+    this.sideVolume = this.getElementById("side-1");
   }
 
   addSideButtonsEventListeners(){
-    this.sidePower.on('released', () => {
-      this.reset();
-      this.togglePower();
+    if (this.sidePower != undefined){
+      this.sidePower.on('released', () => {
+        this.reset();
+        this.togglePower();
     })
+    }
+    if (this.sideVolume != undefined){
+      this.sideVolume.on('released', () => {
+        this.toggleVolume();
+    })
+    }
   }
 
   init(){
     this.poweredOn = false;
+    this.volumeOn = false;
     this.output = NaN; // set output to NaN
     this.DoHardResetStateFlag = false; // set reset state to false
   }
 
   playRandomUIClick(){
-    if (!this.poweredOn) return;
+    if (!this.poweredOn || !this.volumeOn) return;
     this.sounds[Math.floor(Math.random()*this.sounds.length)].play();  
   }
 
@@ -240,9 +254,20 @@ export default class CalculatorComponent extends Component {
       })
     }
 
-    this.getElementById("side-0").on('released', () => {
-      this.playRandomUIClick();
+    let btn = this.getElementById("side-0"); 
+
+    if (btn != undefined){
+        btn.on('released', () => {
+          this.playRandomUIClick();
       })
+    }
+
+    btn = this.getElementById("side-1");
+    if (btn != undefined){
+        btn.on('released', () => {
+          this.playRandomUIClick();
+      })
+    }
   }
 
   cacheSounds(){
@@ -286,6 +311,7 @@ export default class CalculatorComponent extends Component {
     this.styleButtons(); // add button color
 
     this.togglePower();
+    this.toggleVolume();
     // go
     this.handleInput(0);
 
@@ -389,6 +415,10 @@ export default class CalculatorComponent extends Component {
 
   isPoweredOn(){
     return this.poweredOn;
+  }
+
+  isVolumeOn(){
+    return this.volumeOn;
   }
 
   // handle input

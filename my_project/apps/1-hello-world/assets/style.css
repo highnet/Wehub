@@ -119,8 +119,22 @@ h1{
   position: relative;
   z-index: -1;
   display: flex;
-  justify-content: space-evenly;
-  translate: 28.25vw -10vw;
+  translate: 53vw -10vw;
+  flex-direction: column;
+}
+
+.calculator-skin__body__buttons_volume{
+  z-index: 0;
+
+  /* Modify size here: */
+  --size: 10vw;
+  
+  position: relative;
+  width: calc(var(--size) * 0.5);
+  height: calc(var(--size) * 0.8);
+  background: rgb(117, 255, 158);
+  border-radius: 40px;
+  padding: 0px;
 }
 
 .calculator-skin__body__buttons_power{
@@ -128,13 +142,14 @@ h1{
 
   /* Modify size here: */
   --size: 10vw;
-
+  
   position: relative;
   width: calc(var(--size) * 0.5);;
   height: calc(var(--size) * 1.0);
-  background: rgb(255, 117, 117);
+  background: rgb(60, 122, 236);
   border-radius: 40px;
   padding: 0px;
+
 }
 
 .calculator-skin__body {
