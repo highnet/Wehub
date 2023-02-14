@@ -184,7 +184,7 @@ h1{
   border-radius: 40px;
 }
 
-.inner {
+.calculator-skin__body__ear__inner {
   /* Modify size here: */
   --size: 20vw;
 
