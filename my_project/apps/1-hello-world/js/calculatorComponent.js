@@ -1,4 +1,4 @@
-import { Component } from "pagejs/components";
+import { Component, Button } from "pagejs/components";
 import ButtonGrid from "./buttonGrid";
 import ButtonAttributes from "../calculator-button-attributes.json"
 import ButtonLabels from "../calculator-button-labels.json";
@@ -101,16 +101,14 @@ export default class CalculatorComponent extends Component {
           <div class="calculator-skin__body">
             <div class="calculator-skin__body__ears">
               <div class="calculator-skin__body__ear">
-                <div class="inner" ></div>
+                <div class="inner"></div>
               </div>
               <div class="calculator-skin__body__ear">
-                                <div class="inner" >
-                                </div>
-
+                <div class="inner"></div>
               </div>
             </div>
             <div class="calculator-skin__body__buttons">
-              <div class="calculator-skin__body__buttons_power"></div>
+              <Button class="calculator-skin__body__buttons_power"></Button>
             </div>
           </div>
         </div>
