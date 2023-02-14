@@ -225,8 +225,21 @@ export default class CalculatorComponent extends Component {
   }
 
   addButtonSounds(){
-    const btns = document.querySelectorAll("Button");
-    console.log(btns);
+    const audio = new Audio("./assets/ui-click.mp3");
+    
+    let btns = this.getButtonGridButtons();
+    
+    for(let btn of btns){
+        btn.on('released', () => {
+          console.log("click");
+          audio.play();
+      })
+    }
+
+    this.getElementById("side-0").on('released', () => {
+          console.log("click");
+          audio.play();
+      })
   }
 
   ready() {
@@ -236,7 +249,7 @@ export default class CalculatorComponent extends Component {
 
     this.cacheButtonGridButtons();  // cache all input buttons in the inputButtons map
     this.initButtonGridButtonLabels(); // initialize button labels with default values
-    this.addButtonEventListeners(); // add button event listeners
+    this.addButtonGridButtonsEventListeners(); // add button event listeners
     
     this.cacheSideButtons();
     this.addSideButtonsEventListeners();
@@ -279,7 +292,7 @@ export default class CalculatorComponent extends Component {
   }
 
   // add button event listeners
-  addButtonEventListeners() {
+  addButtonGridButtonsEventListeners() {
     let btns = this.getButtonGridButtons();
     for (let btn of btns) {
       btn.on('released', () => {
