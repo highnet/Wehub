@@ -66,7 +66,7 @@ h1{
   box-shadow: 0px 0px 5px 10px rgba(255, 255, 255, 0.1);
   z-index: 2;
   position: relative;
-  background: rgba(102, 102, 102, 0.95);
+  background: rgba(102, 102, 102, 1);
   width: 95%;
   margin: 0 auto;
 
@@ -117,7 +117,7 @@ h1{
 
 
 
-.tv {
+.calculator-skin__body {
   position: absolute;
   height: 480px;
   width: 100%;
@@ -129,7 +129,8 @@ h1{
   transform: translateY(-4.57in);
   z-index: 1;
 }
-.tv:before {
+
+.calculator-skin__body:before {
   content: '';
   position: absolute;
   top: 10%;
@@ -140,15 +141,15 @@ h1{
   border-radius: 5% / 50%;
 }
 
-.bubbles { 
+.calculator-skin__body__ears { 
   position: relative;
-  z-index: -1;
+  z-index: 0;
   display: flex;
   justify-content: space-evenly;
   translate: 0in -7vw;
 }
 
-.bubble {
+.calculator-skin__body__ear {
   z-index: 0;
 
   /* Modify size here: */
