@@ -25,6 +25,8 @@ export default class CalculatorComponent extends Component {
   DoHardResetStateFlag;
   output;
 
+  sounds = [];
+
   render() {
     return (
       <div class="calculator-component">
@@ -224,22 +226,36 @@ export default class CalculatorComponent extends Component {
     this.DoHardResetStateFlag = false; // set reset state to false
   }
 
-  addButtonSounds(){
-    const audio = new Audio("./assets/ui-click.mp3");
-    
+  playRandomUIClick(){
+
+    const audio0 = new Audio("./assets/audio/ui-click-0.mp3");
+    const audio1 = new Audio("./assets/audio/ui-click-1.mp3");
+
+    let  x = (Math.floor(Math.random() * 2) == 0);
+    if(x){
+      audio0.play();
+    }else{
+      audio1.play();
+    }
+        
+  }
+
+  addButtonSounds(){    
     let btns = this.getButtonGridButtons();
     
     for(let btn of btns){
         btn.on('released', () => {
-          console.log("click");
-          audio.play();
+          this.playRandomUIClick();
       })
     }
 
     this.getElementById("side-0").on('released', () => {
-          console.log("click");
-          audio.play();
+      this.playRandomUIClick();
       })
+  }
+
+  cacheSounds(){
+
   }
 
   ready() {
@@ -257,6 +273,8 @@ export default class CalculatorComponent extends Component {
     this.cacheOutputElements(); // cache output elements
     this.cacheDebugElements(); // cache debug elements
     this.addDebugEventListeners();  // Add event listeners for debug components
+    
+    this.cacheSounds();
     
     this.addButtonSounds();
     this.styleButtons(); // add button color
