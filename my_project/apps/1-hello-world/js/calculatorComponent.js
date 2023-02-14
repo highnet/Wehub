@@ -96,17 +96,24 @@ export default class CalculatorComponent extends Component {
                 }}
               />
         </div>
-        
+
         <div class="calculator-skin">
           <div class="calculator-skin__body">
             <div class="calculator-skin__body__ears">
-              <div class="calculator-skin__body__ear"></div>
-              <div class="calculator-skin__body__ear"></div>
+              <div class="calculator-skin__body__ear">
+                <div class="inner" ></div>
+              </div>
+              <div class="calculator-skin__body__ear">
+                                <div class="inner" >
+                                </div>
+
+              </div>
+            </div>
+            <div class="calculator-skin__body__buttons">
+              <div class="calculator-skin__body__buttons_power"></div>
             </div>
           </div>
         </div>
-
-
 
         <div
           class="debug"
