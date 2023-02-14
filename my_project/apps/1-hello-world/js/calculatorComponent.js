@@ -283,12 +283,7 @@ export default class CalculatorComponent extends Component {
     // go
     this.handleInput(0);
 
-    this.handleInput(1);
-    this.handleInput(2);
-    this.handleInput('+');
-    this.handleInput(3);
-    this.handleInput(4);
-    this.handleInput('=');
+
   }
 
   // cache debug elements
