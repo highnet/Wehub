@@ -437,12 +437,12 @@ export default class CalculatorComponent extends Component {
       this.handleInput("(-)");
     } else if (negation && previousOperandIsEmpty && !previousOperationIsEmpty) {
       this.allClear();
+      this.handleInput(0);
     } else if (negation && currentOperandIsNegative) {
       this.currentOperand.textContent = this.currentOperand.textContent.replace("-", '');
     } else if (negation && !currentOperandIsEmpty && !currentOperandIsNegative) {
       this.currentOperand.textContent = "-" + this.currentOperand.textContent;
     } else if (point && !previousOperationIsEmpty && previousOperandIsEmpty) {
-      console.log("HERE 0");
       this.allClear();
       this.handleInput(input);
     } else if (point && currentOperandDoesHaveNonTrailingFloatingPoint) {
@@ -454,16 +454,20 @@ export default class CalculatorComponent extends Component {
       this.currentOperand.textContent += ".";
     } else if (backspace && !previousOperationIsEmpty) {
       this.allClear();
+      this.handleInput(0);
     } else if (backspace && !currentOperandIsEmpty) {
       this.currentOperand.textContent = this.currentOperand.textContent.substring(0, this.currentOperand.textContent.length - 1);
     } else if (allclear && !previousOperandIsEmpty && !currentOperandIsEmpty) {
       this.currentOperand.textContent = "";
     } else if (allclear) {
       this.allClear();
+      this.handleInput(0);
     } else if (clear && previousOperationIsEmpty) {
       this.currentOperand.textContent = "";
+      this.handleInput(0);
     } else if (clear && !previousOperationIsEmpty) {
       this.allClear();
+      this.handleInput(0);
     } else if (digit && !currentOperandIsEmpty && !previousOperationIsEmpty && previousOperandIsEmpty) {
       this.allClear();
       this.handleInput(input);
