@@ -146,7 +146,7 @@ h1{
   z-index: 0;
   display: flex;
   justify-content: space-evenly;
-  translate: 0in -7vw;
+  translate: 0in -10vw;
 }
 
 .calculator-skin__body__ear {
@@ -157,7 +157,7 @@ h1{
 
   position: relative;
   width: calc(var(--size) * 0.5);;
-  height: calc(var(--size) * 1);
+  height: calc(var(--size) * 1.2);
   background: white;
   border-radius: 40px;
 }
