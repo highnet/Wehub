@@ -80,6 +80,7 @@ h1{
   width: 90%;
   height: 22px;
   padding-left: 1rem;
+  overflow: hidden;
 
 }
 

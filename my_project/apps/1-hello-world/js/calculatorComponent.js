@@ -31,6 +31,7 @@ export default class CalculatorComponent extends Component {
             readonly=""
             id="calculator-component__output__previous-operation"
             wrap="off"
+            disabled="true"
           ></textarea>
           <div class="flex">
             <textarea
@@ -38,6 +39,7 @@ export default class CalculatorComponent extends Component {
               readonly=""
               id="calculator-component__output__previous-operand"
               wrap="off"
+              disabled="true"
             ></textarea>
             <textarea
               class="calculator-component__output calculator-component__output__current-operator"
@@ -45,6 +47,7 @@ export default class CalculatorComponent extends Component {
               id="calculator-component__output__current-operator"
               wrap="off"
               maxlength="21"
+              disabled="true"
             ></textarea>
           </div>
           <textarea
@@ -52,6 +55,7 @@ export default class CalculatorComponent extends Component {
             readonly=""
             id="calculator-component__output__current-operand"
             wrap="off"
+            disabled="true"
           ></textarea>
         </div>
         <div class="calculator-component__buttons">
@@ -342,7 +346,7 @@ export default class CalculatorComponent extends Component {
     const currentOperandDoesHaveNonTrailingFloatingPoint = this.doesCurrentOperandHaveNonTrailingFloatingPoint();
 
     // react to the input
-    //  input + old_state -> new_state + output
+    //  input + old_state -> new_state + [output]
     if (doHardResetStateFlagIsRaised) {
       this.reset();
       this.handleInput(input);
