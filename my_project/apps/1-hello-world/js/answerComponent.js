@@ -31,7 +31,7 @@ export default class AnswerComponent extends Component {
         
         let btn =
         <Button 
-        class='answer-component__answer'>
+        class='quiz-btn'>
             {this.generateAnswerText()}
         </Button>;
 
