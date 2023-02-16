@@ -7,7 +7,6 @@ export default class QuestionComponent extends Component {
 
     ready(){
 
- 
 }
 
     generateQuestionText(){     
@@ -21,10 +20,10 @@ export default class QuestionComponent extends Component {
     render(){
         return (
         <div class='question-component'>
-            <div class='question-component__prompt-anchor'>
+            <div class='prompt-anchor'>
                 <p>{this.generateQuestionText()}</p>
             </div>
-            <div class='question-component__answers-anchor'>
+            <div class='answers-anchor'>
                 <AnswerComponent props={{
                     identifier: 1,
                     questionIdentifier: this.props.identifier,
