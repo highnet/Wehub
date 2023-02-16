@@ -5,29 +5,23 @@ import {render} from "pagejs";
 
 export default class AnswerComponent extends Component {
     
-
     ready(){
-    }
-
-    generateAnswerText(){
-        
-        return this.getAnswer(this.props.questionIdentifier, this.props.identifier);
     }
 
     getAnswer(questionId, answerId){
         return Object.values(Object.values(quizQuestions)[questionId])[answerId];
     }
-    
-    handleClick(){
-        console.log("CLICK");
+
+    generateAnswerText(){
+        return this.getAnswer(this.props.questionIdentifier, this.props.answerIdentifier);
     }
 
     isCorrectAnswer(){
         let correctAnswerId = Object.values(Object.values(quizQuestions)[this.props.questionIdentifier])[5]; 
-        return this.props.identifier == correctAnswerId;
+        return this.props.answerIdentifier == correctAnswerId;
     }
 
-    generateButton(){
+    generateAnswerButton(){
         
         let btn =
         <Button 
@@ -49,7 +43,7 @@ export default class AnswerComponent extends Component {
     render(){
         return (
         <div class='answer-component'>
-            {this.generateButton()}
+            {this.generateAnswerButton()}
         </div>
         );
     }
