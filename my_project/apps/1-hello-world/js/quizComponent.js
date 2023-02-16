@@ -7,19 +7,45 @@ import ScoreComponent from "./scoreComponent";
 
 export default class QuizComponent extends Component {
     
+    _currentQuestion;
+
     ready(){        
         this.init();
+
+        let score = document.getElementById("score");
+
+        function randomInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function instantiateRandomQuestion(){
+            
+            let questionAnchor = document.getElementsByClassName("question-anchor")[0];
+            let oldQuestionComponent = document.getElementsByClassName("question-component")[0];
+
+            oldQuestionComponent.remove();
+
+            let newQuestionComponent = render(QuestionComponent, {identifier:randomInteger(0,1)});
+            questionAnchor.append(newQuestionComponent);
+        }
+        
         document.addEventListener("CORRECT", function() {
-            console.log("+");
+            score.wrapper.incrementScore();
+
+            instantiateRandomQuestion();
         });
 
         document.addEventListener("INCORRECT", function() {
-            console.log("-");
+            score.wrapper.decrementScore();
+            instantiateRandomQuestion();
+
         });
+
     }
 
-    init(){
 
+    init(){
+        this._currentQuestion = 0;
     }
 
 
@@ -31,7 +57,9 @@ export default class QuizComponent extends Component {
                   score: 0,
                 }}/>
             </div>
-            <div class='question-anchor'>
+            <div 
+            id = 'question'
+            class='question-anchor'>
                 <QuestionComponent props={{
                   identifier: 0,
                 }}/>
