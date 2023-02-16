@@ -2,26 +2,38 @@ import { Component } from "pagejs/components";
 import QuestionComponent from "./questionComponent";
 
 import { render } from "pagejs";
+import ScoreComponent from "./scoreComponent";
 
 
 export default class QuizComponent extends Component {
     
-    questionAnchor;
+    _scoreAnchor;
 
-    ready(){
-        this.cacheDoms();
+    ready(){        
+        this.init();
+
+        document.addEventListener("CORRECT", function() {
+        });     
+        document.addEventListener("INCORRECT", function() {
+        });  
     }
 
-    cacheDoms(){
-        this.questionAnchor = document.getElementsByClassName('question-component__question-anchor')[0];
+    init(){
+
     }
+
 
     render(){
         return (
         <div class='quiz-component'>
-            <div class='question-component__question-anchor'>
+            <div class='score-anchor'>
+                <ScoreComponent props={{
+                  score: 0,
+                }}/>
+            </div>
+            <div class='question-anchor'>
                 <QuestionComponent props={{
-                  identifier: 1,
+                  identifier: 0,
                 }}/>
             </div>
         </div>);

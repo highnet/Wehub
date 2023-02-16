@@ -37,9 +37,9 @@ export default class AnswerComponent extends Component {
 
         btn.element.on('released', () => {
             if (this.isCorrectAnswer()){
-                console.log("CORRECT");
+                document.dispatchEvent(new Event("CORRECT"));
             } else {
-                console.log("INCORRECT");
+                document.dispatchEvent(new Event("INCORRECT"));
             }
       })
 
