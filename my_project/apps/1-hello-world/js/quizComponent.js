@@ -21,7 +21,7 @@ export default class QuizComponent extends Component {
         <div class='quiz-component'>
             <div class='question-component__question-anchor'>
                 <QuestionComponent props={{
-                  identifier: 1,
+                  identifier: 0,
                 }}/>
             </div>
         </div>);
