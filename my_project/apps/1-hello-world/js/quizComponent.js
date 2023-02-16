@@ -24,14 +24,13 @@ export default class QuizComponent extends Component {
             let oldQuestionComponent = document.getElementsByClassName("question-component")[0];
 
             oldQuestionComponent.remove();
-
+            
             let newQuestionComponent = render(QuestionComponent, {identifier:randomInteger(0,1)});
             questionAnchor.append(newQuestionComponent);
         }
         
         document.addEventListener("CORRECT", function() {
             score.wrapper.incrementScore();
-
             instantiateRandomQuestion();
         });
 
