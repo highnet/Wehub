@@ -9,7 +9,11 @@ export default class AnswerComponent extends Component {
     }
 
     generateAnswerText(){
-        return Object.values(Object.values(quizQuestions)[this.props.questionIdentifier])[this.props.identifier];
+        return this.getAnswer(this.props.questionIdentifier, this.props.identifier)
+    }
+
+    getAnswer(questionId, answerId){
+        return Object.values(Object.values(quizQuestions)[questionId])[answerId];
     }
 
     render(){

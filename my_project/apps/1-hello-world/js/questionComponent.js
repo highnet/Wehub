@@ -12,10 +12,12 @@ export default class QuestionComponent extends Component {
     }
 
     generateQuestionText(){     
-        return Object.values( Object.values(quizQuestions)[this.props.identifier])[0];
+        return this.getQuestion(this.props.identifier);
     }
 
-
+    getQuestion(questionId){
+        return Object.values(Object.values(quizQuestions)[questionId])[0];
+    }
 
     render(){
         return (
