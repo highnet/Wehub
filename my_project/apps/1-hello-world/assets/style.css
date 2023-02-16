@@ -48,6 +48,7 @@ h1{
   position: relative;
   min-width: 225px;
   margin-top: 100px;
+  max-width: 350px;
 }
 
 .calculator-component__buttons {
@@ -119,7 +120,7 @@ h1{
   position: relative;
   z-index: -1;
   display: flex;
-  translate: 53vw -10vw;
+  translate: 24px -80px;
   flex-direction: column;
 }
 
@@ -134,7 +135,9 @@ h1{
   height: calc(var(--size) * 0.8);
   background: rgb(117, 255, 158);
   border-radius: 40px;
-  padding: 0px;
+  align-self: end;
+  max-width: 36px;
+  max-height: 52px;
 }
 
 .calculator-skin__body__buttons_power{
@@ -148,7 +151,9 @@ h1{
   height: calc(var(--size) * 1.0);
   background: rgb(60, 122, 236);
   border-radius: 40px;
-  padding: 0px;
+  align-self: end;
+  max-width: 36px;
+  max-height: 65px;
 
 }
 
@@ -183,7 +188,8 @@ h1{
   z-index: 0;
   display: flex;
   justify-content: space-evenly;
-  translate: 0in -10vw;
+  translate: 0in -80px;
+
 }
 
 .calculator-skin__body__ear {
@@ -194,9 +200,11 @@ h1{
 
   position: relative;
   width: calc(var(--size) * 0.5);;
-  height: calc(var(--size) * 1.2);
+  height: calc(var(--size) * 1.8);
   background: white;
   border-radius: 40px;
+  max-height: 160px;
+  max-width: 70px;
 }
 
 .calculator-skin__body__ear__inner {
@@ -205,9 +213,11 @@ h1{
 
   position: relative;
   width: calc(var(--size) * 0.3);;
-  height: calc(var(--size) * 1.2);
+  height: calc(var(--size) * 1.8);
   background: radial-gradient(closest-side, rgba(255,192,203,1) 0%, rgba(255,222,233,1) 90%);;
   border-radius: 40px;
   margin: 0 auto;
   margin-top: 1.5vw;
+  max-height: 160px;
+  max-width: 45px;
 }

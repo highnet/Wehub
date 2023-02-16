@@ -61,15 +61,15 @@ export default class CalculatorComponent extends Component {
           ></textarea>
         </div>
         <div class="calculator-component__buttons">
-          
+
           <ButtonGrid
-              props={{
-                identifier: Object.keys(this.buttonGridAttributes)[0],
-                buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[0]].buttons,
-                columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[0]].columns,
-              }}
-            />
-          <div class ="main-grid">
+            props={{
+              identifier: Object.keys(this.buttonGridAttributes)[0],
+              buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[0]].buttons,
+              columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[0]].columns,
+            }}
+          />
+          <div class="main-grid">
             <div class="calculator-component__buttons__main-buttons">
               <ButtonGrid
                 props={{
@@ -78,8 +78,8 @@ export default class CalculatorComponent extends Component {
                   columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[1]].columns,
                 }}
               />
-              </div>
-              <div class="calculator-component__buttons__side-buttons">
+            </div>
+            <div class="calculator-component__buttons__side-buttons">
               <ButtonGrid
                 props={{
                   identifier: Object.keys(this.buttonGridAttributes)[2],
@@ -90,13 +90,13 @@ export default class CalculatorComponent extends Component {
             </div>
           </div>
           <ButtonGrid
-                class = "equals-operator"
-                props={{
-                  identifier: Object.keys(this.buttonGridAttributes)[3],
-                  buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[3]].buttons,
-                  columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[3]].columns,
-                }}
-              />
+            class="equals-operator"
+            props={{
+              identifier: Object.keys(this.buttonGridAttributes)[3],
+              buttons: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[3]].buttons,
+              columns: this.buttonGridAttributes[Object.keys(this.buttonGridAttributes)[3]].columns,
+            }}
+          />
         </div>
 
         <div class="calculator-skin">
@@ -110,11 +110,11 @@ export default class CalculatorComponent extends Component {
               </div>
             </div>
             <div class="calculator-skin__body__buttons">
-              <Button 
+              <Button
                 class="calculator-skin__body__buttons_power"
                 id="side-0"
               ></Button>
-              <Button 
+              <Button
                 class="calculator-skin__body__buttons_volume"
                 id="side-1"
               ></Button>
@@ -124,7 +124,7 @@ export default class CalculatorComponent extends Component {
 
         <div
           class="debug"
-         hidden="true"
+          hidden="true"
         >
           <h2>DEBUG</h2>
           <fieldset>
@@ -171,25 +171,25 @@ export default class CalculatorComponent extends Component {
     );
   }
 
-  styleButtons(){
+  styleButtons() {
     const clearFunctionsColor = "#FFFCC9";
     const mainOperatorsColor = "#f4c2c2";
     const equalsOperatorColor = "#FFFCC9";
     const mainOperandsColor = "#f47983";
 
-    for(let i = 0; i < 3; i++){
+    for (let i = 0; i < 3; i++) {
       let btn = this.getElementById("clear-functions-" + i.toString());
       btn.style.backgroundColor = clearFunctionsColor;
       btn.style.fontSize = "1.0rem";
     }
 
-    for(let i = 0; i < 4; i++){
+    for (let i = 0; i < 4; i++) {
       let btn = this.getElementById("main-operators-" + i.toString());
       btn.style.backgroundColor = mainOperatorsColor;
       btn.style.fontSize = "1.2rem";
     }
 
-    for(let i = 0; i < 12; i++){
+    for (let i = 0; i < 12; i++) {
       let btn = this.getElementById("main-operands-" + i.toString());
       btn.style.backgroundColor = mainOperandsColor;
       btn.style.fontSize = "1.2rem";
@@ -202,14 +202,14 @@ export default class CalculatorComponent extends Component {
   }
 
 
-  toggleVolume(){
+  toggleVolume() {
     this.volumeOn = !this.volumeOn;
     console.log("volumeOn:", this.volumeOn);
   }
 
-  togglePower(){
+  togglePower() {
     this.poweredOn = !this.poweredOn;
-    if (this.poweredOn){
+    if (this.poweredOn) {
       this.handleInput(0);
     }
   }
@@ -219,58 +219,58 @@ export default class CalculatorComponent extends Component {
     this.sideVolume = this.getElementById("side-1");
   }
 
-  addSideButtonsEventListeners(){
-    if (this.sidePower != undefined){
+  addSideButtonsEventListeners() {
+    if (this.sidePower != undefined) {
       this.sidePower.on('released', () => {
         this.reset();
         this.togglePower();
-    })
+      })
     }
-    if (this.sideVolume != undefined){
+    if (this.sideVolume != undefined) {
       this.sideVolume.on('released', () => {
         this.toggleVolume();
-    })
+      })
     }
   }
 
-  init(){
+  init() {
     this.poweredOn = false;
     this.volumeOn = false;
     this.output = NaN; // set output to NaN
     this.DoHardResetStateFlag = false; // set reset state to false
   }
 
-  playRandomUIClick(){
+  playRandomUIClick() {
     if (!this.poweredOn || !this.volumeOn) return;
-    this.sounds[Math.floor(Math.random()*this.sounds.length)].play();  
+    this.sounds[Math.floor(Math.random() * this.sounds.length)].play();
   }
 
-  addButtonSounds(){    
+  addButtonSounds() {
     let btns = this.getButtonGridButtons();
-    
-    for(let btn of btns){
-        btn.on('released', () => {
-          this.playRandomUIClick();
+
+    for (let btn of btns) {
+      btn.on('released', () => {
+        this.playRandomUIClick();
       })
     }
 
-    let btn = this.getElementById("side-0"); 
+    let btn = this.getElementById("side-0");
 
-    if (btn != undefined){
-        btn.on('released', () => {
-          this.playRandomUIClick();
+    if (btn != undefined) {
+      btn.on('released', () => {
+        this.playRandomUIClick();
       })
     }
 
     btn = this.getElementById("side-1");
-    if (btn != undefined){
-        btn.on('released', () => {
-          this.playRandomUIClick();
+    if (btn != undefined) {
+      btn.on('released', () => {
+        this.playRandomUIClick();
       })
     }
   }
 
-  cacheSounds(){
+  cacheSounds() {
     const audio0 = new Audio("./assets/audio/ui-click-0.mp3");
     const audio1 = new Audio("./assets/audio/ui-click-1.mp3");
     const audio2 = new Audio("./assets/audio/ui-click-2.mp3");
@@ -297,16 +297,16 @@ export default class CalculatorComponent extends Component {
     this.cacheButtonGridButtons();  // cache all input buttons in the inputButtons map
     this.initButtonGridButtonLabels(); // initialize button labels with default values
     this.addButtonGridButtonsEventListeners(); // add button event listeners
-    
+
     this.cacheSideButtons();
     this.addSideButtonsEventListeners();
 
     this.cacheOutputElements(); // cache output elements
     this.cacheDebugElements(); // cache debug elements
     this.addDebugEventListeners();  // Add event listeners for debug components
-    
+
     this.cacheSounds();
-    
+
     this.addButtonSounds();
     this.styleButtons(); // add button color
 
@@ -413,11 +413,11 @@ export default class CalculatorComponent extends Component {
     return outputField.textContent.charAt(outputField.textContent.length - 1) == ".";
   }
 
-  isPoweredOn(){
+  isPoweredOn() {
     return this.poweredOn;
   }
 
-  isVolumeOn(){
+  isVolumeOn() {
     return this.volumeOn;
   }
 
@@ -461,8 +461,9 @@ export default class CalculatorComponent extends Component {
 
     // react to the input
     //  input + old_state -> new_state + [output]
-    if (!poweredIsOn){
-      return;}
+    if (!poweredIsOn) {
+      return;
+    }
     else if (doHardResetStateFlagIsRaised) {
       this.reset();
       this.handleInput(input);
@@ -493,6 +494,9 @@ export default class CalculatorComponent extends Component {
       this.handleInput(0);
     } else if (backspace && !currentOperandIsEmpty) {
       this.currentOperand.textContent = this.currentOperand.textContent.substring(0, this.currentOperand.textContent.length - 1);
+      if (this.isCurrentOperandEmpty()){
+        this.handleInput(0);
+      }
     } else if (allclear && !previousOperandIsEmpty && !currentOperandIsEmpty) {
       this.currentOperand.textContent = "";
     } else if (allclear) {
@@ -531,8 +535,10 @@ export default class CalculatorComponent extends Component {
       this.currentOperator.textContent = input;
       this.previousOperand.textContent = this.currentOperand.textContent;
       this.currentOperand.textContent = "";
-    } else if (equals) {
-      if (previousOperandIsEmpty && currentOperandIsEmpty) return;
+    } else if (equals && previousOperandIsEmpty && currentOperandIsEmpty) {
+      this.handleInput(0);
+    }
+    else if (equals) {
 
       if (this.currentOperand.textContent == "0." || this.currentOperand.textContent == "-0." || this.currentOperand.textContent == "-0") {
         this.currentOperand.textContent = "0";
@@ -697,7 +703,7 @@ export default class CalculatorComponent extends Component {
     // initialize button labels with default values
     let btns = this.getButtonGridButtons();
     for (let btn of btns) {
-        this.toggleButtonLabels(btn.attributes.internalid.nodeValue, "calculator-labels");
+      this.toggleButtonLabels(btn.attributes.internalid.nodeValue, "calculator-labels");
     }
   }
 
