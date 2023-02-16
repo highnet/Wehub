@@ -1,6 +1,6 @@
 import { Component } from "pagejs/components";
-import { render } from "pagejs";
 import AnswerComponent from "./answerComponent";
+import quizQuestions from "../quiz-questions.json"
 
 
 export default class QuestionComponent extends Component {
@@ -12,12 +12,8 @@ export default class QuestionComponent extends Component {
     }
 
     generateQuestionText(){
-        if (this.props.identifier == 0){
-            this.questionText = "Who Painted The Mona Lisa?";
-        } else if (this.props.identifier == 1){
-            this.questionText = "What is the moon made of";
-        }
-        return this.questionText;
+        console.log(quizQuestions);
+        return "(Q) " + this.props.identifier.toString();
     }
 
     render(){

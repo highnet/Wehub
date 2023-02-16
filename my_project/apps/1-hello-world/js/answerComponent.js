@@ -8,8 +8,7 @@ export default class AnswerComponent extends Component {
     }
 
     generateAnswerText(){
-        console.log(this.props.identifier, this.props.questionIdentifier);
-        return this.props.identifier.toString();
+        return "(A) " + this.props.identifier.toString();
     }
 
     render(){
