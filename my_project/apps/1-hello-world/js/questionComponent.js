@@ -11,22 +11,19 @@ export default class QuestionComponent extends Component {
     ready(){
     }
 
-    generateQuestionText(){
-        console.log(quizQuestions);
-        return "(Q) " + this.props.identifier.toString();
+    generateQuestionText(){     
+        return Object.values( Object.values(quizQuestions)[this.props.identifier])[0];
     }
+
+
 
     render(){
         return (
         <div class='question-component'>
-            <div class='question-component__question-text-anchor'>
+            <div class='question-component__prompt-anchor'>
                 <p>{this.generateQuestionText()}</p>
             </div>
             <div class='question-component__answers-anchor'>
-                <AnswerComponent props={{
-                    identifier: 0,
-                    questionIdentifier: this.props.identifier,
-                }}/>
                 <AnswerComponent props={{
                     identifier: 1,
                     questionIdentifier: this.props.identifier,
@@ -39,9 +36,15 @@ export default class QuestionComponent extends Component {
                     identifier: 3,
                     questionIdentifier: this.props.identifier,
                 }}/>
+                <AnswerComponent props={{
+                    identifier: 4,
+                    questionIdentifier: this.props.identifier,
+                }}/>
 
             </div>
         </div>);
     }
+
+    
 
 }

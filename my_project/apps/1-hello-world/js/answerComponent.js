@@ -1,4 +1,5 @@
 import { Component } from "pagejs/components";
+import quizQuestions from "../quiz-questions.json"
 
 
 export default class AnswerComponent extends Component {
@@ -8,13 +9,13 @@ export default class AnswerComponent extends Component {
     }
 
     generateAnswerText(){
-        return "(A) " + this.props.identifier.toString();
+        return Object.values(Object.values(quizQuestions)[this.props.questionIdentifier])[this.props.identifier];
     }
 
     render(){
         return (
         <div class='answer-component'>
-            <p>{this.generateAnswerText()}</p>
+            <p class='answer-component__answer'>{this.generateAnswerText()}</p>
         </div>);
     }
 

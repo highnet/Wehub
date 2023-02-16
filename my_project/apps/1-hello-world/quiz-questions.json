@@ -1,9 +1,20 @@
 {
     "Question0":{
-        "QuestionText": "Who Painted The Mona Lisa?",
-        "QuestionAnswer0": "Da Vinci",
-        "QuestionAnswer1": "Van Gogh",
-        "QuestionAnswer2": "Picasso",
-        "QuestionAnswer3": "Michelangelo"
+        "Prompt": "Who Painted The Mona Lisa?",
+        "Answer0": "Da Vinci",
+        "Answer1": "Van Gogh",
+        "Answer2": "Picasso",
+        "Answer3": "Michelangelo",
+        "CorrectAnswerId": 0
+        
+    },
+    "Question1":{
+        "Prompt": "What is 2+2?",
+        "Answer0": "10",
+        "Answer1": "22",
+        "Answer2": "-1",
+        "Answer3": "4",
+        "CorrectAnswerId": 3
+
     }
 }
