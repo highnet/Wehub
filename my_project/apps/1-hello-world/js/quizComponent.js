@@ -7,48 +7,47 @@ import ScoreComponent from "./scoreComponent";
 
 export default class QuizComponent extends Component {
     
-    _currentQuestion;
+    _currentQuestion = 0;
 
     ready(){        
-        this.init();
 
-        let score = document.getElementById("score");
+       document.addEventListener("CORRECT",() =>{
+            console.log("GOOD");
+            document.getElementById("score").wrapper.incrementScore();
+            this.instantiateNextQuestion();
+       })
 
-        function randomInteger(min, max) {
+        document.addEventListener("INCORRECT", () => {
+            console.log("BAD");
+            document.getElementById("score").wrapper.decrementScore();
+            this.instantiateNextQuestion();
+
+        });
+
+    }
+
+         randomInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
-        function instantiateRandomQuestion(){
+        instantiateNextQuestion(){
             
             let questionAnchor = document.getElementsByClassName("question-anchor")[0];
             let oldQuestionComponent = document.getElementsByClassName("question-component")[0];
 
             oldQuestionComponent.remove();
-            // how can i use _currentQuestion here ?
-            let newQuestionComponent = render(QuestionComponent, {identifier:randomInteger(0,1)});
+
+            this._currentQuestion++;
+            if (this._currentQuestion == 2){
+                this._currentQuestion = 0;
+            }
+            let newQuestionComponent = render(QuestionComponent, {identifier:this._currentQuestion});
             questionAnchor.append(newQuestionComponent);
         }
-        
-        document.addEventListener("CORRECT", function() {
-            score.wrapper.incrementScore();
-            instantiateRandomQuestion();
-        });
-
-        document.addEventListener("INCORRECT", function() {
-            score.wrapper.decrementScore();
-            instantiateRandomQuestion();
-
-        });
-
-    }
-
-
-    init(){
-        this._currentQuestion = 0;
-    }
 
 
     render(){
+
         return (
         <div class='quiz-component'>
             <div class='score-anchor'>
@@ -60,7 +59,7 @@ export default class QuizComponent extends Component {
             id = 'question'
             class='question-anchor'>
                 <QuestionComponent props={{
-                  identifier: 0,
+                  identifier: this._currentQuestion,
                 }}/>
             </div>
         </div>);
