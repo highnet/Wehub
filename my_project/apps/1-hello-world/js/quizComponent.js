@@ -7,15 +7,15 @@ import ScoreComponent from "./scoreComponent";
 
 export default class QuizComponent extends Component {
     
-    _scoreAnchor;
-
     ready(){        
         this.init();
-
         document.addEventListener("CORRECT", function() {
-        });     
+            console.log("+");
+        });
+
         document.addEventListener("INCORRECT", function() {
-        });  
+            console.log("-");
+        });
     }
 
     init(){

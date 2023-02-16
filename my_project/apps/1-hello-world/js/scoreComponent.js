@@ -3,6 +3,7 @@ import { Component } from "pagejs/components";
 export default class ScoreComponent extends Component {
 
     ready(){
+            
     }
 
     incrementScore(){
@@ -15,7 +16,7 @@ export default class ScoreComponent extends Component {
     generateScore(){
         let score =
          <div>
-            {this.props.score.toString()}
+            {"Score: " + this.props.score.toString()}
         </div>;
         return score;
     }
