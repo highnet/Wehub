@@ -17,8 +17,7 @@ export default class AnswerComponent extends Component {
     }
 
     isCorrectAnswer(){
-        let correctAnswerId = Object.values(Object.values(quizQuestions)[this.props.questionIdentifier])[5]; 
-        return this.props.answerIdentifier == correctAnswerId;
+        return this.props.answerIdentifier == this.getAnswer(this.props.questionIdentifier, 5);
     }
 
     generateAnswerButton(){
