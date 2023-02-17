@@ -12,13 +12,11 @@ export default class QuizComponent extends Component {
     ready(){        
 
        document.addEventListener("CORRECT",() =>{
-            console.log("GOOD");
             document.getElementById("score").wrapper.incrementScore();
             this.instantiateNextQuestion();
        })
 
         document.addEventListener("INCORRECT", () => {
-            console.log("BAD");
             document.getElementById("score").wrapper.decrementScore();
             this.instantiateNextQuestion();
 
@@ -26,25 +24,28 @@ export default class QuizComponent extends Component {
 
     }
 
-         randomInteger(min, max) {
+    randomInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
+    }
 
-        instantiateNextQuestion(){
+    instantiateNextQuestion(){
             
-            let questionAnchor = document.getElementsByClassName("question-anchor")[0];
-            let oldQuestionComponent = document.getElementsByClassName("question-component")[0];
+        let questionAnchor = document.getElementsByClassName("question-anchor")[0];
+        let oldQuestionComponent = document.getElementsByClassName("question-component")[0];
 
-            oldQuestionComponent.remove();
+        oldQuestionComponent.remove();
 
-            this._currentQuestion++;
-            if (this._currentQuestion == 2){
-                this._currentQuestion = 0;
-            }
-            let newQuestionComponent = render(QuestionComponent, {identifier:this._currentQuestion});
-            questionAnchor.append(newQuestionComponent);
+        this._currentQuestion++;
+        if (this._currentQuestion == 2){
+            this._currentQuestion = 0;
         }
+        let newQuestionComponent = render(QuestionComponent, {identifier:this._currentQuestion});
+        questionAnchor.append(newQuestionComponent);
+    }
 
+    generateQuiz(){
+
+    }
 
     render(){
 
