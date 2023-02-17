@@ -248,52 +248,52 @@
         "CorrectAnswerId": 1
     },
     "Question31":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
-        "CorrectAnswerId": 1
+        "Prompt": "Which of these is the name of a block in Tetris?",
+        "Answer1": "B-Block",
+        "Answer2": "A-Block",
+        "Answer3": "Z-Block",
+        "Answer4": "X-Block",
+        "CorrectAnswerId": 3
     },
     "Question32":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
-        "CorrectAnswerId": 1
+        "Prompt": "Which of these is not a playable class in World of Warcraft?",
+        "Answer1": "Hunter",
+        "Answer2": "Priest",
+        "Answer3": "Warrior",
+        "Answer4": "Bard",
+        "CorrectAnswerId": 4
     },
     "Question33":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
-        "CorrectAnswerId": 1
+        "Prompt": "What is the #1 most-downloaded mobile iOS game of all time?",
+        "Answer1": "Clash of Clans",
+        "Answer2": "Candy Crush",
+        "Answer3": "Angry Birds",
+        "Answer4": "Doodle Jump",
+        "CorrectAnswerId": 2
     },
     "Question34":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
+        "Prompt": "Nicknamed King Koopa, who is the arch nemesis of Mario?",
+        "Answer1": "Bowser",
+        "Answer2": "Donkey Kong",
+        "Answer3": "Wario",
+        "Answer4": "Waluigi",
         "CorrectAnswerId": 1
     },
     "Question35":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
-        "CorrectAnswerId": 1
+        "Prompt": "What popular 90’s game eventually became a movie?",
+        "Answer1": "Half-Life",
+        "Answer2": "Mortal Kombat",
+        "Answer3": "Tony Hawk's Pro Skater",
+        "Answer4": "Banjo-Kazooie",
+        "CorrectAnswerId": 2
     },
     "Question36":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
-        "CorrectAnswerId": 1
+        "Prompt": "What orange furry character was a mascot for Playstation?",
+        "Answer1": "Ratchet",
+        "Answer2": "Sly Cooper",
+        "Answer3": "Crash Bandicoot",
+        "Answer4": "Daxter",
+        "CorrectAnswerId": 3
     },
     "Question37":{
         "Prompt": "",
