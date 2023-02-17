@@ -18,7 +18,7 @@ class Application extends PageJsApplication {
   render() {
     return (
       <PageContainer>
-        <CalculatorPage/>
+        <QuizPage/>
       </PageContainer>
       
     );

@@ -18,10 +18,16 @@ export default class ScoreComponent extends Component {
     }
 
     generateScore(){
-        let score = "Score: " + this.props.score.toString();
+        let score = `
+        <div>
+            Score:
+        </div>
+        <div>
+         ${this.props.score.toString()}
+        </div>
+        `
         return score;
     }
-
 
 
     render(){
