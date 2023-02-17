@@ -4,21 +4,22 @@ import QuestionComponent from "./questionComponent";
 import { render } from "pagejs";
 import ScoreComponent from "./scoreComponent";
 
+import quizQuestions from "../quiz-questions.json";
 
 export default class QuizComponent extends Component {
     
-    _currentQuestion = 0;
+    _currentQuestionId = this.randomInteger(0,Object.keys(quizQuestions).length -1);
 
     ready(){        
 
        document.addEventListener("CORRECT",() =>{
             document.getElementById("score").wrapper.incrementScore();
-            this.instantiateNextQuestion();
+            this.deleteCurrentQuestionAndInstantiateNextQuestion();
        })
 
         document.addEventListener("INCORRECT", () => {
             document.getElementById("score").wrapper.decrementScore();
-            this.instantiateNextQuestion();
+            this.deleteCurrentQuestionAndInstantiateNextQuestion();
 
         });
 
@@ -28,19 +29,24 @@ export default class QuizComponent extends Component {
             return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    instantiateNextQuestion(){
-            
+    deleteCurrentQuestion(){
+        let currentQuestionComponent = document.getElementsByClassName("question-component")[0];
+        currentQuestionComponent.remove();
+        this._currentQuestionId = NaN;
+
+    }
+
+    instantiateQuestion(newQuestionId){
         let questionAnchor = document.getElementsByClassName("question-anchor")[0];
-        let oldQuestionComponent = document.getElementsByClassName("question-component")[0];
-
-        oldQuestionComponent.remove();
-
-        this._currentQuestion++;
-        if (this._currentQuestion == 2){
-            this._currentQuestion = 0;
-        }
-        let newQuestionComponent = render(QuestionComponent, {identifier:this._currentQuestion});
+        this._currentQuestionId = newQuestionId;
+        let newQuestionComponent = render(QuestionComponent, {identifier:this._currentQuestionId});
         questionAnchor.append(newQuestionComponent);
+    }
+
+    deleteCurrentQuestionAndInstantiateNextQuestion(){
+        this.deleteCurrentQuestion();
+        this.instantiateQuestion(this.randomInteger(0,Object.keys(quizQuestions).length -1));
+
     }
 
     render(){
@@ -50,13 +56,14 @@ export default class QuizComponent extends Component {
             <div class='score-anchor'>
                 <ScoreComponent props={{
                   score: 0,
+                  positiveOnly: true
                 }}/>
             </div>
             <div 
             id = 'question'
             class='question-anchor'>
                 <QuestionComponent props={{
-                  identifier: this._currentQuestion,
+                  identifier: this._currentQuestionId,
                 }}/>
             </div>
         </div>

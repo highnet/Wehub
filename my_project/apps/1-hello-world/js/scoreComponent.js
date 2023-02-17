@@ -13,6 +13,7 @@ export default class ScoreComponent extends Component {
         this.component.innerHTML = this.generateScore();
     }
     decrementScore(){
+        if (this.props.positiveOnly && this.props.score == 0) return;
         this.props.score--;
         this.component.innerHTML = this.generateScore();
     }
