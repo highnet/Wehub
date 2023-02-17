@@ -20,11 +20,14 @@ export default class ScoreComponent extends Component {
 
     generateScore(){
         let score = `
-        <div class='score-label'>
-            Score:
+        <div class='score-prelabel'>
+            ${this.props.preLabel.toString()}
         </div>
         <div class='score-value'>
          ${this.props.score.toString()}
+        </div>
+        <div class='score-postlabel'>
+            ${this.props.postLabel.toString()}
         </div>
         `
         return score;

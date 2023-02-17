@@ -56,6 +56,8 @@ export default class QuizComponent extends Component {
             <div class='score-anchor'>
                 <ScoreComponent props={{
                   score: 0,
+                  preLabel: "•",
+                  postLabel: "points",
                   positiveOnly: true
                 }}/>
             </div>
