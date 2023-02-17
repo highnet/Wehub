@@ -12,14 +12,12 @@ export default class PromptComponent extends Component {
     }
 
     generatePromptText(){
-
         return this.getPrompt(this.props.questionIdentifier);
-
     }
 
     generatePromptHeading(){
         let header = 
-        <h2>
+        <h2 class ='prompt-heading'>
             {this.generatePromptText()}
         </h2>;
         return header;

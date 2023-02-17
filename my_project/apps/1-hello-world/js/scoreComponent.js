@@ -19,10 +19,10 @@ export default class ScoreComponent extends Component {
 
     generateScore(){
         let score = `
-        <div>
+        <div class='score-label'>
             Score:
         </div>
-        <div>
+        <div class='score-value'>
          ${this.props.score.toString()}
         </div>
         `
