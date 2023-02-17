@@ -80,7 +80,7 @@
         "CorrectAnswerId": 3
     },
     "Question10":{
-        "Prompt": "What game was one of the first to use Augmented Reality?",
+        "Prompt": "What videogame was one of the first to use Augmented Reality?",
         "Answer1": "Battlefield 2042",
         "Answer2": "Grand Theft Auto 5",
         "Answer3": "Pokemon Go",
@@ -96,7 +96,7 @@
         "CorrectAnswerId": 2
     },
     "Question12":{
-        "Prompt": "Which of the following video games takes place in a dystopian underwater city called Rapture?",
+        "Prompt": "Which of the following videogames takes place in a dystopian underwater city called Rapture?",
         "Answer1": "Half-Life",
         "Answer2": "God of War",
         "Answer3": "Fallout 3",
@@ -104,7 +104,7 @@
         "CorrectAnswerId": 4
     },
     "Question13":{
-        "Prompt": "E. Honda, Dhalsim and Chun Li are all characters from what video game series?",
+        "Prompt": "E. Honda, Dhalsim and Chun Li are all characters from what videogame series?",
         "Answer1": "Teenage Mutant Ninja Turtles",
         "Answer2": "Street Fighter",
         "Answer3": "Battletoads",
@@ -128,7 +128,7 @@
         "CorrectAnswerId": 1
     },
     "Question16":{
-        "Prompt": "Which James Bond film was made into a game for the Nintendo 64 console?",
+        "Prompt": "Which James Bond film was made into a videogame for the Nintendo 64 console?",
         "Answer1": "Goldfinger",
         "Answer2": "Goldeneye",
         "Answer3": "Casino Royale",
@@ -192,7 +192,7 @@
         "CorrectAnswerId": 3
     },
     "Question24":{
-        "Prompt": "The kingdom of Hyrule is the main setting for which classic video game franchise?",
+        "Prompt": "The kingdom of Hyrule is the main setting for which classic videogame franchise?",
         "Answer1": "Legend of Zelda",
         "Answer2": "Sonic",
         "Answer3": "Final Fantasy",
@@ -200,7 +200,7 @@
         "CorrectAnswerId": 1
     },
     "Question25":{
-        "Prompt": "Underground, Hot Pursuit and Most Wanted are installments of which racing video game franchise",
+        "Prompt": "Underground, Hot Pursuit and Most Wanted are installments of which racing videogame franchise",
         "Answer1": "Mafia",
         "Answer2": "Uncharted",
         "Answer3": "Saints Rows",
@@ -216,7 +216,7 @@
         "CorrectAnswerId": 2
     },
     "Question27":{
-        "Prompt": "Which is the original first-person shooter video game?",
+        "Prompt": "Which is the original first-person shooter videogame?",
         "Answer1": "Duke Nukem",
         "Answer2": "Doom",
         "Answer3": "Wolfenstein 3D",
@@ -264,7 +264,7 @@
         "CorrectAnswerId": 4
     },
     "Question33":{
-        "Prompt": "What is the #1 most-downloaded mobile iOS game of all time?",
+        "Prompt": "What is the #1 most-downloaded mobile iOS videogame of all time?",
         "Answer1": "Clash of Clans",
         "Answer2": "Candy Crush",
         "Answer3": "Angry Birds",
@@ -280,7 +280,7 @@
         "CorrectAnswerId": 1
     },
     "Question35":{
-        "Prompt": "What popular 90’s game eventually became a movie?",
+        "Prompt": "What popular 90’s videogame eventually became a movie?",
         "Answer1": "Half-Life",
         "Answer2": "Mortal Kombat",
         "Answer3": "Tony Hawk's Pro Skater",
@@ -296,107 +296,107 @@
         "CorrectAnswerId": 3
     },
     "Question37":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
-        "CorrectAnswerId": 1
+        "Prompt": "Scorpion, Sub-Zero, Johnny Cage are characters in which videogame?",
+        "Answer1": "Animal Crossing",
+        "Answer2": "Persona",
+        "Answer3": "The Elder Scrolls",
+        "Answer4": "Mortal Kombat",
+        "CorrectAnswerId": 4
     },
     "Question38":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
-        "CorrectAnswerId": 1
+        "Prompt": "in Tony Hawk's Pro Skater, which five letters must one collect as part of the challenge in every stage?",
+        "Answer1": "H.O.R.S.E.",
+        "Answer2": "S.K.A.T.E.",
+        "Answer3": "P.O.I.N.T.",
+        "Answer4": "G.R.E.A.T.",
+        "CorrectAnswerId": 2
     },
     "Question39":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
-        "CorrectAnswerId": 1
+        "Prompt": "Which actor voices Mario in the  “The Super Mario Bros. movie”?",
+        "Answer1": "Henry Cavill",
+        "Answer2": "Danny Devitto",
+        "Answer3": "Charles MArtinet",
+        "Answer4": "Chris Pratt",
+        "CorrectAnswerId": 4
     },
     "Question40":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
+        "Prompt": "Which major tech company announced in 2022 that it’s shutting down its cloud gaming service known as Stadia?",
+        "Answer1": "Google",
+        "Answer2": "Microsoft",
+        "Answer3": "Sony",
+        "Answer4": "Amazon",
         "CorrectAnswerId": 1
     },
     "Question41":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
-        "CorrectAnswerId": 1
+        "Prompt": "Who was the first Marvel character to appear in Fornite?",
+        "Answer1": "Iron-Man",
+        "Answer2": "Spider-Man",
+        "Answer3": "Thanos",
+        "Answer4": "Deadpool",
+        "CorrectAnswerId": 3
     },
     "Question42":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
+        "Prompt": "Who is the main villain in the videogame Plants vs. Zombies?",
+        "Answer1": "Your neighbor",
+        "Answer2": "The town sheriff",
+        "Answer3": "The gardener",
+        "Answer4": "The gravekeeper",
         "CorrectAnswerId": 1
     },
     "Question43":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
+        "Prompt": "What does the blue shell do in Mario Kart?",
+        "Answer1": "Makes you drive faster",
+        "Answer2": "Hits the racer at first position",
+        "Answer3": "Lets you drive over water",
+        "Answer4": "Hits the racer at second position",
         "CorrectAnswerId": 1
     },
     "Question44":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
-        "CorrectAnswerId": 1
+        "Prompt": "In Marvel’s Guardians of the Galaxy, you play as:",
+        "Answer1": "Star-Gazer",
+        "Answer2": "Star-Lord",
+        "Answer3": "Sky-Walker",
+        "Answer4": "Sky-Lord",
+        "CorrectAnswerId": 2
     },
     "Question45":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
+        "Prompt": "In Among Us, crewmates must eliminate all:",
+        "Answer1": "Spies",
+        "Answer2": "Saboteurs",
+        "Answer3": "Impostors",
+        "Answer4": "Pests",
         "CorrectAnswerId": 1
     },
     "Question46":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
-        "CorrectAnswerId": 1
+        "Prompt": "In Counter-Strike: Global Offensive, the highest achieveable rank is:",
+        "Answer1": "Distinguished Master Guardian",
+        "Answer2": "Legendary Eagle Master",
+        "Answer3": "Global Elite",
+        "Answer4": "Supreme Master First Class",
+        "CorrectAnswerId": 3
     },
     "Question47":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
-        "CorrectAnswerId": 1
+        "Prompt": "The first round of Fall Guys starts with this many players:",
+        "Answer1": "100",
+        "Answer2": "101",
+        "Answer3": "99",
+        "Answer4": "50",
+        "CorrectAnswerId": 4
     },
     "Question48":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
+        "Prompt": "In Diablo 2, the following are playable classes:",
+        "Answer1": "Paladin, Sorceress, Necromancer",
+        "Answer2": "Amazon, Druid, Warrior",
+        "Answer3": "Assassin, Barbarian, Priest",
+        "Answer4": "Monk, Demon Hunter, Wizard",
         "CorrectAnswerId": 1
     },
     "Question49":{
-        "Prompt": "",
-        "Answer1": "",
-        "Answer2": "",
-        "Answer3": "",
-        "Answer4": "",
-        "CorrectAnswerId": 1
+        "Prompt": "Which of these games is most popular among speedrunners?",
+        "Answer1": "The Simpsons: Hit & Run",
+        "Answer2": "Super Mario 64",
+        "Answer3": "Super Mario Bros.",
+        "Answer4": "Celeste",
+        "CorrectAnswerId": 2
     }
 } 
