@@ -43,10 +43,6 @@ export default class QuizComponent extends Component {
         questionAnchor.append(newQuestionComponent);
     }
 
-    generateQuiz(){
-
-    }
-
     render(){
 
         return (
@@ -63,7 +59,8 @@ export default class QuizComponent extends Component {
                   identifier: this._currentQuestion,
                 }}/>
             </div>
-        </div>);
+        </div>
+        );
     }
 
 }
