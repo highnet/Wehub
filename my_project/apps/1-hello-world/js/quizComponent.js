@@ -11,27 +11,21 @@ export default class QuizComponent extends Component {
     
     globalid = "quiz";
 
-    _questionIdSet =  this.generateQuestionIdSet();
+    _questionIdSet =  this.generateRandomQuestionIdSet(); // generate a set of random question ids
 
-    generateQuestionIdSet(){
-        let set = []
+    generateRandomQuestionIdSet(){ // generate a set of random question ids
+        let set = [];
+
         for(let i = 0 ; i < Object.keys(quizQuestions).length -1; i++){
-            set.push(i);
+            set.push(i); // populate the set with {0, 1, 2, ..., quizQuestions.length}
         }
 
-        set = this.shuffleSet(set);
+        set = this.shuffleSet(set); // shuffle the set using Fiser-Yates shuffle
         
         return set;
     }
 
-    nextQuestionId(){
-        if (this._questionIdSet.length == 0){
-            this._questionIdSet = this.generateQuestionIdSet();
-        }
-        return this._questionIdSet.pop();
-    }
-
-    shuffleSet(set) {
+    shuffleSet(set) { // shuffle the set using Fisher-Yates shuffle
         var j, x, i;
         for (i = set.length - 1; i > 0; i--) {
             j = Math.floor(Math.random() * (i + 1));
@@ -42,7 +36,45 @@ export default class QuizComponent extends Component {
         return set;
     }
 
+    render(){
+        return (
+        <div class='quiz-component'>
+            <div class='question-counter'>
+               <CounterComponent props={{
+                count: 0,
+                maxCount: 10,
+                preLabel: "Questions:",
+                midLabel: "of",
+               }}/>
+            </div>
+            <div class='score-anchor'>
+                <ScoreComponent props={{
+                  score: 0,
+                  preLabel: "•",
+                  postLabel: "points",
+                  positiveOnly: true
+                }}/>
+            </div>
+            <div 
+            class='question-anchor'>
+                <QuestionComponent props={{
+                  identifier: this.nextQuestionId(),
+                }}/>
+            </div>
+            <div class='quiz-gameover-anchor'>
+                <QuizGameOverComponent/>
+            </div>
+        </div>
+        );
+    }
 
+    nextQuestionId(){
+        if (this._questionIdSet.length == 0){
+            this._questionIdSet = this.generateRandomQuestionIdSet();
+        }
+        return this._questionIdSet.pop();
+    }
+    
     showGameOver(){
         let gameOver = document.getElementsByClassName("quiz-gameover-component")[0];
         gameOver.style.display = "flex";
@@ -61,8 +93,6 @@ export default class QuizComponent extends Component {
     delete(){
         this.component.remove();
     }
-
-    
 
     spawnNextQuestion(increment){
         if (document.getElementById("counter").wrapper.isAtMaxCount()){
@@ -99,36 +129,6 @@ export default class QuizComponent extends Component {
         questionAnchor.append(newQuestionComponent);
     }
 
-    render(){
-        return (
-        <div class='quiz-component'>
-            <div class='question-counter'>
-               <CounterComponent props={{
-                count: 0,
-                maxCount: 10,
-                preLabel: "Questions:",
-                midLabel: "of",
-               }}/>
-            </div>
-            <div class='score-anchor'>
-                <ScoreComponent props={{
-                  score: 0,
-                  preLabel: "•",
-                  postLabel: "points",
-                  positiveOnly: true
-                }}/>
-            </div>
-            <div 
-            class='question-anchor'>
-                <QuestionComponent props={{
-                  identifier: this.nextQuestionId(),
-                }}/>
-            </div>
-            <div class='quiz-gameover-anchor'>
-                <QuizGameOverComponent/>
-            </div>
-        </div>
-        );
-    }
+
 
 }
