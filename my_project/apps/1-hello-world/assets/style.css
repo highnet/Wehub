@@ -291,3 +291,7 @@ h1{
   font-size: 18px;
   border: 1px solid white;
 }
+
+.hidden{
+  display: none !important;
+}

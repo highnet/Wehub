@@ -24,32 +24,27 @@ export default class QuizPage extends Page {
 
   generateStartQuizButton(){  // generates a new start quiz button
     let btn = <Button class="start-quiz-btn">Start Quiz</Button>; // instantiate the button
-
-    btn.element.on('released', () => { // when clicked
-      this.hideStartQuizButton(); // hide the button
-      this.generateQuiz(); // generates a new quiz
+    btn.element.on('released', () => {
+      this.hideStartQuizButton(); // hide the start quiz button
+      this.generateQuiz(); // generate a new quiz
     })
     return btn;
   }
 
-  hideStartQuizButton(){ // hides the start quiz button
-    let btn = document.getElementsByClassName("start-quiz-btn")[0]; // fetch the button
-    if (btn){
-      btn.style.display = "none";
-    }
+  hideStartQuizButton(){ // hide the start quiz button
+    let btn = document.getElementsByClassName("start-quiz-btn")[0]; // fetch the start quiz button
+    btn.classList += " hidden"
   }
 
-  showStartQuizButton(){
-    let btn = document.getElementsByClassName("start-quiz-btn")[0];
-    if (btn){
-     btn.style.display = "block";
-    }
+  showStartQuizButton(){ // show the start quiz button
+    let btn = document.getElementsByClassName("start-quiz-btn")[0]; // fetch the start quiz button
+    btn.classList.remove("hidden");
   }
 
-  generateQuiz(){
+  generateQuiz(){ // generate a new quiz
     let quizAnchor = document.getElementsByClassName("quiz-anchor")[0];
     if (quizAnchor){
-          quizAnchor.appendChild(render(QuizComponent));
+      quizAnchor.appendChild(render(QuizComponent));
     }
   }
 }
