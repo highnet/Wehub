@@ -32,7 +32,7 @@ export default class QuizPage extends Page {
     return btn;
   }
 
-  hideStartQuizButton(){ // hides the star quiz button
+  hideStartQuizButton(){ // hides the start quiz button
     let btn = document.getElementsByClassName("start-quiz-btn")[0]; // fetch the button
     if (btn){
       btn.style.display = "none";
@@ -52,10 +52,4 @@ export default class QuizPage extends Page {
           quizAnchor.appendChild(render(QuizComponent));
     }
   }
-  
-
-
-
-
-
 }

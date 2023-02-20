@@ -33,17 +33,6 @@ h1{
   text-align: center;
 }
 
-.quiz-btn{
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: block;
-  font-size: 16px;
-}
-
 .btn-calculator {
   border-radius: 8px;
   border-style: none;
@@ -228,19 +217,6 @@ h1{
   max-width: 70px;
 }
 
-.start-quiz-btn{
-  color: white;
-  font-size: 6rem;
-  border: 1px solid white;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-
-
 .calculator-skin__body__ear__inner {
   /* Modify size here: */
   --size: 120px;
@@ -256,6 +232,16 @@ h1{
   max-width: 45px;
 }
 
+.start-quiz-btn{
+  color: white;
+  font-size: 6rem;
+  border: 1px solid white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 
 .quiz-component{
   width: 90%;
@@ -286,4 +272,22 @@ h1{
 
 .quiz-gameover-component{
   display: none;
+}
+
+.answers-anchor{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.quiz-btn{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 18px;
+  border: 1px solid white;
 }
