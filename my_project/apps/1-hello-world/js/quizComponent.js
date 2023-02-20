@@ -15,7 +15,6 @@ export default class QuizComponent extends Component {
     gameOver(){
         let thisComponent = document.getElementsByClassName("quiz-component")[0];
         thisComponent.remove();
-
     }
 
     spawnNextQuestion(increment){
@@ -32,7 +31,6 @@ export default class QuizComponent extends Component {
         } else {
             document.getElementById("score").wrapper.decrementScore();
         }
-
 
         this.deleteCurrentQuestion();
         this.instantiateQuestion(this.randomInteger(0,Object.keys(quizQuestions).length -1));
