@@ -33,18 +33,22 @@ export default class QuizPage extends Page {
 
   hideStartQuizButton(){ // hide the start quiz button
     let btn = document.getElementsByClassName("start-quiz-btn")[0]; // fetch the start quiz button
-    btn.classList += " hidden"
+    if (btn){
+      btn.classList.add("hidden"); // add the "hidden" tag to the start quiz button
+    }
   }
 
   showStartQuizButton(){ // show the start quiz button
     let btn = document.getElementsByClassName("start-quiz-btn")[0]; // fetch the start quiz button
-    btn.classList.remove("hidden");
+    if (btn){
+      btn.classList.remove("hidden"); // remove the "hidden" tag from the start quiz button 
+    }
   }
 
   generateQuiz(){ // generate a new quiz
     let quizAnchor = document.getElementsByClassName("quiz-anchor")[0];
     if (quizAnchor){
-      quizAnchor.appendChild(render(QuizComponent));
+      quizAnchor.appendChild(render(QuizComponent)); // create a newly instantiated quiz component
     }
   }
 }
