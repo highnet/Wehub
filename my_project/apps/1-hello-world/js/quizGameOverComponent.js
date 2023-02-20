@@ -6,7 +6,7 @@ export default class QuizGameOverComponent extends Component {
     globalid = "gameover";
 
     generateQuizGameOver(){
-        let btn = <Button class="gameover">Restart</Button>
+        let btn = <Button class="restart-quiz-btn">Restart</Button>
         
         btn.element.on('released', () => {
             console.log("yo");

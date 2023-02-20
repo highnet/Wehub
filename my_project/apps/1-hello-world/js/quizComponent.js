@@ -45,7 +45,7 @@ export default class QuizComponent extends Component {
 
 
     showGameOver(){
-        let gameOver = document.getElementsByClassName("gameover")[0];
+        let gameOver = document.getElementsByClassName("restart-quiz-btn")[0];
         gameOver.style.display = "block";
 
         let counterComponent = document.getElementsByClassName("counter-component")[0];
