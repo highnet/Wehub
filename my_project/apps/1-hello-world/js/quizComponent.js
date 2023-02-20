@@ -8,32 +8,31 @@ import { render } from "pagejs";
 
 export default class QuizComponent extends Component {
     
+    globalid = "quiz";
+
     _currentQuestionId = this.randomInteger(0,Object.keys(quizQuestions).length -1);
 
-    ready(){        
-
-       document.addEventListener("CORRECT",() =>{
-            this.spawnNextQuestion(true);
-       })
-
-        document.addEventListener("INCORRECT", () => {
-            this.spawnNextQuestion(false);
-        });
-
-        document.addEventListener("GAMEOVER", () => {
-            console.log("@@@ game over @@@");
-        });
+    gameOver(){
+        let thisComponent = document.getElementsByClassName("quiz-component")[0];
+        thisComponent.remove();
 
     }
 
     spawnNextQuestion(increment){
+
+        document.getElementById("counter").wrapper.incrementCounter();
+
+        if (document.getElementById("counter").wrapper.isAtMaxCount()){
+            this.gameOver();
+            return;
+        }
+
         if (increment){
             document.getElementById("score").wrapper.incrementScore();
         } else {
             document.getElementById("score").wrapper.decrementScore();
         }
 
-        document.getElementById("counter").wrapper.incrementCounter();
 
         this.deleteCurrentQuestion();
         this.instantiateQuestion(this.randomInteger(0,Object.keys(quizQuestions).length -1));
