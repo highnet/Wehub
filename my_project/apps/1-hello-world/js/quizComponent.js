@@ -10,7 +10,38 @@ export default class QuizComponent extends Component {
     
     globalid = "quiz";
 
-    _currentQuestionId = this.randomInteger(0,Object.keys(quizQuestions).length -1);
+    _questionIdSet =  this.generateQuestionIdSet();
+
+    generateQuestionIdSet(){
+        let set = []
+        for(let i = 0 ; i < Object.keys(quizQuestions).length -1; i++){
+            set.push(i);
+        }
+
+        set = this.shuffleSet(set);
+        
+        return set;
+    }
+
+    nextQuestionId(){
+
+        if (this._questionIdSet.length == 0){
+            this._questionIdSet = this.generateQuestionIdSet();
+        }
+        return this._questionIdSet.pop();
+    }
+
+    shuffleSet(set) {
+    var j, x, i;
+    for (i = set.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = set[i];
+        set[i] = set[j];
+        set[j] = x;
+    }
+    return set;
+}
+
 
     gameOver(){
         let thisComponent = document.getElementsByClassName("quiz-component")[0];
@@ -23,6 +54,7 @@ export default class QuizComponent extends Component {
 
         if (document.getElementById("counter").wrapper.isAtMaxCount()){
             this.gameOver();
+            document.dispatchEvent(new Event("GAMEOVER"));
             return;
         }
 
@@ -32,29 +64,28 @@ export default class QuizComponent extends Component {
             document.getElementById("score").wrapper.decrementScore();
         }
 
-        this.deleteCurrentQuestion();
-        this.instantiateQuestion(this.randomInteger(0,Object.keys(quizQuestions).length -1));
+        this.nextQuestion();
     }
 
     randomInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    nextQuestion(){
+        this.deleteCurrentQuestion();
+        this.instantiateQuestion(this.nextQuestionId());
+    }
+
     deleteCurrentQuestion(){
         let currentQuestionComponent = document.getElementsByClassName("question-component")[0];
         currentQuestionComponent.remove();
-        this._currentQuestionId = NaN;
     }
 
     instantiateQuestion(newQuestionId){
         let questionAnchor = document.getElementsByClassName("question-anchor")[0];
-        this._currentQuestionId = newQuestionId;
-        let newQuestionComponent = render(QuestionComponent, {identifier:this._currentQuestionId});
+
+        let newQuestionComponent = render(QuestionComponent, {identifier:newQuestionId});
         questionAnchor.append(newQuestionComponent);
-    }
-
-    deleteCurrentQuestionAndInstantiateNextQuestion(){
-
     }
 
     render(){
@@ -63,10 +94,9 @@ export default class QuizComponent extends Component {
             <div class='question-counter'>
                <CounterComponent props={{
                 count: 0,
-                maxCount: 5,
+                maxCount: 10,
                 preLabel: "Questions:",
                 midLabel: "of",
-                onMaxCountEvent: "GAMEOVER"
                }}/>
             </div>
             <div class='score-anchor'>
@@ -78,10 +108,9 @@ export default class QuizComponent extends Component {
                 }}/>
             </div>
             <div 
-            id = 'question'
             class='question-anchor'>
                 <QuestionComponent props={{
-                  identifier: this._currentQuestionId,
+                  identifier: this.nextQuestionId(),
                 }}/>
             </div>
         </div>

@@ -21,12 +21,10 @@ export default class ScoreComponent extends Component {
     }
 
     incrementCounter(){
-        this.props.count++;
-
-        if (this.props.count > this.props.maxCount){
-            document.dispatchEvent(new Event(this.props.onMaxCountEvent));
+        if (this.props.count <= this.props.maxCount){
+            this.props.count++;
         }
-        
+
         this.component.innerHTML = this.generateCounter();   
     }
 
