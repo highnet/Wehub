@@ -4,10 +4,6 @@ export default class ScoreComponent extends Component {
 
     globalid = "score";
 
-    ready(){
-            
-    }
-
     incrementScore(){
         this.props.score++;
         this.component.innerHTML = this.generateScore();

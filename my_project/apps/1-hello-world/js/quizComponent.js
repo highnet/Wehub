@@ -1,10 +1,10 @@
 import { Component } from "pagejs/components";
 import QuestionComponent from "./questionComponent";
-
-import { render } from "pagejs";
 import ScoreComponent from "./scoreComponent";
-
+import CounterComponent from "./counterComponent";
 import quizQuestions from "../quiz-questions.json";
+import { render } from "pagejs";
+
 
 export default class QuizComponent extends Component {
     
@@ -13,16 +13,30 @@ export default class QuizComponent extends Component {
     ready(){        
 
        document.addEventListener("CORRECT",() =>{
-            document.getElementById("score").wrapper.incrementScore();
-            this.deleteCurrentQuestionAndInstantiateNextQuestion();
+            this.spawnNextQuestion(true);
        })
 
         document.addEventListener("INCORRECT", () => {
-            document.getElementById("score").wrapper.decrementScore();
-            this.deleteCurrentQuestionAndInstantiateNextQuestion();
-
+            this.spawnNextQuestion(false);
         });
 
+        document.addEventListener("GAMEOVER", () => {
+            console.log("@@@ game over @@@");
+        });
+
+    }
+
+    spawnNextQuestion(increment){
+        if (increment){
+            document.getElementById("score").wrapper.incrementScore();
+        } else {
+            document.getElementById("score").wrapper.decrementScore();
+        }
+
+        document.getElementById("counter").wrapper.incrementCounter();
+
+        this.deleteCurrentQuestion();
+        this.instantiateQuestion(this.randomInteger(0,Object.keys(quizQuestions).length -1));
     }
 
     randomInteger(min, max) {
@@ -33,7 +47,6 @@ export default class QuizComponent extends Component {
         let currentQuestionComponent = document.getElementsByClassName("question-component")[0];
         currentQuestionComponent.remove();
         this._currentQuestionId = NaN;
-
     }
 
     instantiateQuestion(newQuestionId){
@@ -44,14 +57,21 @@ export default class QuizComponent extends Component {
     }
 
     deleteCurrentQuestionAndInstantiateNextQuestion(){
-        this.deleteCurrentQuestion();
-        this.instantiateQuestion(this.randomInteger(0,Object.keys(quizQuestions).length -1));
 
     }
 
     render(){
         return (
         <div class='quiz-component'>
+            <div class='question-counter'>
+               <CounterComponent props={{
+                count: 0,
+                maxCount: 5,
+                preLabel: "Questions:",
+                midLabel: "of",
+                onMaxCountEvent: "GAMEOVER"
+               }}/>
+            </div>
             <div class='score-anchor'>
                 <ScoreComponent props={{
                   score: 0,
