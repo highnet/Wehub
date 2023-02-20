@@ -12,10 +12,11 @@ export default class QuizGameOverComponent extends Component {
             console.log("yo");
             let quizComponent = document.getElementsByClassName("quiz-component")[0];
             quizComponent.remove();
-            let btn = document.getElementsByClassName("start-quiz-btn")[0];
-            btn.style.display="block";
+            let startQuiz = document.getElementsByClassName("start-quiz-btn")[0];
+            if (startQuiz){
+                startQuiz.style.display="block";
             }
-        )
+        })
         return btn;
     }
 
