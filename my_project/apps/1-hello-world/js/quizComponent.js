@@ -25,7 +25,6 @@ export default class QuizComponent extends Component {
     }
 
     nextQuestionId(){
-
         if (this._questionIdSet.length == 0){
             this._questionIdSet = this.generateQuestionIdSet();
         }
@@ -45,9 +44,6 @@ export default class QuizComponent extends Component {
 
 
     showGameOver(){
-
-
-
         let gameOver = document.getElementsByClassName("quiz-gameover-component")[0];
         gameOver.style.display = "flex";
 
@@ -65,8 +61,6 @@ export default class QuizComponent extends Component {
     
 
     spawnNextQuestion(increment){
-
-
         if (document.getElementById("counter").wrapper.isAtMaxCount()){
             this.showGameOver();
             return;
@@ -82,10 +76,6 @@ export default class QuizComponent extends Component {
         }
 
         this.nextQuestion();
-    }
-
-    randomInteger(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     nextQuestion(){
