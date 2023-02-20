@@ -39,9 +39,6 @@ export default class QuizPage extends Page {
     );
   }
   ready() {
-      document.addEventListener("GAMEOVER", () => {
-            let btn = document.getElementsByClassName("start-quiz-btn")[0];
-            btn.style.display="block";
-      });
+
   }
 }

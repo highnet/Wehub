@@ -271,3 +271,7 @@ h1{
   padding: 0px 1px 0px 1px;
   font-size: 1.5rem;
 }
+
+.gameover{
+  display: none;
+}

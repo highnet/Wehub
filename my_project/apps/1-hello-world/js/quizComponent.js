@@ -3,6 +3,7 @@ import QuestionComponent from "./questionComponent";
 import ScoreComponent from "./scoreComponent";
 import CounterComponent from "./counterComponent";
 import quizQuestions from "../quiz-questions.json";
+import QuizGameOverComponent from "./quizGameOverComponent";
 import { render } from "pagejs";
 
 
@@ -43,18 +44,29 @@ export default class QuizComponent extends Component {
 }
 
 
-    gameOver(){
-        let thisComponent = document.getElementsByClassName("quiz-component")[0];
-        thisComponent.remove();
+    showGameOver(){
+        let gameOver = document.getElementsByClassName("gameover")[0];
+        gameOver.style.display = "block";
+
+        let counterComponent = document.getElementsByClassName("counter-component")[0];
+        counterComponent.style.display = "none";
+
+        let scoreComponent = document.getElementsByClassName("score-component")[0];
+        scoreComponent.style.color = "red";
+        scoreComponent.style.justifyContent = "center";
+
+        let questionComponent = document.getElementsByClassName("question-component")[0];
+        questionComponent.style.display ="none";
     }
+
+    
 
     spawnNextQuestion(increment){
 
         document.getElementById("counter").wrapper.incrementCounter();
 
         if (document.getElementById("counter").wrapper.isAtMaxCount()){
-            this.gameOver();
-            document.dispatchEvent(new Event("GAMEOVER"));
+            this.showGameOver();
             return;
         }
 
@@ -112,6 +124,9 @@ export default class QuizComponent extends Component {
                 <QuestionComponent props={{
                   identifier: this.nextQuestionId(),
                 }}/>
+            </div>
+            <div class='quiz-gameover-anchor'>
+                <QuizGameOverComponent/>
             </div>
         </div>
         );

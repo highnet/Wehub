@@ -6,10 +6,6 @@ import quizQuestions from "../quiz-questions.json"
 
 export default class QuestionComponent extends Component {
 
-    ready(){
-
-    }
-
     generateQuestionText(){     
         return this.getQuestion(this.props.identifier);
     }
