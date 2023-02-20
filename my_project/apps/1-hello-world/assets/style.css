@@ -273,7 +273,6 @@ h1{
 }
 
 .restart-quiz-btn{
-  display: none;
   margin: 0 auto;
   color: white;
   font-size: 6rem;
@@ -286,5 +285,5 @@ h1{
 }
 
 .quiz-gameover-component{
-  display: flex;
+  display: none;
 }

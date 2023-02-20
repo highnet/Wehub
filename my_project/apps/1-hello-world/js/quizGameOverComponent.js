@@ -24,6 +24,7 @@ export default class QuizGameOverComponent extends Component {
     render(){
         return (
         <div class='quiz-gameover-component'>
+            <p>Thx for playing!</p>
             {this.generateQuizGameOver()}
         </div>
         );

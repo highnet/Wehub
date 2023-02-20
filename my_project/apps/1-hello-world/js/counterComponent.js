@@ -17,7 +17,7 @@ export default class ScoreComponent extends Component {
 
 
     isAtMaxCount(){
-        return this.props.count > this.props.maxCount;
+        return this.props.count == this.props.maxCount;
     }
 
     incrementCounter(){

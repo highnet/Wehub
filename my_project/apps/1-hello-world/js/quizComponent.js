@@ -33,20 +33,23 @@ export default class QuizComponent extends Component {
     }
 
     shuffleSet(set) {
-    var j, x, i;
-    for (i = set.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = set[i];
-        set[i] = set[j];
-        set[j] = x;
+        var j, x, i;
+        for (i = set.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = set[i];
+            set[i] = set[j];
+            set[j] = x;
+        }
+        return set;
     }
-    return set;
-}
 
 
     showGameOver(){
-        let gameOver = document.getElementsByClassName("restart-quiz-btn")[0];
-        gameOver.style.display = "block";
+
+
+
+        let gameOver = document.getElementsByClassName("quiz-gameover-component")[0];
+        gameOver.style.display = "flex";
 
         let counterComponent = document.getElementsByClassName("counter-component")[0];
         counterComponent.style.display = "none";
@@ -63,12 +66,14 @@ export default class QuizComponent extends Component {
 
     spawnNextQuestion(increment){
 
-        document.getElementById("counter").wrapper.incrementCounter();
 
         if (document.getElementById("counter").wrapper.isAtMaxCount()){
             this.showGameOver();
             return;
         }
+
+        document.getElementById("counter").wrapper.incrementCounter();
+
 
         if (increment){
             document.getElementById("score").wrapper.incrementScore();
