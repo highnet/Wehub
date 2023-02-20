@@ -9,13 +9,8 @@ export default class QuizGameOverComponent extends Component {
         let btn = <Button class="end-quiz-btn">End Quiz</Button>
         
         btn.element.on('released', () => {
-            console.log("yo");
-            let quizComponent = document.getElementsByClassName("quiz-component")[0];
-            quizComponent.remove();
-            let startQuiz = document.getElementsByClassName("start-quiz-btn")[0];
-            if (startQuiz){
-                startQuiz.style.display="block";
-            }
+            document.getElementById("quiz").wrapper.delete();
+            document.getElementById("quiz-page").wrapper.showStartQuizButton();
         })
         return btn;
     }

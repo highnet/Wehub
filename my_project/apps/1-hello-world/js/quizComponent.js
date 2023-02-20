@@ -58,6 +58,10 @@ export default class QuizComponent extends Component {
         questionComponent.style.display ="none";
     }
 
+    delete(){
+        this.component.remove();
+    }
+
     
 
     spawnNextQuestion(increment){
