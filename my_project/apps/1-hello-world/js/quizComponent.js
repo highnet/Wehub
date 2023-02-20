@@ -50,7 +50,6 @@ export default class QuizComponent extends Component {
     }
 
     render(){
-
         return (
         <div class='quiz-component'>
             <div class='score-anchor'>
