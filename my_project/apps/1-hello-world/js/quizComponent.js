@@ -6,7 +6,6 @@ import quizQuestions from "../quiz-questions.json";
 import QuizGameOverComponent from "./quizGameOverComponent";
 import { render } from "pagejs";
 
-
 export default class QuizComponent extends Component {
     
     globalid = "quiz";
@@ -129,12 +128,14 @@ export default class QuizComponent extends Component {
 
     spawnNextQuestion(){
         this.deleteCurrentQuestion(); // delete current question
-        this.instantiateQuestion(this.nextQuestionId());
+        this.instantiateQuestion(this.nextQuestionId()); // instantiate a question given a question id
     }
 
     deleteCurrentQuestion(){ // delete current question
         let currentQuestionComponent = document.getElementsByClassName("question-component")[0];
-        currentQuestionComponent.remove();
+        if (currentQuestionComponent){
+            currentQuestionComponent.remove();
+        }
     }
 
     instantiateQuestion(newQuestionId){
