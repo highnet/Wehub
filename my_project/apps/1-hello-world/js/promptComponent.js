@@ -1,5 +1,5 @@
 import { Component } from "pagejs/components";
-import quizQuestions from "../quiz-questions.json"
+import quizQuestions from "../quiz-questions-geography.json"
 
 export default class PromptComponent extends Component {
     

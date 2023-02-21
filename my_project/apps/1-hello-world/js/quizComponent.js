@@ -1,6 +1,6 @@
 import { Component } from "pagejs/components";
 import { render } from "pagejs";
-import quizQuestions from "../quiz-questions.json";
+import quizQuestions from "../quiz-questions-geography.json";
 import QuestionComponent from "./questionComponent";
 import ScoreComponent from "./scoreComponent";
 import CounterComponent from "./counterComponent";
@@ -23,7 +23,7 @@ export default class QuizComponent extends Component {
     generateRandomQuestionIdSet(){ // generate a set of random question ids
         let set = [];
 
-        for(let i = 0 ; i < Object.keys(quizQuestions).length -1; i++){
+        for(let i = 0 ; i < Object.keys(quizQuestions).length; i++){
             set.push(i); // populate the set with {0, 1, 2, ..., quizQuestions.length}
         }
 
@@ -135,6 +135,13 @@ export default class QuizComponent extends Component {
     }
 
     awardResult(correct){ // award result, based on correctness
+        
+        if (correct){
+            document.getElementById("score").wrapper.incrementScore();
+        } else {
+            document.getElementById("score").wrapper.decrementScore();
+        }
+
         if (document.getElementById("counter").wrapper.isAtMaxCount()){
             document.getElementById("countdown").wrapper.clear();
             this.showGameOver();
@@ -143,11 +150,7 @@ export default class QuizComponent extends Component {
 
         document.getElementById("counter").wrapper.incrementCounter();
 
-        if (correct){
-            document.getElementById("score").wrapper.incrementScore();
-        } else {
-            document.getElementById("score").wrapper.decrementScore();
-        }
+
 
         document.getElementById("countdown").wrapper.setTimer(this._timePerQuestion);
 
