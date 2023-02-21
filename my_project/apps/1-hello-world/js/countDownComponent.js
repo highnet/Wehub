@@ -10,6 +10,8 @@ export default class CountDownComponent extends Component {
     ready(){
         this.start();
         this._startingTime = this.props.timer;
+
+        
     }
 
     clear(){
@@ -26,9 +28,13 @@ export default class CountDownComponent extends Component {
             }
             if (this.props.timer < 0){
                 this.clear();
-                document.getElementsByClassName("quiz-component")[0].dispatchEvent(new Event("COUNTDOWN_FINISHED"));
+                document.getElementById(this.props.onFinishedNotify).dispatchEvent(new Event("COUNTDOWN_FINISHED"));
             }
-            document.getElementById("progressbar").wrapper.setProgressPercentage((this.props.timer / this._startingTime) * 100);
+
+            document.getElementById(this.props.onTickReport).dispatchEvent(
+                new CustomEvent("PROGRESS_REPORT", {
+                  detail: { percentage: () => (this.props.timer / this._startingTime) * 100 },
+                }));
 
             }, 1000); // update every second
         }
@@ -38,8 +44,10 @@ export default class CountDownComponent extends Component {
     setTimer(seconds){
         this._startingTime = seconds;
         this.props.timer = seconds;
-        document.getElementById("progressbar").wrapper.setProgressPercentage((this.props.timer / this._startingTime) * 100);
-        this.start();
+        document.getElementById(this.props.onTickReport).dispatchEvent(
+            new CustomEvent("PROGRESS_REPORT", {
+              detail: { percentage: () => (this.props.timer / this._startingTime) * 100 },
+            }));        this.start();
         this.reRender();
     }
 

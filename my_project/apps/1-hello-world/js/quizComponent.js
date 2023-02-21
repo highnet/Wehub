@@ -4,7 +4,7 @@ import quizQuestions from "../quiz-questions-gaming.json";
 import QuestionComponent from "./questionComponent";
 import ScoreComponent from "./scoreComponent";
 import CounterComponent from "./counterComponent";
-import QuizGameOverComponent from "./quizGameOverComponent";
+import GameOverComponent from "./gameOverComponent";
 import CountDownComponent from "./countDownComponent";
 import ProgessBarComponent from "./progessBarComponent";
 
@@ -16,13 +16,27 @@ export default class QuizComponent extends Component {
 
     _mousePositionX;
     _mousePositionY;
+    _relativeMousePositionX;
+    _relativeMousePositionY;
 
-    
     ready(){
         this.component.addEventListener("COUNTDOWN_FINISHED", () => {
             this.awardResult(false);
-        })       
-        console.log(this.props.category); // TODO: ASK BENJAMIN WHY THIS IS UNDEFINED 
+        })
+
+        this.component.addEventListener("ANSWER_CORRECT", () => {
+            this.awardResult(true);
+        })
+
+        this.component.addEventListener("ANSWER_WRONG", () => {
+            this.awardResult(false);
+        })
+
+        this.component.addEventListener("GAMEOVER_DELETE", () => {
+            this.delete();
+        })
+
+        // console.log(this.props.category); // TODO: ASK BENJAMIN WHY THIS IS UNDEFINED 
         
         this.component.addEventListener('mousemove', (e) => {
             this._mousePositionX = e.pageX;
@@ -30,11 +44,6 @@ export default class QuizComponent extends Component {
             this._relativeMousePositionX = this._mousePositionX / document.body.clientWidth;
             this._relativeMousePositionY = this._mousePositionY/document.body.clientHeight;
         }); 
-
-    }
-
-    onMouseMove(e) {
-
 
     }
 
@@ -66,7 +75,9 @@ export default class QuizComponent extends Component {
           
         <div class='quiz-component'>
             <div class ='progressbar-anchor'>
-                <ProgessBarComponent/>
+                <ProgessBarComponent props ={{
+                    identifier: "main"
+                }}/>
             </div>
             <div class='question-counter'>
                <CounterComponent props={{
@@ -87,7 +98,9 @@ export default class QuizComponent extends Component {
             <div class ='countdown-anchor'>
                 <CountDownComponent props ={{
                     timer: this._timePerQuestion,
-                    postLabel: "s"
+                    postLabel: "s",
+                    onFinishedNotify: this.globalid,
+                    onTickReport: "progressbar-main"
                 }}/>
             </div>
 
@@ -98,7 +111,11 @@ export default class QuizComponent extends Component {
                 }}/>
             </div>
             <div class='quiz-gameover-anchor'>
-                <QuizGameOverComponent/>
+                <GameOverComponent props={{
+                    gameOverBtnText: "End Quiz",
+                    onClickDelete: "quiz",
+                    onClickShow: "quiz-page"
+                }}/>
             </div>
         </div>
         );
@@ -114,7 +131,7 @@ export default class QuizComponent extends Component {
     showGameOver(){ // show the game over scene
         let components = this.getElementsByClassNames( // get multiple elements at once
         [
-            "quiz-gameover-component",
+            "gameover-component",
             "counter-component",
             "score-component", 
             "question-component",

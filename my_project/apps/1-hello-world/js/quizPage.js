@@ -6,6 +6,12 @@ export default class QuizPage extends Page {
 
   globalid = "quiz-page";
   
+
+  ready(){
+    document.getElementById(this.globalid).addEventListener("GAMEOVER_CLICKED", () => {
+      this.showStartQuizButton();
+    })
+  }
   render() {
     return (
       <div>

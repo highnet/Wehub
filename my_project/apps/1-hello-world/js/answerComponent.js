@@ -25,13 +25,11 @@ export default class AnswerComponent extends Component {
 
         btn.element.on('released', () => {
             if (this.isCorrectAnswer()){
-                document.getElementById("quiz").wrapper.awardResult(true);
-
+                document.getElementById("quiz").dispatchEvent(new Event("ANSWER_CORRECT"));
             } else {
-                document.getElementById("quiz").wrapper.awardResult(false);
+                document.getElementById("quiz").dispatchEvent(new Event("ANSWER_WRONG"));
             }
       })
-
       return btn;
     }
 
