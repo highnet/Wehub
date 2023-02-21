@@ -42,7 +42,6 @@ export default class ScoreComponent extends Component {
         return score;
     }
 
-
     render(){
         return (
         <div 
