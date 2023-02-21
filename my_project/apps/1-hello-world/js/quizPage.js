@@ -15,17 +15,23 @@ export default class QuizPage extends Page {
         <div class="start-quiz-anchor">
           {this.generateStartQuizButton()}
         </div>
-        <div class="quiz-anchor">
+        <div class="flex">
+          <div class="quiz-anchor">
 
+          </div>
+          <div class="thinker-container">
+            <img class="thinker hidden" src="./assets/img/thinker.png"/>
+          </div>
         </div>
       </div>
     );
   }
 
-  generateStartQuizButton(){  // generates a new start quiz button
+  generateStartQuizButton(){  // generate a new start quiz button
     let btn = <Button class="start-quiz-btn">Start Quiz</Button>; // instantiate the button
     btn.element.on('released', () => {
       this.hideStartQuizButton(); // hide the start quiz button
+      this.showThinker();
       this.generateQuiz(); // generate a new quiz
     })
     return btn;
@@ -42,6 +48,14 @@ export default class QuizPage extends Page {
     let btn = document.getElementsByClassName("start-quiz-btn")[0]; // fetch the start quiz button
     if (btn){
       btn.classList.remove("hidden"); // remove the "hidden" tag from the start quiz button 
+    }
+  }
+
+  showThinker(){
+    let thnkr = document.getElementsByClassName("thinker")[0];
+    if (thnkr){
+      thnkr.classList.remove("hidden");
+      thnkr.classList.remove("gameover");
     }
   }
 

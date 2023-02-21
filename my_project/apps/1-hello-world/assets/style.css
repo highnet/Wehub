@@ -243,6 +243,10 @@ h1{
   text-align: center;
 }
 
+.quiz-anchor{
+  margin: 0 auto;
+}
+
 .quiz-component{
   width: 90%;
   margin: 0 auto;
@@ -256,6 +260,11 @@ h1{
 .score-component div{
   padding: 0px 1px 0px 1px;
   font-size: 1.5rem;
+}
+
+.score-component.gameover{
+  color: red;
+  justify-content: center;
 }
 
 .end-quiz-btn{
@@ -272,6 +281,10 @@ h1{
 
 .quiz-gameover-component{
   display: none;
+}
+
+.quiz-gameover-component.gameover{
+  display: flex;
 }
 
 .answers-anchor{
@@ -294,4 +307,26 @@ h1{
 
 .hidden{
   display: none !important;
+}
+
+.counter-component.gameover{
+  display: none;
+}
+
+.question-component.gameover{
+  display: none;
+}
+
+.thinker{
+  width: 33vw;
+}
+
+.thinker.gameover{
+  display: none;
+}
+
+.thinker-container{
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }

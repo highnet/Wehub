@@ -81,7 +81,9 @@ export default class QuizComponent extends Component {
             "quiz-gameover-component",
             "counter-component",
             "score-component", 
-            "question-component"]
+            "question-component",
+            "thinker"
+            ]
             );
 
         this.addClassToMultipleComponents(components,"gameover"); // add a class to multiple components at once
