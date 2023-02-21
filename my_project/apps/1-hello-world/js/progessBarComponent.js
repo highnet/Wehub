@@ -20,12 +20,17 @@ export default class ProgessBarComponent extends Component {
 
     updateStyling(){
         this.component.style.width = this._progressPercentage + "%";
-        let fullColorRgb = [0, 255, 0];
-        let emptyColorRgb = [255, 0, 0];
-        this.component.style.backgroundColor = "rgb(" +
-            this.remap(this._progressPercentage,0,100,emptyColorRgb[0],fullColorRgb[0]) + "," +
-            this.remap(this._progressPercentage,0,100,emptyColorRgb[1],fullColorRgb[1]) + "," + 
-            this.remap(this._progressPercentage,0,100,emptyColorRgb[2],fullColorRgb[2]) + ")";
+        this.component.style.backgroundColor = this.interpolateColorByPercentage(
+    this._progressPercentage,
+        [255,0,0],
+        [0,255,0]);
+    }
+
+    interpolateColorByPercentage(percentage, fromRgb, toRgb){
+        return "rgb(" +
+            this.remap(percentage,0,100,fromRgb[0],toRgb[0]) + "," +
+            this.remap(percentage,0,100,fromRgb[1],toRgb[1]) + "," + 
+            this.remap(percentage,0,100,fromRgb[2],toRgb[2]) + ")";
     }
 
 
