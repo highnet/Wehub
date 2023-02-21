@@ -48,7 +48,7 @@ export default class QuizComponent extends Component {
           
         <div class='quiz-component'>
             <div class ='progressbar-anchor'>
-                 <ProgessBarComponent/>
+                <ProgessBarComponent/>
             </div>
             <div class='question-counter'>
                <CounterComponent props={{
