@@ -4,6 +4,12 @@ export default class CounterComponent extends Component {
 
     globalid = "counter"
 
+    ready(){
+        this.component.addEventListener("INCREMENT_COUNTER", () => {
+            this.incrementCounter();
+        })
+    }
+
     generateCounter(){
         let counter = 
         `

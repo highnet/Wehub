@@ -19,6 +19,11 @@ export default class QuizComponent extends Component {
     _relativeMousePositionX;
     _relativeMousePositionY;
 
+    _scoreComponentId = "score";
+    _counterComponentId = "counter";
+    _countdownComponentId = "countdown";
+    _questionComponentId = "question";
+
     ready(){
         this.component.addEventListener("COUNTDOWN_FINISHED", () => {
             this.awardResult(false);
@@ -178,20 +183,20 @@ export default class QuizComponent extends Component {
           });
 
         if (correct){
-            document.getElementById("score").wrapper.incrementScore();
+            document.getElementById(this._scoreComponentId).dispatchEvent(new Event("INCREMENT_SCORE"));
         } else {
-            document.getElementById("score").wrapper.decrementScore();
+            document.getElementById(this._scoreComponentId).dispatchEvent(new Event("DECREMENT_SCORE"));
         }
 
-        if (document.getElementById("counter").wrapper.isAtMaxCount()){
-            document.getElementById("countdown").wrapper.clear();
+        if (document.getElementById(this._counterComponentId).wrapper.isAtMaxCount()){
+            document.getElementById(this._countdownComponentId).dispatchEvent(new Event("CLEAR_COUNTDOWN"));
             this.showGameOver();
             return;
         }
 
-        document.getElementById("counter").wrapper.incrementCounter();
+        document.getElementById(this._counterComponentId).dispatchEvent(new Event("INCREMENT_COUNTER"));
 
-        document.getElementById("countdown").wrapper.setTimer(this._timePerQuestion);
+        document.getElementById(this._countdownComponentId).wrapper.setTimer(this._timePerQuestion);
 
         this.spawnNextQuestion(); // spawn the next question
         
@@ -203,9 +208,9 @@ export default class QuizComponent extends Component {
     }
 
     deleteCurrentQuestion(){ // delete current question
-        let currentQuestion = document.getElementById("question");
+        let currentQuestion = document.getElementById(this._questionComponentId);
         if (currentQuestion){
-            currentQuestion.wrapper.delete();
+            currentQuestion.dispatchEvent(new Event("DELETE_QUESTION"));
         }
     }
 

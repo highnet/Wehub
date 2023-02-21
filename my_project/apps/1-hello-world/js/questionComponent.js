@@ -7,6 +7,12 @@ import quizQuestions from "../quiz-questions-gaming.json"
 export default class QuestionComponent extends Component {
     globalid = "question";
 
+    ready(){
+        this.component.addEventListener("DELETE_QUESTION", () => {
+            this.delete();
+        })
+    }
+
     generateQuestionText(){ // generate question text
         return this.getQuestion(this.props.identifier); // get question text based on question identifier
     }

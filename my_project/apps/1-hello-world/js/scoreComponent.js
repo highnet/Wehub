@@ -4,6 +4,15 @@ export default class ScoreComponent extends Component {
 
     globalid = "score";
 
+    ready(){
+        this.component.addEventListener("INCREMENT_SCORE", () => {
+            this.incrementScore();
+        })
+        this.component.addEventListener("DECREMENT_SCORE", () => {
+            this.decrementScore();
+        })
+    }
+
     incrementScore(){ // increment the score
         this.props.score++;
         this.reRender();
