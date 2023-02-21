@@ -5,11 +5,7 @@ import {render} from "pagejs";
 export default class QuizPage extends Page {
 
   globalid = "quiz-page";
-
-  ready(){
-
-  }
-
+  
   render() {
     return (
       <div>
@@ -41,24 +37,28 @@ export default class QuizPage extends Page {
     return btn;
   }
 
-  hideStartQuizButton(){ // hide the start quiz button
-    let btn = document.getElementsByClassName("start-quiz-btn")[0]; // fetch the start quiz button
-    if (btn){
-      btn.classList.add("hidden"); // add the "hidden" tag to the start quiz button
+  toggleElementVisibility(elementClassName, visible){ // toggle element visibility of a given class name
+    let elem = document.getElementsByClassName(elementClassName)[0];
+    if (!elem) return;
+    if (visible){
+      elem.classList.remove("hidden");
+    } else {
+      elem.classList.add("hidden");
     }
+  }
+
+  hideStartQuizButton(){ // hide the start quiz button
+    this.toggleElementVisibility("start-quiz-btn",false); // toggle element visibility of a given class name
   }
 
   showStartQuizButton(){ // show the start quiz button
-    let btn = document.getElementsByClassName("start-quiz-btn")[0]; // fetch the start quiz button
-    if (btn){
-      btn.classList.remove("hidden"); // remove the "hidden" tag from the start quiz button 
-    }
+    this.toggleElementVisibility("start-quiz-btn", true); // toggle element visibility of a given class name
   }
 
   showThinker(){
+    this.toggleElementVisibility("thinker",true); // toggle element visibility of a given class name
     let thnkr = document.getElementsByClassName("thinker")[0];
     if (thnkr){
-      thnkr.classList.remove("hidden");
       thnkr.classList.remove("gameover");
     }
   }
