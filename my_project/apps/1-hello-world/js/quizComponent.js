@@ -161,9 +161,9 @@ export default class QuizComponent extends Component {
     }
 
     deleteCurrentQuestion(){ // delete current question
-        let currentQuestionComponent = document.getElementsByClassName("question-component")[0];
-        if (currentQuestionComponent){
-            currentQuestionComponent.remove();
+        let currentQuestion = document.getElementById("question");
+        if (currentQuestion){
+            currentQuestion.wrapper.delete();
         }
     }
 

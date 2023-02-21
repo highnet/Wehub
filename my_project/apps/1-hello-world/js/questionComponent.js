@@ -5,6 +5,7 @@ import quizQuestions from "../quiz-questions.json"
 
 
 export default class QuestionComponent extends Component {
+    globalid = "question";
 
     generateQuestionText(){ // generate question text
         return this.getQuestion(this.props.identifier); // get question text based on question identifier
@@ -12,6 +13,10 @@ export default class QuestionComponent extends Component {
 
     getQuestion(questionId){ // get question text based on question identifier
         return Object.values(Object.values(quizQuestions)[questionId])[0];
+    }
+
+    delete(){
+        this.component.remove();
     }
 
     render(){
