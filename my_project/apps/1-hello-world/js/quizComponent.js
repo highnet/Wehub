@@ -138,13 +138,10 @@ export default class QuizComponent extends Component {
         }
     }
 
-    instantiateQuestion(newQuestionId){
+    instantiateQuestion(newQuestionId){ // instantiate a question given a question id
         let questionAnchor = document.getElementsByClassName("question-anchor")[0];
-
         let newQuestionComponent = render(QuestionComponent, {identifier:newQuestionId});
         questionAnchor.append(newQuestionComponent);
     }
-
-
 
 }
