@@ -6,6 +6,10 @@ export default class QuizPage extends Page {
 
   globalid = "quiz-page";
 
+  ready(){
+
+  }
+
   render() {
     return (
       <div>

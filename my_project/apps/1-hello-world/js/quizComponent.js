@@ -12,6 +12,12 @@ export default class QuizComponent extends Component {
     globalid = "quiz";
 
     _questionIdSet =  this.generateRandomQuestionIdSet(); // generate a set of random question ids
+    _timePerQuestion = 5;
+    ready(){
+        this.component.addEventListener("COUNTDOWN_FINISHED", () => {
+            this.awardResult(false);
+        })        
+    }
 
     generateRandomQuestionIdSet(){ // generate a set of random question ids
         let set = [];
@@ -57,7 +63,8 @@ export default class QuizComponent extends Component {
             </div>
             <div class ='countdown-anchor'>
                 <CountDownComponent props ={{
-                    timer:60
+                    timer: this._timePerQuestion,
+                    postLabel: "s"
                 }}/>
             </div>
             <div 
@@ -87,6 +94,7 @@ export default class QuizComponent extends Component {
             "counter-component",
             "score-component", 
             "question-component",
+            "countdown-component",
             "thinker"
             ]
             );
@@ -121,6 +129,7 @@ export default class QuizComponent extends Component {
 
     awardResult(correct){ // award result, based on correctness
         if (document.getElementById("counter").wrapper.isAtMaxCount()){
+            document.getElementById("countdown").wrapper.clear();
             this.showGameOver();
             return;
         }
@@ -133,7 +142,10 @@ export default class QuizComponent extends Component {
             document.getElementById("score").wrapper.decrementScore();
         }
 
+        document.getElementById("countdown").wrapper.setTimer(this._timePerQuestion);
+
         this.spawnNextQuestion(); // spawn the next question
+        
     }
 
     spawnNextQuestion(){

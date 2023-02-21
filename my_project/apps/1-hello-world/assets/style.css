@@ -330,3 +330,7 @@ h1{
   display: flex;
   justify-content: center;
 }
+
+.countdown-component.gameover{
+  display: none;
+}
