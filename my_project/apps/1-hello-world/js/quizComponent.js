@@ -6,13 +6,14 @@ import ScoreComponent from "./scoreComponent";
 import CounterComponent from "./counterComponent";
 import QuizGameOverComponent from "./quizGameOverComponent";
 import CountDownComponent from "./countDownComponent";
+import ProgessBarComponent from "./progessBarComponent";
 
 export default class QuizComponent extends Component {
     
     globalid = "quiz";
 
     _questionIdSet =  this.generateRandomQuestionIdSet(); // generate a set of random question ids
-    _timePerQuestion = 5;
+    _timePerQuestion = 10;
     ready(){
         this.component.addEventListener("COUNTDOWN_FINISHED", () => {
             this.awardResult(false);
@@ -44,12 +45,16 @@ export default class QuizComponent extends Component {
 
     render(){
         return (
+          
         <div class='quiz-component'>
+            <div class ='progressbar-anchor'>
+                 <ProgessBarComponent/>
+            </div>
             <div class='question-counter'>
                <CounterComponent props={{
                 count: 0,
-                maxCount: 10,
-                preLabel: "Questions:",
+                maxCount: 9,
+                preLabel: "Question:",
                 midLabel: "of",
                }}/>
             </div>
@@ -67,6 +72,7 @@ export default class QuizComponent extends Component {
                     postLabel: "s"
                 }}/>
             </div>
+
             <div 
             class='question-anchor'>
                 <QuestionComponent props={{
@@ -95,6 +101,7 @@ export default class QuizComponent extends Component {
             "score-component", 
             "question-component",
             "countdown-component",
+            "progressbar-component",
             "thinker"
             ]
             );

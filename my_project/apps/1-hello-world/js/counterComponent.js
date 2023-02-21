@@ -1,6 +1,6 @@
 import { Component } from "pagejs/components";
 
-export default class ScoreComponent extends Component {
+export default class CounterComponent extends Component {
 
     globalid = "counter"
 
@@ -8,7 +8,7 @@ export default class ScoreComponent extends Component {
         let counter = 
         `
         <div class="counter-value">
-            ${this.props.preLabel + " " +  this.props.count.toString() +  " " + this.props.midLabel + " " + this.props.maxCount.toString()} 
+            ${this.props.preLabel + " " +  (this.props.count + 1).toString() +  " " + this.props.midLabel + " " + (this.props.maxCount + 1).toString()} 
         </div>
         `;
         return counter;
