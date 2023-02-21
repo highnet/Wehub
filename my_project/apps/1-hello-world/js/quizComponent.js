@@ -11,14 +11,31 @@ import ProgessBarComponent from "./progessBarComponent";
 export default class QuizComponent extends Component {
     
     globalid = "quiz";
-
     _questionIdSet =  this.generateRandomQuestionIdSet(); // generate a set of random question ids
     _timePerQuestion = 10;
+
+    _mousePositionX;
+    _mousePositionY;
+
+    
     ready(){
         this.component.addEventListener("COUNTDOWN_FINISHED", () => {
             this.awardResult(false);
         })       
         console.log(this.props.category); // TODO: ASK BENJAMIN WHY THIS IS UNDEFINED 
+        
+        this.component.addEventListener('mousemove', (e) => {
+            this._mousePositionX = e.pageX;
+            this._mousePositionY = e.pageY;
+            this._relativeMousePositionX = this._mousePositionX / document.body.clientWidth;
+            this._relativeMousePositionY = this._mousePositionY/document.body.clientHeight;
+        }); 
+
+    }
+
+    onMouseMove(e) {
+
+
     }
 
     generateRandomQuestionIdSet(){ // generate a set of random question ids
@@ -137,9 +154,14 @@ export default class QuizComponent extends Component {
 
     awardResult(correct){ // award result, based on correctness
 
+        confetti({
+            particleCount: 100,
+            spread: 90,
+            origin: { x: this._relativeMousePositionX, y: this._relativeMousePositionY }
+          });
+
         if (correct){
             document.getElementById("score").wrapper.incrementScore();
-            confetti();
         } else {
             document.getElementById("score").wrapper.decrementScore();
         }
