@@ -189,14 +189,18 @@ export default class QuizComponent extends Component {
         }
 
         if (document.getElementById(this._counterComponentId).wrapper.isAtMaxCount()){
-            document.getElementById(this._countdownComponentId).dispatchEvent(new Event("CLEAR_COUNTDOWN"));
+            document.getElementById(this._countdownComponentId).dispatchEvent(new Event("CLEAR"));
             this.showGameOver();
             return;
         }
 
         document.getElementById(this._counterComponentId).dispatchEvent(new Event("INCREMENT_COUNTER"));
 
-        document.getElementById(this._countdownComponentId).wrapper.setTimer(this._timePerQuestion);
+
+        document.getElementById(this._countdownComponentId).dispatchEvent(
+            new CustomEvent("SET_TIMER", {
+              detail: { time: () => this._timePerQuestion },
+            }));
 
         this.spawnNextQuestion(); // spawn the next question
         

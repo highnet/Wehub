@@ -11,9 +11,13 @@ export default class CountDownComponent extends Component {
         this.start();
         this._startingTime = this.props.timer;
 
-        this.component.addEventListener("CLEAR_COUNTDOWN", () => {
+        this.component.addEventListener("CLEAR", () => {
             this.clear();
         })
+
+        this.component.addEventListener("SET_TIMER", (e) => {
+            this.setTimer(e.detail.time())
+        });
     }
 
     clear(){
@@ -56,7 +60,7 @@ export default class CountDownComponent extends Component {
     generateCountDown(){
         let countDown = 
         `
-        <div class="countdown-timer hidden">
+        <div class="countdown-timer">
             ${this.props.timer.toString() + this.props.postLabel} 
         </div>
         `;
