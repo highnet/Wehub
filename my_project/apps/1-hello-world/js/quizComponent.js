@@ -1,10 +1,11 @@
 import { Component } from "pagejs/components";
+import { render } from "pagejs";
+import quizQuestions from "../quiz-questions.json";
 import QuestionComponent from "./questionComponent";
 import ScoreComponent from "./scoreComponent";
 import CounterComponent from "./counterComponent";
-import quizQuestions from "../quiz-questions.json";
 import QuizGameOverComponent from "./quizGameOverComponent";
-import { render } from "pagejs";
+import CountDownComponent from "./countDownComponent";
 
 export default class QuizComponent extends Component {
     
@@ -52,6 +53,11 @@ export default class QuizComponent extends Component {
                   preLabel: "•",
                   postLabel: "points",
                   positiveOnly: true
+                }}/>
+            </div>
+            <div class ='countdown-anchor'>
+                <CountDownComponent props ={{
+                    timer:60
                 }}/>
             </div>
             <div 
