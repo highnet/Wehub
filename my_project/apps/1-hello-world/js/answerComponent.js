@@ -3,24 +3,21 @@ import quizQuestions from "../quiz-questions.json"
 
 
 export default class AnswerComponent extends Component {
-    
-    ready(){
-    }
 
-    getAnswer(questionId, answerId){
-        return Object.values(Object.values(quizQuestions)[questionId])[answerId];
-    }
 
-    generateAnswerText(){
+    generateAnswerText(){ // generate the answer text
         return this.getAnswer(this.props.questionIdentifier, this.props.answerIdentifier);
     }
 
-    isCorrectAnswer(){
+    getAnswer(questionId, answerId){ // get the answer text based on question id and answer id
+        return Object.values(Object.values(quizQuestions)[questionId])[answerId];
+    }
+
+    isCorrectAnswer(){ // check if answer is correct
         return this.props.answerIdentifier == this.getAnswer(this.props.questionIdentifier, 5);
     }
 
-    generateAnswerButton(){
-        
+    generateAnswerButton(){ // generate an answer button
         let btn =
         <Button 
         class='quiz-btn'>
