@@ -46,7 +46,7 @@ export default class CountDownComponent extends Component {
     generateCountDown(){
         let countDown = 
         `
-        <div class="countdown-timer">
+        <div class="countdown-timer hidden">
             ${this.props.timer.toString() + this.props.postLabel} 
         </div>
         `;
