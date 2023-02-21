@@ -68,33 +68,47 @@ export default class QuizComponent extends Component {
         );
     }
 
-    nextQuestionId(){
+    nextQuestionId(){ // return the next question id in the question id set, generates a new question id set if the set is empty
         if (this._questionIdSet.length == 0){
-            this._questionIdSet = this.generateRandomQuestionIdSet();
+            this._questionIdSet = this.generateRandomQuestionIdSet(); // generate a set of random question ids
         }
         return this._questionIdSet.pop();
     }
     
-    showGameOver(){
-        let gameOver = document.getElementsByClassName("quiz-gameover-component")[0];
-        gameOver.style.display = "flex";
+    showGameOver(){ // show the game over scene
+        let components = this.getElementsByClassNames( // get multiple elements at once
+        [
+            "quiz-gameover-component",
+            "counter-component",
+            "score-component", 
+            "question-component"]
+            );
 
-        let counterComponent = document.getElementsByClassName("counter-component")[0];
-        counterComponent.style.display = "none";
-
-        let scoreComponent = document.getElementsByClassName("score-component")[0];
-        scoreComponent.style.color = "red";
-        scoreComponent.style.justifyContent = "center";
-
-        let questionComponent = document.getElementsByClassName("question-component")[0];
-        questionComponent.style.display ="none";
+        this.addClassToMultipleComponents(components,"gameover"); // add a class to multiple components at once
     }
 
-    delete(){
+    getElementsByClassNames(componentNames){ // get multiple elements at once
+        let result = [];
+
+        for(let componentName of componentNames){
+            let component = document.getElementsByClassName(componentName)[0];
+            result.push(component);
+        }
+
+        return result;
+    }
+
+    addClassToMultipleComponents(components, newClass){ // add a class to multiple components at once
+        for(let component of components){
+            component.classList.add(newClass);
+        }
+    }
+
+    delete(){ // delete this component
         this.component.remove();
     }
 
-    spawnNextQuestion(increment){
+    awardResult(correct){ // award result, based on correctness
         if (document.getElementById("counter").wrapper.isAtMaxCount()){
             this.showGameOver();
             return;
@@ -102,22 +116,21 @@ export default class QuizComponent extends Component {
 
         document.getElementById("counter").wrapper.incrementCounter();
 
-
-        if (increment){
+        if (correct){
             document.getElementById("score").wrapper.incrementScore();
         } else {
             document.getElementById("score").wrapper.decrementScore();
         }
 
-        this.nextQuestion();
+        this.spawnNextQuestion(); // spawn the next question
     }
 
-    nextQuestion(){
-        this.deleteCurrentQuestion();
+    spawnNextQuestion(){
+        this.deleteCurrentQuestion(); // delete current question
         this.instantiateQuestion(this.nextQuestionId());
     }
 
-    deleteCurrentQuestion(){
+    deleteCurrentQuestion(){ // delete current question
         let currentQuestionComponent = document.getElementsByClassName("question-component")[0];
         currentQuestionComponent.remove();
     }
