@@ -3,16 +3,12 @@ import quizQuestions from "../quiz-questions.json"
 
 export default class PromptComponent extends Component {
     
-    ready(){
-    }
-
-    getPrompt(questionId){
-        return Object.values(Object.values(quizQuestions)[questionId])[0];
-
-    }
-
-    generatePromptText(){
+    generatePromptText(){ // generate the question prompt text
         return this.getPrompt(this.props.questionIdentifier);
+    }
+
+    getPrompt(questionId){ // get the question promp based on question id
+        return Object.values(Object.values(quizQuestions)[questionId])[0];
     }
 
     generatePromptHeading(){
