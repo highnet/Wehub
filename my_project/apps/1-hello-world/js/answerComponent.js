@@ -1,5 +1,5 @@
 import { Component, Button } from "pagejs/components";
-import quizQuestions from "../quiz-questions-geography.json"
+import quizQuestions from "../quiz-questions-gaming.json"
 
 export default class AnswerComponent extends Component {
 

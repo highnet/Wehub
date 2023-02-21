@@ -1,6 +1,6 @@
 import { Component } from "pagejs/components";
 import { render } from "pagejs";
-import quizQuestions from "../quiz-questions-geography.json";
+import quizQuestions from "../quiz-questions-gaming.json";
 import QuestionComponent from "./questionComponent";
 import ScoreComponent from "./scoreComponent";
 import CounterComponent from "./counterComponent";
@@ -17,7 +17,8 @@ export default class QuizComponent extends Component {
     ready(){
         this.component.addEventListener("COUNTDOWN_FINISHED", () => {
             this.awardResult(false);
-        })        
+        })       
+        console.log(this.props.category); // TODO: ASK BENJAMIN WHY THIS IS UNDEFINED 
     }
 
     generateRandomQuestionIdSet(){ // generate a set of random question ids
@@ -135,7 +136,7 @@ export default class QuizComponent extends Component {
     }
 
     awardResult(correct){ // award result, based on correctness
-        
+
         if (correct){
             document.getElementById("score").wrapper.incrementScore();
         } else {
@@ -149,8 +150,6 @@ export default class QuizComponent extends Component {
         }
 
         document.getElementById("counter").wrapper.incrementCounter();
-
-
 
         document.getElementById("countdown").wrapper.setTimer(this._timePerQuestion);
 

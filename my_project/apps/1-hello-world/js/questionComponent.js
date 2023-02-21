@@ -1,7 +1,7 @@
 import { Component } from "pagejs/components";
 import AnswerComponent from "./answerComponent";
 import PromptComponent from "./promptComponent";
-import quizQuestions from "../quiz-questions-geography.json"
+import quizQuestions from "../quiz-questions-gaming.json"
 
 
 export default class QuestionComponent extends Component {
