@@ -72,7 +72,13 @@ export default class QuizPage extends Page {
   generateQuiz(){ // generate a new quiz
     let quizAnchor = document.getElementsByClassName("quiz-anchor")[0];
     if (quizAnchor){
-      quizAnchor.appendChild(render(QuizComponent),{'category': 'gaming'});// TODO: ASK BENJAMIN WHY THIS DOESNT WORK // create a newly instantiated quiz component
+      quizAnchor.appendChild(render(QuizComponent,{
+        category: "gaming",
+        scoreComponentId: "score",
+        counterComponentId: "counter",
+        countdownComponentId: "countdown",
+        questionComponentId: "question"
+      }));//  // create a newly instantiated quiz component
     }
   }
 }

@@ -19,10 +19,10 @@ export default class QuizComponent extends Component {
     _relativeMousePositionX;
     _relativeMousePositionY;
 
-    _scoreComponentId = "score";
-    _counterComponentId = "counter";
-    _countdownComponentId = "countdown";
-    _questionComponentId = "question";
+    _scoreComponentId = this.props.scoreComponentId;
+    _counterComponentId = this.props.counterComponentId;
+    _countdownComponentId = this.props.countdownComponentId;
+    _questionComponentId = this.props.questionComponentId;
 
     ready(){
         this.component.addEventListener("COUNTDOWN_FINISHED", () => {
@@ -41,7 +41,7 @@ export default class QuizComponent extends Component {
             this.delete();
         })
 
-        // console.log(this.props.category); // TODO: ASK BENJAMIN WHY THIS IS UNDEFINED 
+        console.log(this.props.category); 
         
         this.component.addEventListener('mousemove', (e) => {
             this._mousePositionX = e.pageX;
