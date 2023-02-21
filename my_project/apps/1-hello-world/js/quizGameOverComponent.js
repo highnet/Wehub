@@ -5,17 +5,22 @@ export default class QuizGameOverComponent extends Component {
     
     globalid = "gameover";
 
-    generateQuizGameOver(){
+    generateQuizGameOver(){ // generate the quiz game over
         let btn = <Button class="end-quiz-btn">End Quiz</Button>
         
         btn.element.on('released', () => {
-            document.getElementById("quiz").wrapper.delete();
-            document.getElementById("quiz-page").wrapper.showStartQuizButton();
+            let quiz = document.getElementById("quiz");
+            if (quiz){
+                quiz.wrapper.delete();
+            }
+            let quizPage = document.getElementById("quiz-page");
+            if (quizPage){
+                quizPage.wrapper.showStartQuizButton();
+            } 
+            
         })
         return btn;
     }
-
-
 
     render(){
         return (

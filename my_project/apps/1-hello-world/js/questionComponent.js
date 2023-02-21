@@ -6,11 +6,11 @@ import quizQuestions from "../quiz-questions.json"
 
 export default class QuestionComponent extends Component {
 
-    generateQuestionText(){     
-        return this.getQuestion(this.props.identifier);
+    generateQuestionText(){ // generate question text
+        return this.getQuestion(this.props.identifier); // get question text based on question identifier
     }
 
-    getQuestion(questionId){
+    getQuestion(questionId){ // get question text based on question identifier
         return Object.values(Object.values(quizQuestions)[questionId])[0];
     }
 
@@ -44,7 +44,4 @@ export default class QuestionComponent extends Component {
             </div>
         </div>);
     }
-
-    
-
 }

@@ -15,16 +15,18 @@ export default class ScoreComponent extends Component {
 
     }
 
-
-    isAtMaxCount(){
+    isAtMaxCount(){ // check if counter is at max count
         return this.props.count == this.props.maxCount;
     }
 
-    incrementCounter(){
+    incrementCounter(){ // increment the counter
         this.props.count++;
-        this.component.innerHTML = this.generateCounter();   
+        this.reRender();   
     }
 
+    reRender(){ // rerender the counter
+        this.component.innerHTML = this.generateCounter();
+    }
 
     render(){
         return (
