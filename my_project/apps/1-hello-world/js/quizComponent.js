@@ -93,7 +93,9 @@ export default class QuizComponent extends Component {
 
         for(let componentName of componentNames){
             let component = document.getElementsByClassName(componentName)[0];
-            result.push(component);
+            if (component){
+                result.push(component);
+            }
         }
 
         return result;
@@ -101,7 +103,9 @@ export default class QuizComponent extends Component {
 
     addClassToMultipleComponents(components, newClass){ // add a class to multiple components at once
         for(let component of components){
-            component.classList.add(newClass);
+            if (component){
+                component.classList.add(newClass);
+            }
         }
     }
 
