@@ -245,7 +245,7 @@
         "Answer2": "Batmobile",
         "Answer3": "Warthog",
         "Answer4": "Blue Falcon",
-        "CorrectAnswerId": 1
+        "CorrectAnswerId": 3
     },
     "Question31":{
         "Prompt": "Which of these is the name of a block in Tetris?",
@@ -280,7 +280,7 @@
         "CorrectAnswerId": 1
     },
     "Question35":{
-        "Prompt": "What popular 90’s videogame eventually became a movie?",
+        "Prompt": "What popular 90s videogame eventually became a movie?",
         "Answer1": "Half-Life",
         "Answer2": "Mortal Kombat",
         "Answer3": "Tony Hawk's Pro Skater",
@@ -349,7 +349,7 @@
         "Answer2": "Hits the racer at first position",
         "Answer3": "Lets you drive over water",
         "Answer4": "Hits the racer at second position",
-        "CorrectAnswerId": 1
+        "CorrectAnswerId": 2
     },
     "Question44":{
         "Prompt": "In Marvel’s Guardians of the Galaxy, you play as:",
@@ -365,7 +365,7 @@
         "Answer2": "Saboteurs",
         "Answer3": "Impostors",
         "Answer4": "Pests",
-        "CorrectAnswerId": 1
+        "CorrectAnswerId": 3
     },
     "Question46":{
         "Prompt": "In Counter-Strike: Global Offensive, the highest achieveable rank is:",
