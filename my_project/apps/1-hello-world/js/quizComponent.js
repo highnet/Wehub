@@ -139,6 +139,7 @@ export default class QuizComponent extends Component {
 
         if (correct){
             document.getElementById("score").wrapper.incrementScore();
+            confetti();
         } else {
             document.getElementById("score").wrapper.decrementScore();
         }
