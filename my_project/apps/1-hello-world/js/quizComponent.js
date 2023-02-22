@@ -39,8 +39,6 @@ export default class QuizComponent extends Component {
             this.delete();
         })
 
-        console.log(this.props.category); 
-
         this._mousePos = new MousePosition();
 
     }
