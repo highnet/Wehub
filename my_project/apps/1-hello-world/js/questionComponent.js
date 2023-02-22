@@ -1,7 +1,6 @@
 import { Component } from "pagejs/components";
 import AnswerComponent from "./answerComponent";
 import PromptComponent from "./promptComponent";
-import quizQuestions from "../quiz-questions-gaming.json"
 
 
 export default class QuestionComponent extends Component {
@@ -18,7 +17,7 @@ export default class QuestionComponent extends Component {
     }
 
     getQuestion(questionId){ // get question text based on question identifier
-        return Object.values(Object.values(quizQuestions)[questionId])[0];
+        return Object.values(Object.values(this.props.questions)[questionId])[0];
     }
 
     delete(){
@@ -30,7 +29,8 @@ export default class QuestionComponent extends Component {
         <div class='question-component'>
             <div class='prompt-anchor'>
                 <PromptComponent props={{
-                    questionIdentifier: this.props.identifier
+                    questionIdentifier: this.props.identifier,
+                    questions: this.props.questions
                 }}
                 />
             </div>
@@ -38,18 +38,22 @@ export default class QuestionComponent extends Component {
                 <AnswerComponent props={{
                     answerIdentifier: 1,
                     questionIdentifier: this.props.identifier,
+                    questions: this.props.questions
                 }}/>
                 <AnswerComponent props={{
                     answerIdentifier: 2,
                     questionIdentifier: this.props.identifier,
+                    questions: this.props.questions
                 }}/>
                 <AnswerComponent props={{
                     answerIdentifier: 3,
                     questionIdentifier: this.props.identifier,
+                    questions: this.props.questions
                 }}/>
                 <AnswerComponent props={{
                     answerIdentifier: 4,
                     questionIdentifier: this.props.identifier,
+                    questions: this.props.questions
                 }}/>
 
             </div>

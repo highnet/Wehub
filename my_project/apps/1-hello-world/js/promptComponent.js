@@ -1,5 +1,4 @@
 import { Component } from "pagejs/components";
-import quizQuestions from "../quiz-questions-gaming.json"
 
 export default class PromptComponent extends Component {
     
@@ -8,7 +7,7 @@ export default class PromptComponent extends Component {
     }
 
     getPrompt(questionId){ // get the question promp based on question id
-        return Object.values(Object.values(quizQuestions)[questionId])[0];
+        return Object.values(Object.values(this.props.questions)[questionId])[0];
     }
 
     generatePromptHeading(){
