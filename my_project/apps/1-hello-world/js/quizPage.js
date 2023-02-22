@@ -74,7 +74,6 @@ export default class QuizPage extends Page {
     let quizAnchor = document.getElementsByClassName("quiz-anchor")[0];
     if (quizAnchor){
       quizAnchor.appendChild(render(QuizComponent,{
-        category: "gaming",
         scoreComponentId: "score",
         counterComponentId: "counter",
         countdownComponentId: "countdown",
