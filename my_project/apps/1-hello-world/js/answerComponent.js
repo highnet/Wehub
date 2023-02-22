@@ -9,7 +9,7 @@ export default class AnswerComponent extends Component {
     }
 
     getAnswer(questionId, answerId){ // get the answer text based on question id and answer id
-        return Object.values(Object.values(quizQuestions)[questionId])[answerId];
+        return Object.values(Object.values(this.props.questions)[questionId])[answerId];
     }
 
     isCorrectAnswer(){ // check if answer is correct

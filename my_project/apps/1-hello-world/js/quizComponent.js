@@ -1,13 +1,13 @@
 import { Component } from "pagejs/components";
 import { render } from "pagejs";
-import quizQuestions from "../quiz-questions-gaming.json";
+import {MousePosition} from "./mousePosition";
+
 import QuestionComponent from "./questionComponent";
 import ScoreComponent from "./scoreComponent";
 import CounterComponent from "./counterComponent";
 import GameOverComponent from "./gameOverComponent";
 import CountDownComponent from "./countDownComponent";
 import ProgessBarComponent from "./progessBarComponent";
-import {MousePosition} from "./mousePosition";
 
 export default class QuizComponent extends Component {
     
@@ -48,7 +48,7 @@ export default class QuizComponent extends Component {
     generateRandomQuestionIdSet(){ // generate a set of random question ids
         let set = [];
 
-        for(let i = 0 ; i < Object.keys(quizQuestions).length; i++){
+        for(let i = 0 ; i < Object.keys(this.props.questions).length; i++){
             set.push(i); // populate the set with {0, 1, 2, ..., quizQuestions.length}
         }
 
@@ -106,6 +106,7 @@ export default class QuizComponent extends Component {
             class='question-anchor'>
                 <QuestionComponent props={{
                   identifier: this.nextQuestionId(),
+                  questions: this.props.questions
                 }}/>
             </div>
             <div class='quiz-gameover-anchor'>
@@ -213,7 +214,7 @@ export default class QuizComponent extends Component {
 
     instantiateQuestion(newQuestionId){ // instantiate a question given a question id
         let questionAnchor = document.getElementsByClassName("question-anchor")[0];
-        let newQuestionComponent = render(QuestionComponent, {identifier:newQuestionId});
+        let newQuestionComponent = render(QuestionComponent, {identifier:newQuestionId, questions: this.props.questions});
         questionAnchor.append(newQuestionComponent);
     }
 

@@ -1,8 +1,7 @@
 import { Page, Button } from "pagejs/components";
 import QuizComponent from "./quizComponent";
 import {render} from "pagejs";
-
-
+import quizQuestions from "../quiz-questions-gaming.json";
 
 export default class QuizPage extends Page {
 
@@ -79,7 +78,8 @@ export default class QuizPage extends Page {
         scoreComponentId: "score",
         counterComponentId: "counter",
         countdownComponentId: "countdown",
-        questionComponentId: "question"
+        questionComponentId: "question",
+        questions: quizQuestions,
       }));//  // create a newly instantiated quiz component
     }
 
