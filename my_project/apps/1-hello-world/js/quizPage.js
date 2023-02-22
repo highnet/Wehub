@@ -2,6 +2,8 @@ import { Page, Button } from "pagejs/components";
 import QuizComponent from "./quizComponent";
 import {render} from "pagejs";
 
+
+
 export default class QuizPage extends Page {
 
   globalid = "quiz-page";
@@ -80,5 +82,8 @@ export default class QuizPage extends Page {
         questionComponentId: "question"
       }));//  // create a newly instantiated quiz component
     }
+
+
   }
+
 }

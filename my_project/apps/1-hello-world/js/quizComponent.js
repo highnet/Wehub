@@ -7,6 +7,7 @@ import CounterComponent from "./counterComponent";
 import GameOverComponent from "./gameOverComponent";
 import CountDownComponent from "./countDownComponent";
 import ProgessBarComponent from "./progessBarComponent";
+import {MousePosition} from "./mousePosition";
 
 export default class QuizComponent extends Component {
     
@@ -14,15 +15,12 @@ export default class QuizComponent extends Component {
     _questionIdSet =  this.generateRandomQuestionIdSet(); // generate a set of random question ids
     _timePerQuestion = 10;
 
-    _mousePositionX;
-    _mousePositionY;
-    _relativeMousePositionX;
-    _relativeMousePositionY;
-
     _scoreComponentId = this.props.scoreComponentId;
     _counterComponentId = this.props.counterComponentId;
     _countdownComponentId = this.props.countdownComponentId;
     _questionComponentId = this.props.questionComponentId;
+
+    _mousePos;
 
     ready(){
         this.component.addEventListener("COUNTDOWN_FINISHED", () => {
@@ -42,13 +40,8 @@ export default class QuizComponent extends Component {
         })
 
         console.log(this.props.category); 
-        
-        this.component.addEventListener('mousemove', (e) => {
-            this._mousePositionX = e.pageX;
-            this._mousePositionY = e.pageY;
-            this._relativeMousePositionX = this._mousePositionX / document.body.clientWidth;
-            this._relativeMousePositionY = this._mousePositionY/document.body.clientHeight;
-        }); 
+
+        this._mousePos = new MousePosition();
 
     }
 
@@ -179,7 +172,7 @@ export default class QuizComponent extends Component {
         confetti({
             particleCount: 100,
             spread: 90,
-            origin: { x: this._relativeMousePositionX, y: this._relativeMousePositionY }
+            origin: { x: this._mousePos.getRelativeMousePosition().x, y: this._mousePos.getRelativeMousePosition().y }
           });
 
         if (correct){
