@@ -13,8 +13,10 @@ import ProgessBarComponent from "./progessBarComponent";
 export default class QuizComponent extends Component {
     
     globalid = "quiz";
+    _questions = this.props.questions;
     _questionIdSet =  this.generateRandomQuestionIdSet(); // generate a set of random question ids
-    _timePerQuestion = 10;
+    _timePerQuestion = this.props.timePerQuestion || 10;
+    _numberOfQuestions = this.props.numberOfQuestions || 10;
 
     _scoreComponentId = this.props.scoreComponentId;
     _counterComponentId = this.props.counterComponentId;
@@ -49,7 +51,7 @@ export default class QuizComponent extends Component {
     generateRandomQuestionIdSet(){ // generate a set of random question ids
         let set = [];
 
-        for(let i = 0 ; i < Object.keys(this.props.questions).length; i++){
+        for(let i = 0 ; i < Object.keys(this._questions).length; i++){
             set.push(i); // populate the set with {0, 1, 2, ..., quizQuestions.length}
         }
 
@@ -81,7 +83,7 @@ export default class QuizComponent extends Component {
             <div class='question-counter'>
                <CounterComponent props={{
                 count: 0,
-                maxCount: 9,
+                maxCount: this._numberOfQuestions - 1,
                 preLabel: "Question:",
                 midLabel: "of",
                }}/>
@@ -107,7 +109,7 @@ export default class QuizComponent extends Component {
             class='question-anchor'>
                 <QuestionComponent props={{
                   identifier: this.nextQuestionId(),
-                  questions: this.props.questions
+                  questions: this._questions
                 }}/>
             </div>
             <div class='quiz-gameover-anchor'>
@@ -233,7 +235,7 @@ export default class QuizComponent extends Component {
 
     instantiateQuestion(newQuestionId){ // instantiate a question given a question id
         let questionAnchor = document.getElementsByClassName("question-anchor")[0];
-        let newQuestionComponent = render(QuestionComponent, {identifier:newQuestionId, questions: this.props.questions});
+        let newQuestionComponent = render(QuestionComponent, {identifier:newQuestionId, questions: this._questions});
         questionAnchor.append(newQuestionComponent);
     }
 
