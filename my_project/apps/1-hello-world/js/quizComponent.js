@@ -1,6 +1,7 @@
 import { Component } from "pagejs/components";
 import { render } from "pagejs";
 import {MousePosition} from "./mousePosition";
+import { TouchInput } from "./touchInput";
 
 import QuestionComponent from "./questionComponent";
 import ScoreComponent from "./scoreComponent";
@@ -21,6 +22,7 @@ export default class QuizComponent extends Component {
     _questionComponentId = this.props.questionComponentId;
 
     _mousePos;
+    _touchInput;
 
     ready(){
         this.component.addEventListener("COUNTDOWN_FINISHED", () => {
@@ -39,6 +41,7 @@ export default class QuizComponent extends Component {
             this.delete();
         })
 
+        this._touchInput = new TouchInput();
         this._mousePos = new MousePosition();
 
     }
@@ -162,20 +165,38 @@ export default class QuizComponent extends Component {
         }
     }
 
+
     delete(){ // delete this component
         this.component.remove();
     }
 
     awardResult(correct){ // award result, based on correctness
 
-        confetti({
-            particleCount: 100,
-            spread: 90,
-            origin: { x: this._mousePos.getRelativeMousePosition().x, y: this._mousePos.getRelativeMousePosition().y }
-          });
 
         if (correct){
             document.getElementById(this._scoreComponentId).dispatchEvent(new Event("INCREMENT_SCORE"));
+            let xConfetti = 0;
+            let yConfetti = 0;
+
+            // Mouse Input
+            /*
+            xConfetti = this._mousePos.getRelativeMousePosition().x;
+            yConfetti = this._mousePos.getRelativeMousePosition().y;
+            */
+
+            // Touch Input
+            xConfetti = this._touchInput.getLatestTouchRelativePosition().x;
+            yConfetti = this._touchInput.getLatestTouchRelativePosition().y;
+
+            if (xConfetti == 0) xConfetti = 0.5;
+            if (yConfetti == 0) yConfetti = 0.5;
+
+            confetti({
+                particleCount: 100,
+                spread: 90,
+                origin: { x: xConfetti, y: yConfetti }
+            });
+
         } else {
             document.getElementById(this._scoreComponentId).dispatchEvent(new Event("DECREMENT_SCORE"));
         }

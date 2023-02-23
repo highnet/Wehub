@@ -1,7 +1,7 @@
 import { Page, Button } from "pagejs/components";
 import QuizComponent from "./quizComponent";
 import {render} from "pagejs";
-import quizQuestions from "../quiz-questions-gaming.json";
+import quizQuestions from "../quiz-questions-geography.json";
 
 export default class QuizPage extends Page {
 
