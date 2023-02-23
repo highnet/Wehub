@@ -7,13 +7,14 @@ import geographyQuestions from "../quiz-questions-geography.json";
 export default class QuizPage extends Page {
 
   globalid = "quiz-page";
-  
+  _category = "geography";
 
   ready(){
     document.getElementById(this.globalid).addEventListener("GAMEOVER_CLICKED", () => {
       this.showStartQuizButton();
     })
   }
+  
   render() {
     return (
       <div>
@@ -40,7 +41,7 @@ export default class QuizPage extends Page {
     btn.element.on('released', () => {
       this.hideStartQuizButton(); // hide the start quiz button
       this.showThinker();
-      this.generateQuiz("gaming"); // generate a new quiz
+      this.generateQuiz(this._category); // generate a new quiz
     })
     return btn;
   }
@@ -75,6 +76,7 @@ export default class QuizPage extends Page {
     let quizAnchor = document.getElementsByClassName("quiz-anchor")[0];
 
     let quizQuestions = "";
+
     if (category == "geography"){
         quizQuestions = geographyQuestions;
     } else if (category == "gaming"){
@@ -82,6 +84,7 @@ export default class QuizPage extends Page {
     } else {
       quizQuestions = gamingQuestions;
     }
+
     if (quizAnchor){
       quizAnchor.appendChild(render(QuizComponent,{
         scoreComponentId: "score",
