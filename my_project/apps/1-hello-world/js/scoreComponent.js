@@ -4,22 +4,35 @@ export default class ScoreComponent extends Component {
 
     globalid = "score";
 
+    _score;
+    _preLabel;
+    _postLabel;
+    _positiveOnly;
+    
     ready(){
+
+        this._score = this.props.score || 0;
+        this._preLabel = this.props.preLabel || "";
+        this._postLabel = this.props.postLabel || "";
+        this._positiveOnly = this.props.positiveOnly || false;
+
         this.component.addEventListener("INCREMENT_SCORE", () => {
             this.incrementScore();
         })
         this.component.addEventListener("DECREMENT_SCORE", () => {
             this.decrementScore();
         })
+
+        this.reRender();
     }
 
     incrementScore(){ // increment the score
-        this.props.score++;
+        this._score++;
         this.reRender();
     }
     decrementScore(){
-        if (this.props.positiveOnly && this.props.score == 0) return;
-        this.props.score--;
+        if (this._positiveOnly && this._score == 0) return;
+        this._score--;
         this.reRender();
     }
 
@@ -30,13 +43,13 @@ export default class ScoreComponent extends Component {
     generateScore(){ // generates the score
         let score = `
         <div class='score-prelabel'>
-            ${this.props.preLabel.toString()}
+            ${this._preLabel}
         </div>
         <div class='score-value'>
-            ${this.props.score.toString()}
+            ${this._score}
         </div>
         <div class='score-postlabel'>
-            ${this.props.postLabel.toString()}
+            ${this._postLabel}
         </div>
         `
         return score;

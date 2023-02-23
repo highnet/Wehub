@@ -101,7 +101,8 @@ export default class QuizComponent extends Component {
                     timer: this._timePerQuestion,
                     postLabel: "s",
                     onFinishedNotify: this.globalid,
-                    onTickReport: "progressbar-main"
+                    onTickReport: "progressbar-main",
+                    startingTime: this._timePerQuestion,
                 }}/>
             </div>
 
@@ -173,8 +174,6 @@ export default class QuizComponent extends Component {
     }
 
     awardResult(correct){ // award result, based on correctness
-
-
         if (correct){
             document.getElementById(this._scoreComponentId).dispatchEvent(new Event("INCREMENT_SCORE"));
             let xConfetti = 0;

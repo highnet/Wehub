@@ -3,13 +3,25 @@ import { Component } from "pagejs/components";
 export default class CountDownComponent extends Component {
 
     _interval;
+
     _startingTime;
+    _timer;
+
+    _postLabel;
+    _onFinishedNotify;
+    _onTickReport;
 
     globalid = "countdown";
 
-    ready(){
+    ready(){ 
+        // TODO: finish adding default prop values
+        this._timer = this.props.timer || 20;
+        this._startingTime = this.props.startingTime;
+        this._postLabel = this.props.postLabel;
+        this._onFinishedNotify = this.props.onFinishedNotify;
+        this._onTickReport = this.props.onTickReport;
+
         this.start();
-        this._startingTime = this.props.timer;
 
         this.component.addEventListener("CLEAR", () => {
             this.clear();
@@ -18,6 +30,9 @@ export default class CountDownComponent extends Component {
         this.component.addEventListener("SET_TIMER", (e) => {
             this.setTimer(e.detail.time())
         });
+        
+        this.reRender();
+
     }
 
     clear(){
@@ -28,18 +43,18 @@ export default class CountDownComponent extends Component {
     start(){
         if (this._interval == undefined){
         this._interval = setInterval(() =>  {
-            if (this.props.timer >= 0){
-                this.props.timer--;
+            if (this._timer >= 0){
+                this._timer--;
                 this.reRender();
             }
-            if (this.props.timer < 0){
+            if (this._timer < 0){
                 this.clear();
-                document.getElementById(this.props.onFinishedNotify).dispatchEvent(new Event("COUNTDOWN_FINISHED"));
+                document.getElementById(this._onFinishedNotify).dispatchEvent(new Event("COUNTDOWN_FINISHED"));
             }
 
-            document.getElementById(this.props.onTickReport).dispatchEvent(
+            document.getElementById(this._onTickReport).dispatchEvent(
                 new CustomEvent("PROGRESS_REPORT", {
-                  detail: { percentage: () => (this.props.timer / this._startingTime) * 100 },
+                  detail: { percentage: () => (this._timer / this._startingTime) * 100 },
                 }));
 
             }, 1000); // update every second
@@ -49,11 +64,12 @@ export default class CountDownComponent extends Component {
 
     setTimer(seconds){
         this._startingTime = seconds;
-        this.props.timer = seconds;
-        document.getElementById(this.props.onTickReport).dispatchEvent(
+        this._timer = seconds;
+        document.getElementById(this._onTickReport).dispatchEvent(
             new CustomEvent("PROGRESS_REPORT", {
-              detail: { percentage: () => (this.props.timer / this._startingTime) * 100 },
-            }));        this.start();
+              detail: { percentage: () => (this._timer / this._startingTime) * 100 },
+            }));        
+        this.start();
         this.reRender();
     }
 
@@ -61,7 +77,7 @@ export default class CountDownComponent extends Component {
         let countDown = 
         `
         <div class="countdown-timer">
-            ${this.props.timer.toString() + this.props.postLabel} 
+            ${this._timer + this.props.postLabel} 
         </div>
         `;
         return countDown;
