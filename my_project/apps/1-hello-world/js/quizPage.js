@@ -1,7 +1,8 @@
 import { Page, Button } from "pagejs/components";
 import QuizComponent from "./quizComponent";
 import {render} from "pagejs";
-import quizQuestions from "../quiz-questions-geography.json";
+import gamingQuestions from "../quiz-questions-gaming.json";
+import geographyQuestions from "../quiz-questions-geography.json";
 
 export default class QuizPage extends Page {
 
@@ -39,7 +40,7 @@ export default class QuizPage extends Page {
     btn.element.on('released', () => {
       this.hideStartQuizButton(); // hide the start quiz button
       this.showThinker();
-      this.generateQuiz(); // generate a new quiz
+      this.generateQuiz("gaming"); // generate a new quiz
     })
     return btn;
   }
@@ -70,8 +71,17 @@ export default class QuizPage extends Page {
     }
   }
 
-  generateQuiz(){ // generate a new quiz
+  generateQuiz(category){ // generate a new quiz
     let quizAnchor = document.getElementsByClassName("quiz-anchor")[0];
+
+    let quizQuestions = "";
+    if (category == "geography"){
+        quizQuestions = geographyQuestions;
+    } else if (category == "gaming"){
+      quizQuestions = gamingQuestions;
+    } else {
+      quizQuestions = gamingQuestions;
+    }
     if (quizAnchor){
       quizAnchor.appendChild(render(QuizComponent,{
         scoreComponentId: "score",

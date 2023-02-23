@@ -25,7 +25,6 @@ export class TouchInput {
         this._latestTouchY = y;
         this._relativeLatestTouchX = (this._latestTouchX / document.body.clientWidth);
         this._relativeLatestTouchY = (this._latestTouchY / document.body.clientHeight);
-        console.log(this._relativeLatestTouchX, this._relativeLatestTouchY);
     }
 
   }
