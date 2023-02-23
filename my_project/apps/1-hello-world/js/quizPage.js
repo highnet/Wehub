@@ -74,7 +74,6 @@ export default class QuizPage extends Page {
 
   generateQuiz(category){ // generate a new quiz
     let quizAnchor = document.getElementsByClassName("quiz-anchor")[0];
-
     let quizQuestions = "";
 
     if (category == "geography"){
@@ -93,8 +92,8 @@ export default class QuizPage extends Page {
         questionComponentId: "question",
         questions: quizQuestions,
         timePerQuestion: 10,
-        numberOfQuestions: 5,
-      }));//  // create a newly instantiated quiz component
+        numberOfQuestions: 10,
+      }));  // create a newly instantiated quiz component
     }
 
 

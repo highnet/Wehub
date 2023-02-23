@@ -4,17 +4,27 @@ export default class CounterComponent extends Component {
 
     globalid = "counter"
 
+    _preLabel;
+    _count;
+    _midLabel;
+    _maxCount;
+
     ready(){
+       this._preLabel = this.props.preLabel || "Counter:";
+       this._count = this.props.count || 0;
+       this._midLabel = this.props.midLabel || "of";
+       this._maxCount = this.props.maxCount || 1;
         this.component.addEventListener("INCREMENT_COUNTER", () => {
             this.incrementCounter();
         })
+        this.reRender();
     }
 
     generateCounter(){
         let counter = 
         `
         <div class="counter-value">
-            ${this.props.preLabel + " " +  (this.props.count + 1).toString() +  " " + this.props.midLabel + " " + (this.props.maxCount + 1).toString()} 
+            ${this._preLabel + " " +  (this._count + 1).toString() +  " " + this._midLabel + " " + (this._maxCount + 1).toString()} 
         </div>
         `;
         return counter;
@@ -22,11 +32,11 @@ export default class CounterComponent extends Component {
     }
 
     isAtMaxCount(){ // check if counter is at max count
-        return this.props.count == this.props.maxCount;
+        return this._count == this._maxCount;
     }
 
     incrementCounter(){ // increment the counter
-        this.props.count++;
+        this._count++;
         this.reRender();   
     }
 

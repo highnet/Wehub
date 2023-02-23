@@ -1,6 +1,6 @@
 import { Component } from "pagejs/components";
 import { render } from "pagejs";
-import {MousePosition} from "./mousePosition";
+import { MousePosition } from "./mousePosition";
 import { TouchInput } from "./touchInput";
 
 import QuestionComponent from "./questionComponent";

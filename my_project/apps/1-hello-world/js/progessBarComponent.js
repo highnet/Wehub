@@ -3,6 +3,7 @@ import { Component } from "pagejs/components";
 export default class ProgessBarComponent extends Component {
 
     _progressPercentage = NaN;
+    _identifier = this.props.identifier;
 
     ready(){
         this.component.id ="progressbar-" + this.props.identifier;
@@ -10,6 +11,7 @@ export default class ProgessBarComponent extends Component {
         this.component.addEventListener("PROGRESS_REPORT", (e) => {
             this.setProgressPercentage(e.detail.percentage());
         });
+
     }
 
     render(){
@@ -26,7 +28,9 @@ export default class ProgessBarComponent extends Component {
     }
 
     updateStyling(){
-        this.component.style.width = this._progressPercentage + "%";
+        if (this._progressPercentage != NaN){
+            this.component.style.width = this._progressPercentage + "%";
+        }
         this.component.style.backgroundColor = this.interpolateColorByPercentage(
                 this._progressPercentage,
                 [255,0,0],
