@@ -5,21 +5,41 @@ export default class GameOverComponent extends Component {
     
     globalid = "gameover";
 
+    _gameOverBtnText;
+    _onClickDelete;
+    _onClickShow;
+
+    ready(){
+        this._gameOverBtnText = this.props.gameOverBtnText || "GAME OVER";
+        this._onClickDelete = this.props.onClickDelete;
+        this._onClickShow = this.props.onClickShow;
+    }
+
     generateGameOver(){ // generate the quiz game over
-        let btn = <Button class="end-quiz-btn">{this.props.gameOverBtnText}</Button>
+        let btn = <Button class="end-quiz-btn">{this._gameOverBtnText}</Button>
         
         btn.element.on('released', () => {
-            document.getElementById(this.props.onClickDelete).dispatchEvent(new Event("GAMEOVER_DELETE"));
-            document.getElementById(this.props.onClickShow).dispatchEvent(new Event("GAMEOVER_CLICKED"));
+            let elementToDelete = document.getElementById(this._onClickDelete);
+            if (elementToDelete){
+                elementToDelete.dispatchEvent(new Event("GAMEOVER_DELETE"));
+            }
+            
+            let elementToShow = document.getElementById(this._onClickShow);
+            if (elementToShow){
+                elementToShow.dispatchEvent(new Event("GAMEOVER_CLICKED"));
+            }
+            
             
         })
         return btn;
     }
 
+
+
     render(){
+            this.ready();
         return (
         <div class='gameover-component'>
-            <p>Thx for playing!</p>
             {this.generateGameOver()}
         </div>
         );

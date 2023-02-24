@@ -5,15 +5,21 @@ export default class AnswerComponent extends Component {
 
 
     generateAnswerText(){ // generate the answer text
-        return this.getAnswer(this.props.questionIdentifier, this.props.answerIdentifier);
+        this._questionIdentifier = this.props.questionIdentifier;
+        this._answerIdentifier = this.props.answerIdentifier;
+        return this.getAnswer(this._questionIdentifier, this._answerIdentifier);
     }
 
     getAnswer(questionId, answerId){ // get the answer text based on question id and answer id
-        return Object.values(Object.values(this.props.questions)[questionId])[answerId];
+        this._questions = this.props.questions;
+        return Object.values(Object.values(this._questions)[questionId])[answerId];
     }
 
     isCorrectAnswer(){ // check if answer is correct
-        return this.props.answerIdentifier == this.getAnswer(this.props.questionIdentifier, 5);
+        this._answerIdentifier = this.props.answerIdentifier;
+        this._questionIdentifier = this.props.questionIdentifier;
+
+        return this._answerIdentifier == this.getAnswer(this._questionIdentifier, 5);
     }
 
     generateAnswerButton(){ // generate an answer button

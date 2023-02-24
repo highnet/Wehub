@@ -2,12 +2,19 @@ import { Component } from "pagejs/components";
 
 export default class PromptComponent extends Component {
     
+
+    _questionIdentifier;
+    _questions;
+
+
     generatePromptText(){ // generate the question prompt text
-        return this.getPrompt(this.props.questionIdentifier);
+        this._questionIdentifier = this.props.questionIdentifier;
+        return this.getPrompt(this._questionIdentifier);
     }
 
     getPrompt(questionId){ // get the question promp based on question id
-        return Object.values(Object.values(this.props.questions)[questionId])[0];
+        this._questions = this.props.questions;
+        return Object.values(Object.values(this._questions)[questionId])[0];
     }
 
     generatePromptHeading(){

@@ -6,18 +6,15 @@ import PromptComponent from "./promptComponent";
 export default class QuestionComponent extends Component {
     globalid = "question";
 
+    _identifier;
+    _questions;
+
     ready(){
+        this._identifier = this.props.identifier;
+        this._questions = this.props.questions;
         this.component.addEventListener("DELETE_QUESTION", () => {
             this.delete();
         })
-    }
-
-    generateQuestionText(){ // generate question text
-        return this.getQuestion(this.props.identifier); // get question text based on question identifier
-    }
-
-    getQuestion(questionId){ // get question text based on question identifier
-        return Object.values(Object.values(this.props.questions)[questionId])[0];
     }
 
     delete(){

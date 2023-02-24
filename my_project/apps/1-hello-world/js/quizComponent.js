@@ -102,7 +102,6 @@ export default class QuizComponent extends Component {
                     postLabel: "s",
                     onFinishedNotify: this.globalid,
                     onTickReport: "progressbar-main",
-                    startingTime: this._timePerQuestion,
                 }}/>
             </div>
 
