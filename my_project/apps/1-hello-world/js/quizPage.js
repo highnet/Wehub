@@ -134,7 +134,7 @@ export default class QuizPage extends Page {
         countdownComponentId: "countdown",
         questionComponentId: "question",
         questions: quizQuestions,
-        timePerQuestion: 100,
+        timePerQuestion: 10,
         numberOfQuestions: 10,
       }));  // create a newly instantiated quiz component
     }
