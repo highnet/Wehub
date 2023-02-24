@@ -22,7 +22,6 @@ export default class ScoreComponent extends Component {
         this.component.addEventListener("DECREMENT_SCORE", () => {
             this.decrementScore();
         })
-
         this.reRender();
     }
 
