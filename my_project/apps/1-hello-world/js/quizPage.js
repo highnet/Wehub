@@ -14,6 +14,7 @@ export default class QuizPage extends Page {
 
     document.getElementById(this.globalid).addEventListener("GAMEOVER_CLICKED", () => {
       this.showStartQuizButton();
+      this.showBoxes();
     })
   }
 
@@ -76,6 +77,7 @@ export default class QuizPage extends Page {
     let btn = <Button class="start-quiz-btn">Start Quiz</Button>; // instantiate the button
     btn.element.on('released', () => {
       this.hideStartQuizButton(); // hide the start quiz button
+      this.hideBoxes();
       this.generateQuiz(this._category); // generate a new quiz
     })
     return btn;
@@ -97,6 +99,14 @@ export default class QuizPage extends Page {
 
   showStartQuizButton(){ // show the start quiz button
     this.toggleElementVisibility("start-quiz-btn", true); // toggle element visibility of a given class name
+  }
+
+  hideBoxes(){
+    this.toggleElementVisibility("boxes", false);
+  }
+
+  showBoxes(){
+    this.toggleElementVisibility("boxes", true);
   }
 
 
