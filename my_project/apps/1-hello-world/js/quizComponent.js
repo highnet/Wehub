@@ -139,7 +139,6 @@ export default class QuizComponent extends Component {
             "question-component",
             "countdown-component",
             "progressbar-component",
-            "thinker"
             ]
             );
 

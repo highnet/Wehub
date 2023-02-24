@@ -23,9 +23,10 @@ export default class AnswerComponent extends Component {
     }
 
     generateAnswerButton(){ // generate an answer button
+        this._answerIdentifier = this.props.answerIdentifier;
         let btn =
         <Button 
-        class='quiz-btn'>
+        class= {"quiz-btn quiz-btn" + this._answerIdentifier}>
             {this.generateAnswerText()}
         </Button>;
 
@@ -42,7 +43,10 @@ export default class AnswerComponent extends Component {
     render(){
         return (
         <div class='answer-component'>
-            {this.generateAnswerButton()}
+            <div>
+                <div class={"shape shape"+this.props.answerIdentifier}></div>
+                {this.generateAnswerButton()}
+            </div>
         </div>
         );
     }

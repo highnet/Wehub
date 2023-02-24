@@ -24,14 +24,9 @@ export default class QuizPage extends Page {
         <div class="start-quiz-anchor">
           {this.generateStartQuizButton()}
         </div>
-        <div class="flex">
           <div class="quiz-anchor">
 
           </div>
-          <div class="thinker-container">
-            <img class="thinker hidden" src="./assets/img/thinker.png"/>
-          </div>
-        </div>
       </div>
     );
   }
@@ -40,7 +35,6 @@ export default class QuizPage extends Page {
     let btn = <Button class="start-quiz-btn">Start Quiz</Button>; // instantiate the button
     btn.element.on('released', () => {
       this.hideStartQuizButton(); // hide the start quiz button
-      this.showThinker();
       this.generateQuiz(this._category); // generate a new quiz
     })
     return btn;
@@ -64,13 +58,6 @@ export default class QuizPage extends Page {
     this.toggleElementVisibility("start-quiz-btn", true); // toggle element visibility of a given class name
   }
 
-  showThinker(){
-    this.toggleElementVisibility("thinker",true); // toggle element visibility of a given class name
-    let thnkr = document.getElementsByClassName("thinker")[0];
-    if (thnkr){
-      thnkr.classList.remove("gameover");
-    }
-  }
 
   generateQuiz(category){ // generate a new quiz
     let quizAnchor = document.getElementsByClassName("quiz-anchor")[0];
@@ -91,7 +78,7 @@ export default class QuizPage extends Page {
         countdownComponentId: "countdown",
         questionComponentId: "question",
         questions: quizQuestions,
-        timePerQuestion: 10,
+        timePerQuestion: 100,
         numberOfQuestions: 10,
       }));  // create a newly instantiated quiz component
     }

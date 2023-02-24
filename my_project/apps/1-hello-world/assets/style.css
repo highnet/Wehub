@@ -7,21 +7,22 @@ body {
   touch-action: pan-x pan-y;
   width: 100%;
   height: 100%;
+    background-color: #e5e5f7;
+  background-image:  
+    linear-gradient(rgba(68, 76, 247, 0.1) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(68, 76, 247, 0.1) 2px, transparent 2px),
+    linear-gradient(rgba(68, 76, 247, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(68, 76, 247, 0.1) 1px, rgba(229, 229, 247, 0.1) 1px);
+  background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 
-  background-image: url("./backgrounds/ffflux.svg");
-  background-size: cover;
+
 
 }
 
 /*
-  background-color: #e5e5f7;
-  background-image:  
-    linear-gradient(rgba(68, 76, 247, 0.2) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(68, 76, 247, 0.2) 2px, transparent 2px),
-    linear-gradient(rgba(68, 76, 247, 0.2) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(68, 76, 247, 0.2) 1px, rgba(229, 229, 247, 0.2) 1px);
-  background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
-  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  background-image: url("./backgrounds/ffflux.svg");
+  background-size: cover;
 */
 
 .page {
@@ -115,6 +116,7 @@ h1{
 
 .flex {
   display: flex;
+  align-items: center;
 }
 
 .main-grid {
@@ -294,7 +296,6 @@ h1{
 }
 
 .quiz-btn{
-  background-color: #4CAF50; /* Green */
   border: none;
   color: white;
   padding: 15px 30px;
@@ -303,6 +304,19 @@ h1{
   display: block;
   font-size: 18px;
   border: 1px solid white;
+}
+
+.quiz-btn1{
+  background-color: #FF3859;
+}
+.quiz-btn2{
+  background-color: #45A2E5;
+}
+.quiz-btn3{
+  background-color: #FEC009;
+}
+.quiz-btn4{
+  background-color: #67BE39;
 }
 
 .hidden{
@@ -349,3 +363,51 @@ h1{
 .progressbar-component.gameover{
   display: none;
 }
+
+.shape1{
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 20px solid white;
+      translate: 20px 36px;
+}
+
+.shape3{
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  translate: 20px 36px;
+}
+
+.shape4{
+  width: 20px;
+  height: 20px;
+  background: white;
+  translate: 20px 36px;
+}
+
+
+    .shape2 {
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-bottom-color: white;
+      position: relative;
+      top: -10px;
+      translate: 20px 36px;
+
+    }
+    .shape2:after {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 10px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-top-color: white;
+
+    }
+
