@@ -276,7 +276,7 @@ h2{
   border: 1px solid #5000ff;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 550%;
   transform: translate(-50%, -50%);
   text-align: center;
 }

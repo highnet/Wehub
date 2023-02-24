@@ -222,12 +222,19 @@ export default class QuizComponent extends Component {
             });
 
             this.playRandomSound(this._soundsCorrect);
+            TweenMax.to(this.component, 0.2, {x:"+=0", y:"-=20", yoyo:true, repeat:1});
 
         } else {
             document.getElementById(this._scoreComponentId).dispatchEvent(new Event("DECREMENT_SCORE"));
             this.playRandomSound(this._soundsWrong);
 
+            TweenMax.to(this.component, 0.1, {x:"+=0", y:"+=40", yoyo:true, repeat:1});
         }
+
+        let tl = gsap.timeline();
+
+        tl.to(".quiz-component", 0.1, {autoAlpha:0});
+        tl.to(".quiz-component", 0.5, {autoAlpha:1});
 
         if (document.getElementById(this._counterComponentId).wrapper.isAtMaxCount()){
             document.getElementById(this._countdownComponentId).dispatchEvent(new Event("CLEAR"));
