@@ -400,6 +400,8 @@ h2{
   border-right: 10px solid transparent;
   border-bottom: 20px solid white;
   translate: 20px 36px;
+  position: relative;
+  z-index: 99;
 }
 
 .shape2 {
@@ -407,9 +409,10 @@ h2{
     height: 0;
     border: 10px solid transparent;
     border-bottom-color: white;
-    position: relative;
     top: -10px;
     translate: 20px 36px;
+    position: relative;
+    z-index: 99;
   }
 
 .shape2:after {
@@ -421,6 +424,7 @@ h2{
   height: 0;
   border: 10px solid transparent;
   border-top-color: white;
+  
 }
 
 .shape3{
@@ -429,6 +433,9 @@ h2{
   background: white;
   border-radius: 50%;
   translate: 20px 36px;
+  position: relative;
+  z-index: 99;
+
 }
 
 .shape4{
@@ -441,47 +448,47 @@ h2{
 .boxshape1{
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 20px solid white;
-  translate: 0 40px;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 40px solid white;
+  translate: 0 30px;
 }
 
 .boxshape2 {
     width: 0;
     height: 0;
-    border: 10px solid transparent;
+    border: 20px solid transparent;
     border-bottom-color: white;
     position: relative;
-    top: -10px;
-    translate: 0 40px;
+    top: -20px;
+    translate: 0 30px;
   }
 
 .boxshape2:after {
   content: '';
   position: absolute;
-  left: -10px;
-  top: 10px;
+  left: -20px;
+  top: 20px;
   width: 0;
   height: 0;
-  border: 10px solid transparent;
+  border: 20px solid transparent;
   border-top-color: white;
 
 }
 
 .boxshape3{
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   background: white;
   border-radius: 50%;
-  translate: 0 40px;
+  translate: 0 30px;
 }
 
 .boxshape4{
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   background: white;
-  translate: 0 40px;
+  translate: 0 30px;
 }
 
 .boxes{
