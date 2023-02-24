@@ -4,17 +4,17 @@ export class TouchInput {
     _latestTouchY;
     _relativeLatestTouchX;
     _relativeLatestTouchY;
-  
+
     constructor() {
         window.addEventListener("touchstart", (event) => this.handleTouch(event));
     }
-  
+
     getLatestTouchPosition() {
-      return { x: this._latestTouchX, y: this._latestTouchY };
+        return { x: this._latestTouchX, y: this._latestTouchY };
     }
 
-    getLatestTouchRelativePosition(){
-        return { x: this._relativeLatestTouchX, y:this._relativeLatestTouchY }
+    getLatestTouchRelativePosition() {
+        return { x: this._relativeLatestTouchX, y: this._relativeLatestTouchY }
     }
 
     handleTouch(event) {
@@ -27,4 +27,4 @@ export class TouchInput {
         this._relativeLatestTouchY = (this._latestTouchY / document.body.clientHeight);
     }
 
-  }
+}

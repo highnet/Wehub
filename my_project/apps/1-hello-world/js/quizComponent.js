@@ -11,10 +11,10 @@ import CountDownComponent from "./countDownComponent";
 import ProgessBarComponent from "./progessBarComponent";
 
 export default class QuizComponent extends Component {
-    
+
     globalid = "quiz";
     _questions = this.props.questions;
-    _questionIdSet =  this.generateRandomQuestionIdSet(); // generate a set of random question ids
+    _questionIdSet = this.generateRandomQuestionIdSet(); // generate a set of random question ids
     _timePerQuestion = this.props.timePerQuestion || 10;
     _numberOfQuestions = this.props.numberOfQuestions || 10;
 
@@ -29,26 +29,26 @@ export default class QuizComponent extends Component {
     _soundsCorrect;
     _soundsWrong;
 
-      cacheSounds() {
+    cacheSounds() {
         this._soundsCorrect = [];
         this._soundsWrong = [];
 
-        for(let i = 1 ; i <= 25; i++){
+        for (let i = 1; i <= 25; i++) {
             this._soundsCorrect.push(new Audio("./assets/audio/Win sound " + i + ".wav"));
         }
 
-        for(let i = 1 ; i <= 25; i++){
+        for (let i = 1; i <= 25; i++) {
             this._soundsWrong.push(new Audio("./assets/audio/Error sound " + i + ".wav"));
         }
 
     }
 
-      playRandomSound(soundArray) {
-        let randomSoundId = Math.floor(Math.random() * soundArray.length); 
+    playRandomSound(soundArray) {
+        let randomSoundId = Math.floor(Math.random() * soundArray.length);
         soundArray[randomSoundId].play();
-     }
+    }
 
-    ready(){
+    ready() {
         this.cacheSounds();
 
         this.component.addEventListener("COUNTDOWN_FINISHED", () => {
@@ -72,15 +72,15 @@ export default class QuizComponent extends Component {
 
     }
 
-    generateRandomQuestionIdSet(){ // generate a set of random question ids
+    generateRandomQuestionIdSet() { // generate a set of random question ids
         let set = [];
 
-        for(let i = 0 ; i < Object.keys(this._questions).length; i++){
+        for (let i = 0; i < Object.keys(this._questions).length; i++) {
             set.push(i); // populate the set with {0, 1, 2, ..., quizQuestions.length}
         }
 
         set = this.shuffleSet(set); // shuffle the set using Fiser-Yates shuffle
-        
+
         return set;
     }
 
@@ -95,86 +95,86 @@ export default class QuizComponent extends Component {
         return set;
     }
 
-    render(){
+    render() {
         return (
-          
-        <div class='quiz-component'>
-            <div class ='progressbar-anchor'>
-                <ProgessBarComponent props ={{
-                    identifier: "main"
-                }}/>
-            </div>
-            <div class='question-counter'>
-               <CounterComponent props={{
-                count: 0,
-                maxCount: this._numberOfQuestions - 1,
-                preLabel: "Question:",
-                midLabel: "of",
-               }}/>
-            </div>
-            <div class='score-anchor'>
-                <ScoreComponent props={{
-                  score: 0,
-                  preLabel: "•",
-                  postLabel: "points",
-                  positiveOnly: true
-                }}/>
-            </div>
-            <div class ='countdown-anchor'>
-                <CountDownComponent props ={{
-                    timer: this._timePerQuestion,
-                    postLabel: "s",
-                    onFinishedNotify: this.globalid,
-                    onTickReport: "progressbar-main",
-                }}/>
-            </div>
 
-            <div 
-            class='question-anchor'>
-                <QuestionComponent props={{
-                  identifier: this.nextQuestionId(),
-                  questions: this._questions
-                }}/>
+            <div class='quiz-component'>
+                <div class='progressbar-anchor'>
+                    <ProgessBarComponent props={{
+                        identifier: "main"
+                    }} />
+                </div>
+                <div class='question-counter'>
+                    <CounterComponent props={{
+                        count: 0,
+                        maxCount: this._numberOfQuestions - 1,
+                        preLabel: "Question:",
+                        midLabel: "of",
+                    }} />
+                </div>
+                <div class='score-anchor'>
+                    <ScoreComponent props={{
+                        score: 0,
+                        preLabel: "•",
+                        postLabel: "points",
+                        positiveOnly: true
+                    }} />
+                </div>
+                <div class='countdown-anchor'>
+                    <CountDownComponent props={{
+                        timer: this._timePerQuestion,
+                        postLabel: "s",
+                        onFinishedNotify: this.globalid,
+                        onTickReport: "progressbar-main",
+                    }} />
+                </div>
+
+                <div
+                    class='question-anchor'>
+                    <QuestionComponent props={{
+                        identifier: this.nextQuestionId(),
+                        questions: this._questions
+                    }} />
+                </div>
+                <div class='quiz-gameover-anchor'>
+                    <GameOverComponent props={{
+                        gameOverBtnText: "End Quiz",
+                        onClickDelete: "quiz",
+                        onClickShow: "quiz-page"
+                    }} />
+                </div>
             </div>
-            <div class='quiz-gameover-anchor'>
-                <GameOverComponent props={{
-                    gameOverBtnText: "End Quiz",
-                    onClickDelete: "quiz",
-                    onClickShow: "quiz-page"
-                }}/>
-            </div>
-        </div>
         );
     }
 
-    nextQuestionId(){ // return the next question id in the question id set, generates a new question id set if the set is empty
-        if (this._questionIdSet.length == 0){
+    nextQuestionId() { // return the next question id in the question id set, generates a new question id set if the set is empty
+        if (this._questionIdSet.length == 0) {
             this._questionIdSet = this.generateRandomQuestionIdSet(); // generate a set of random question ids
         }
         return this._questionIdSet.pop();
     }
-    
-    showGameOver(){ // show the game over scene
-        let components = this.getElementsByClassNames( // get multiple elements at once
-        [
-            "gameover-component",
-            "counter-component",
-            "score-component", 
-            "question-component",
-            "countdown-component",
-            "progressbar-component",
-            ]
-            );
 
-        this.addClassToMultipleComponents(components,"gameover"); // add a class to multiple components at once
+    showGameOver() { // show the game over scene
+        let components = this.getElementsByClassNames( // get multiple elements at once
+            [
+                "gameover-component",
+                "counter-component",
+                "score-component",
+                "question-component",
+                "countdown-component",
+                "progressbar-component",
+            ]
+        );
+
+        this.addClassToMultipleComponents(components, "gameover"); // add a class to multiple components at once
     }
 
-    getElementsByClassNames(componentNames){ // get multiple elements at once
+    getElementsByClassNames(componentNames) { // get multiple elements at once
         let result = [];
 
-        for(let componentName of componentNames){
+        for (let componentName of componentNames) {
             let component = document.getElementsByClassName(componentName)[0];
-            if (component){
+            if (component) {
                 result.push(component);
             }
         }
@@ -182,22 +182,22 @@ export default class QuizComponent extends Component {
         return result;
     }
 
-    addClassToMultipleComponents(components, newClass){ // add a class to multiple components at once
-        for(let component of components){
-            if (component){
+    addClassToMultipleComponents(components, newClass) { // add a class to multiple components at once
+        for (let component of components) {
+            if (component) {
                 component.classList.add(newClass);
             }
         }
     }
 
 
-    delete(){ // delete this component
+    delete() { // delete this component
         this.component.remove();
     }
 
-    awardResult(correct){ // award result, based on correctness
+    awardResult(correct) { // award result, based on correctness
 
-        if (correct){
+        if (correct) {
             document.getElementById(this._scoreComponentId).dispatchEvent(new Event("INCREMENT_SCORE"));
             let xConfetti = 0;
             let yConfetti = 0;
@@ -222,21 +222,21 @@ export default class QuizComponent extends Component {
             });
 
             this.playRandomSound(this._soundsCorrect);
-            TweenMax.to(this.component, 0.2, {x:"+=0", y:"-=20", yoyo:true, repeat:1});
+            TweenMax.to(this.component, 0.2, { x: "+=0", y: "-=20", yoyo: true, repeat: 1 });
 
         } else {
             document.getElementById(this._scoreComponentId).dispatchEvent(new Event("DECREMENT_SCORE"));
             this.playRandomSound(this._soundsWrong);
 
-            TweenMax.to(this.component, 0.1, {x:"+=0", y:"+=40", yoyo:true, repeat:1});
+            TweenMax.to(this.component, 0.1, { x: "+=0", y: "+=40", yoyo: true, repeat: 1 });
         }
 
         let tl = gsap.timeline();
 
-        tl.to(".quiz-component", 0.1, {autoAlpha:0});
-        tl.to(".quiz-component", 0.5, {autoAlpha:1});
+        tl.to(".quiz-component", 0.1, { autoAlpha: 0 });
+        tl.to(".quiz-component", 0.5, { autoAlpha: 1 });
 
-        if (document.getElementById(this._counterComponentId).wrapper.isAtMaxCount()){
+        if (document.getElementById(this._counterComponentId).wrapper.isAtMaxCount()) {
             document.getElementById(this._countdownComponentId).dispatchEvent(new Event("CLEAR"));
             this.showGameOver();
             return;
@@ -247,28 +247,28 @@ export default class QuizComponent extends Component {
 
         document.getElementById(this._countdownComponentId).dispatchEvent(
             new CustomEvent("SET_TIMER", {
-              detail: { time: () => this._timePerQuestion },
+                detail: { time: () => this._timePerQuestion },
             }));
 
         this.spawnNextQuestion(); // spawn the next question
-        
+
     }
 
-    spawnNextQuestion(){
+    spawnNextQuestion() {
         this.deleteCurrentQuestion(); // delete current question
         this.instantiateQuestion(this.nextQuestionId()); // instantiate a question given a question id
     }
 
-    deleteCurrentQuestion(){ // delete current question
+    deleteCurrentQuestion() { // delete current question
         let currentQuestion = document.getElementById(this._questionComponentId);
-        if (currentQuestion){
+        if (currentQuestion) {
             currentQuestion.dispatchEvent(new Event("DELETE_QUESTION"));
         }
     }
 
-    instantiateQuestion(newQuestionId){ // instantiate a question given a question id
+    instantiateQuestion(newQuestionId) { // instantiate a question given a question id
         let questionAnchor = document.getElementsByClassName("question-anchor")[0];
-        let newQuestionComponent = render(QuestionComponent, {identifier:newQuestionId, questions: this._questions});
+        let newQuestionComponent = render(QuestionComponent, { identifier: newQuestionId, questions: this._questions });
         questionAnchor.append(newQuestionComponent);
     }
 

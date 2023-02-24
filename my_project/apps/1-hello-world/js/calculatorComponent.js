@@ -494,7 +494,7 @@ export default class CalculatorComponent extends Component {
       this.handleInput(0);
     } else if (backspace && !currentOperandIsEmpty) {
       this.currentOperand.textContent = this.currentOperand.textContent.substring(0, this.currentOperand.textContent.length - 1);
-      if (this.isCurrentOperandEmpty()){
+      if (this.isCurrentOperandEmpty()) {
         this.handleInput(0);
       }
     } else if (allclear && !previousOperandIsEmpty && !currentOperandIsEmpty) {

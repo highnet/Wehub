@@ -13,7 +13,7 @@ export default class CountDownComponent extends Component {
 
     globalid = "countdown";
 
-    ready(){ 
+    ready() {
         // TODO: finish adding default prop values
         this._timer = this.props.timer || 20;
         this._startingTime = this._timer;
@@ -30,62 +30,62 @@ export default class CountDownComponent extends Component {
         this.component.addEventListener("SET_TIMER", (e) => {
             this.setTimer(e.detail.time())
         });
-        
+
         this.reRender();
 
     }
 
-    clear(){
+    clear() {
         clearInterval(this._interval);
         this._interval = undefined;
     }
 
-    start(){
-        if (this._interval == undefined){
-        this._interval = setInterval(() =>  {
-            if (this._timer >= 0){
-                this._timer--;
-                this.reRender();
-            }
-            if (this._timer < 0){
-                this.clear();
-                let elementToNotify = document.getElementById(this._onFinishedNotify);
-                if (elementToNotify){
-                    elementToNotify.dispatchEvent(new Event("COUNTDOWN_FINISHED"));
+    start() {
+        if (this._interval == undefined) {
+            this._interval = setInterval(() => {
+                if (this._timer >= 0) {
+                    this._timer--;
+                    this.reRender();
                 }
-            }
-            let elementToReport = document.getElementById(this._onTickReport);
-            if (elementToReport) {
-                elementToReport.dispatchEvent(
-                new CustomEvent("PROGRESS_REPORT", {
-                  detail: { percentage: () => (this._timer / this._startingTime) * 100 },
-                }));
-            }
-            
+                if (this._timer < 0) {
+                    this.clear();
+                    let elementToNotify = document.getElementById(this._onFinishedNotify);
+                    if (elementToNotify) {
+                        elementToNotify.dispatchEvent(new Event("COUNTDOWN_FINISHED"));
+                    }
+                }
+                let elementToReport = document.getElementById(this._onTickReport);
+                if (elementToReport) {
+                    elementToReport.dispatchEvent(
+                        new CustomEvent("PROGRESS_REPORT", {
+                            detail: { percentage: () => (this._timer / this._startingTime) * 100 },
+                        }));
+                }
+
 
             }, 1000); // update every second
         }
 
     }
 
-    setTimer(seconds){
+    setTimer(seconds) {
         this._startingTime = seconds;
         this._timer = seconds;
-        
-            let elementToReport = document.getElementById(this._onTickReport);
-            if (elementToReport) {
-                elementToReport.dispatchEvent(
+
+        let elementToReport = document.getElementById(this._onTickReport);
+        if (elementToReport) {
+            elementToReport.dispatchEvent(
                 new CustomEvent("PROGRESS_REPORT", {
-                  detail: { percentage: () => (this._timer / this._startingTime) * 100 },
+                    detail: { percentage: () => (this._timer / this._startingTime) * 100 },
                 }));
-            }      
+        }
         this.start();
         this.reRender();
     }
 
-    generateCountDown(){
-        let countDown = 
-        `
+    generateCountDown() {
+        let countDown =
+            `
         <div class="countdown-timer">
             ${this._timer + this._postLabel} 
         </div>
@@ -94,16 +94,16 @@ export default class CountDownComponent extends Component {
 
     }
 
-    reRender(){
+    reRender() {
         this.component.innerHTML = this.generateCountDown();
     }
-    
-    render(){
+
+    render() {
         return (
-        <div 
-        class='countdown-component'>
-            {this.generateCountDown()}
-        </div>
+            <div
+                class='countdown-component'>
+                {this.generateCountDown()}
+            </div>
         );
     }
 }

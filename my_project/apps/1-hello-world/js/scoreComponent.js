@@ -8,8 +8,8 @@ export default class ScoreComponent extends Component {
     _preLabel;
     _postLabel;
     _positiveOnly;
-    
-    ready(){
+
+    ready() {
 
         this._score = this.props.score || 0;
         this._preLabel = this.props.preLabel || "";
@@ -26,25 +26,25 @@ export default class ScoreComponent extends Component {
         this.reRender();
     }
 
-    getScore(){
+    getScore() {
         return this._score;
     }
 
-    incrementScore(){ // increment the score
+    incrementScore() { // increment the score
         this._score++;
         this.reRender();
     }
-    decrementScore(){
+    decrementScore() {
         if (this._positiveOnly && this._score == 0) return;
         this._score--;
         this.reRender();
     }
 
-    reRender(){ // rerenders the component
+    reRender() { // rerenders the component
         this.component.innerHTML = this.generateScore();
     }
 
-    generateScore(){ // generates the score
+    generateScore() { // generates the score
         let score = `
         <div class='score-prelabel'>
             ${this._preLabel}
@@ -59,12 +59,12 @@ export default class ScoreComponent extends Component {
         return score;
     }
 
-    render(){
+    render() {
         return (
-        <div 
-        class='score-component'>
-            {this.generateScore()}
-        </div>
+            <div
+                class='score-component'>
+                {this.generateScore()}
+            </div>
         );
     }
 

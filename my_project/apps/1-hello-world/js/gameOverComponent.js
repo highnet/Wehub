@@ -2,46 +2,46 @@ import { Component, Button } from "pagejs/components";
 
 
 export default class GameOverComponent extends Component {
-    
+
     globalid = "gameover";
 
     _gameOverBtnText;
     _onClickDelete;
     _onClickShow;
 
-    ready(){
+    ready() {
         this._gameOverBtnText = this.props.gameOverBtnText || "GAME OVER";
         this._onClickDelete = this.props.onClickDelete;
         this._onClickShow = this.props.onClickShow;
     }
 
-    generateGameOver(){ // generate the quiz game over
+    generateGameOver() { // generate the quiz game over
         let btn = <Button class="end-quiz-btn">{this._gameOverBtnText}</Button>
-        
+
         btn.element.on('released', () => {
             let elementToDelete = document.getElementById(this._onClickDelete);
-            if (elementToDelete){
+            if (elementToDelete) {
                 elementToDelete.dispatchEvent(new Event("GAMEOVER_DELETE"));
             }
-            
+
             let elementToShow = document.getElementById(this._onClickShow);
-            if (elementToShow){
+            if (elementToShow) {
                 elementToShow.dispatchEvent(new Event("GAMEOVER_CLICKED"));
             }
-            
-            
+
+
         })
         return btn;
     }
 
 
 
-    render(){
-            this.ready();
+    render() {
+        this.ready();
         return (
-        <div class='gameover-component'>
-            {this.generateGameOver()}
-        </div>
+            <div class='gameover-component'>
+                {this.generateGameOver()}
+            </div>
         );
     }
 
