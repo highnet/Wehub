@@ -11,6 +11,7 @@ export default class QuizPage extends Page {
 
   ready() {
     this.animateBoxes();
+    this.animateStartButton();
 
     this.component.addEventListener("GAMEOVER_CLICKED", () => {
       this.showStartQuizButton();
@@ -40,6 +41,10 @@ export default class QuizPage extends Page {
     tl.to(".green", { rotation: 360 });
     tl.to(".red", { rotation: 360 });
 
+  }
+
+  animateStartButton() {
+    gsap.to(".start-quiz-btn", { scale: 1.02, duration: 1, yoyo: true, repeat: -1 });
   }
 
   render() {
