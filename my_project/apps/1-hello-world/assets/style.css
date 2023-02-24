@@ -310,6 +310,23 @@ h2{
   border: 1px solid white;
 }
 
+.red{
+  background-color: #FF3859;
+}
+
+.blue{
+    background-color: #45A2E5;
+}
+
+.yellow{
+  background-color: #FEC009;
+}
+
+.green{
+    background-color: #67BE39;
+
+}
+
 .quiz-btn1{
   background-color: #FF3859;
 }
@@ -377,12 +394,33 @@ h2{
 }
 
 .shape1{
-      width: 0;
-      height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-bottom: 20px solid white;
-      translate: 20px 36px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid white;
+  translate: 20px 36px;
+}
+
+.shape2 {
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: white;
+    position: relative;
+    top: -10px;
+    translate: 20px 36px;
+  }
+
+.shape2:after {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: white;
 }
 
 .shape3{
@@ -400,26 +438,69 @@ h2{
   translate: 20px 36px;
 }
 
+.boxshape1{
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid white;
+  translate: 0 40px;
+}
 
-    .shape2 {
-      width: 0;
-      height: 0;
-      border: 10px solid transparent;
-      border-bottom-color: white;
-      position: relative;
-      top: -10px;
-      translate: 20px 36px;
+.boxshape2 {
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: white;
+    position: relative;
+    top: -10px;
+    translate: 0 40px;
+  }
 
-    }
-    .shape2:after {
-      content: '';
-      position: absolute;
-      left: -10px;
-      top: 10px;
-      width: 0;
-      height: 0;
-      border: 10px solid transparent;
-      border-top-color: white;
+.boxshape2:after {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: white;
 
-    }
+}
 
+.boxshape3{
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  translate: 0 40px;
+}
+
+.boxshape4{
+  width: 20px;
+  height: 20px;
+  background: white;
+  translate: 0 40px;
+}
+
+.boxes{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 100vh;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.boxcontainer{
+  display: flex;
+}
+
+.box{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  border-radius: 33%;
+}

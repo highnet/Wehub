@@ -10,9 +10,35 @@ export default class QuizPage extends Page {
   _category = "geography";
 
   ready(){
+    this.animateBoxes();
+
     document.getElementById(this.globalid).addEventListener("GAMEOVER_CLICKED", () => {
       this.showStartQuizButton();
     })
+  }
+
+  animateBoxes(){
+    let tl = gsap.timeline({repeat: -1, repeatDelay: 0, yoyo: true})
+    tl.to(".red", { rotation: 90 });
+    tl.to(".green", { rotation: 90 });
+    tl.to(".blue", { rotation: 90 });
+    tl.to(".yellow", { rotation: 90 });
+
+    tl.to(".yellow", { rotation: 180 });
+    tl.to(".blue", { rotation: 180 });
+    tl.to(".green", { rotation: 180 });
+    tl.to(".red", { rotation: 180 });
+
+    tl.to(".red", { rotation: 270 });
+    tl.to(".green", { rotation: 270 });
+    tl.to(".blue", { rotation: 270 });
+    tl.to(".yellow", { rotation: 270 });
+
+    tl.to(".yellow", { rotation: 360 });
+    tl.to(".blue", { rotation: 360 });
+    tl.to(".green", { rotation: 360 });
+    tl.to(".red", { rotation: 360 });
+
   }
 
   render() {
@@ -27,6 +53,21 @@ export default class QuizPage extends Page {
           <div class="quiz-anchor">
 
           </div>
+        <div class="boxes">
+          <div class="box red">
+              <div class ="boxshape1"></div>
+          </div>
+          <div class="box green">
+                <div class ="boxshape2"></div>
+          </div>
+          <div class="box blue">           
+                <div class ="boxshape3"></div>
+          </div>
+          <div class="box yellow">
+                <div class ="boxshape4"></div>
+          </div>
+
+      </div>
       </div>
     );
   }
