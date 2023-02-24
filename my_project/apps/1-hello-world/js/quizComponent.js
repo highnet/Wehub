@@ -26,7 +26,31 @@ export default class QuizComponent extends Component {
     _mousePos;
     _touchInput;
 
+    _soundsCorrect;
+    _soundsWrong;
+
+      cacheSounds() {
+        this._soundsCorrect = [];
+        this._soundsWrong = [];
+
+        for(let i = 1 ; i <= 25; i++){
+            this._soundsCorrect.push(new Audio("./assets/audio/Win sound " + i + ".wav"));
+        }
+
+        for(let i = 1 ; i <= 25; i++){
+            this._soundsWrong.push(new Audio("./assets/audio/Error sound " + i + ".wav"));
+        }
+
+    }
+
+      playRandomSound(soundArray) {
+        let randomSoundId = Math.floor(Math.random() * soundArray.length); 
+        soundArray[randomSoundId].play();
+     }
+
     ready(){
+        this.cacheSounds();
+
         this.component.addEventListener("COUNTDOWN_FINISHED", () => {
             this.awardResult(false);
         })
@@ -172,6 +196,7 @@ export default class QuizComponent extends Component {
     }
 
     awardResult(correct){ // award result, based on correctness
+
         if (correct){
             document.getElementById(this._scoreComponentId).dispatchEvent(new Event("INCREMENT_SCORE"));
             let xConfetti = 0;
@@ -191,13 +216,17 @@ export default class QuizComponent extends Component {
             if (yConfetti == 0) yConfetti = 0.5;
 
             confetti({
-                particleCount: 100,
+                particleCount: 100 * document.getElementById(this._scoreComponentId).wrapper.getScore(),
                 spread: 90,
                 origin: { x: xConfetti, y: yConfetti }
             });
 
+            this.playRandomSound(this._soundsCorrect);
+
         } else {
             document.getElementById(this._scoreComponentId).dispatchEvent(new Event("DECREMENT_SCORE"));
+            this.playRandomSound(this._soundsWrong);
+
         }
 
         if (document.getElementById(this._counterComponentId).wrapper.isAtMaxCount()){

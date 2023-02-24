@@ -26,6 +26,10 @@ export default class ScoreComponent extends Component {
         this.reRender();
     }
 
+    getScore(){
+        return this._score;
+    }
+
     incrementScore(){ // increment the score
         this._score++;
         this.reRender();
