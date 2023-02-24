@@ -254,8 +254,7 @@ h2{
 }
 
 .score-component{
-      color: #5000ff;
-
+    color: #5000ff;
   display: flex;
   justify-content: flex-end;
 }
@@ -274,7 +273,7 @@ h2{
   margin: 0 auto;
   color: #5000ff;
   font-size: 6rem;
-  border: 1px solid 5000ff;
+  border: 1px solid #5000ff;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -294,6 +293,10 @@ h2{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+}
+
+.quiz-anchor{
+  margin-top: 150px;
 }
 
 .quiz-btn{
