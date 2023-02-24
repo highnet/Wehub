@@ -12,7 +12,7 @@ export default class QuizPage extends Page {
   ready(){
     this.animateBoxes();
 
-    document.getElementById(this.globalid).addEventListener("GAMEOVER_CLICKED", () => {
+    this.component.addEventListener("GAMEOVER_CLICKED", () => {
       this.showStartQuizButton();
       this.showBoxes();
     })

@@ -3,7 +3,7 @@ import quizQuestions from "../quiz-questions-gaming.json"
 
 export default class AnswerComponent extends Component {
 
-
+    
     generateAnswerText(){ // generate the answer text
         this._questionIdentifier = this.props.questionIdentifier;
         this._answerIdentifier = this.props.answerIdentifier;
@@ -38,6 +38,10 @@ export default class AnswerComponent extends Component {
             }
       })
       return btn;
+    }
+
+    ready(){
+        console.log(this.component);
     }
 
     render(){
