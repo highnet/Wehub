@@ -1,5 +1,6 @@
 import PageJsApplication from "pagejs";
 import { PageContainer } from "pagejs/components";
+import CalculatorPage from "./calculatorPage";
 
 class Application extends PageJsApplication {
   screenSaverPage = "";
@@ -16,6 +17,7 @@ class Application extends PageJsApplication {
   render() {
     return (
       <PageContainer>
+        <CalculatorPage />
       </PageContainer>
 
     );

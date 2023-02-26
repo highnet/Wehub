@@ -10,6 +10,16 @@
             "name": "2-p5",
             "url": "/hub/wetouch/2-p5/",
             "path": "./apps/2-p5/"
+        },
+        {
+            "name": "3-calculator",
+            "url": "/hub/wetouch/3-calculator/",
+            "path": "./apps/3-calculator/"
+        },
+        {
+            "name": "4-quiz",
+            "url": "/hub/wetouch/4-quiz/",
+            "path": "./apps/4-quiz/"
         }
     ],
     "server": {
