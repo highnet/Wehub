@@ -1,8 +1,9 @@
 # Wehub Test Projects
-1. my_project: hello world test project
+1. hello_world
+2. p5
+3. calculator
+4. quiz
 
-# Extension Subdirectories
-1. helloworld: https://github.com/highnet/wehub-helloworld
 
 # Tutorial
 https://wissen.wetouch.at/wehub-tutorial-pt-1/
