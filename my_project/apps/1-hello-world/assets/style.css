@@ -281,6 +281,10 @@ h2{
   text-align: center;
 }
 
+.p5Canvas{
+  position: absolute;
+}
+
 .gameover-component{
   display: none;
 }

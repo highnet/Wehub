@@ -4,6 +4,7 @@ import { render } from "pagejs";
 import gamingQuestions from "../quiz-questions-gaming.json";
 import geographyQuestions from "../quiz-questions-geography.json";
 
+
 export default class QuizPage extends Page {
 
   globalid = "quiz-page";
@@ -42,6 +43,7 @@ export default class QuizPage extends Page {
     tl.to(".red", { rotation: 360 });
 
   }
+  
 
   animateStartButton() {
     gsap.to(".start-quiz-btn", { scale: 1.02, duration: 1, yoyo: true, repeat: -1 });
