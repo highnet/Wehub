@@ -26,3 +26,8 @@ html, body {
 	opacity: 0;
 	display: none;
 }
+
+.p5Canvas{
+	border: 1px solid white;
+	margin-top: 25px;
+}
