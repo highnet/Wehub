@@ -5,7 +5,7 @@ class Bird extends GameObject {
 
     constructor(x, y, mass, useGravity, flapStrength) {
         super(x, y);
-        this._rigidBody = new RigidBody2D(mass, useGravity)
+        this._rigidBody = new RigidBody2D(this.transform, mass, useGravity);
 
         this.flapCooldown = .5;
         this.flapCooldownTimer = 0.0;
@@ -16,7 +16,7 @@ class Bird extends GameObject {
 
     flap() {
         if (this.flapCooldownTimer == 0) {
-            this._rigidBody._velocity2D.y -= this._flapStrength;
+            this._rigidBody.velocity2D = createVector(0, this._rigidBody.velocity2D.y - this._flapStrength);
             this.flapCooldownTimer = this.flapCooldown;
         }
     }
@@ -38,15 +38,8 @@ class Bird extends GameObject {
             this.flap();
         }
 
-        if (this._rigidBody._useGravity) {
-            this._rigidBody._velocity2D.y += this._rigidBody._mass * Physics.gravity;
-        }
+        this._rigidBody.update();
 
-        this.transform.y += this._rigidBody._velocity2D.y;
-        if (this.transform.y > height) {
-            this._rigidBody._velocity2D.y = 0;
-            this.transform.y = height;
-        }
     }
 
     show() {
