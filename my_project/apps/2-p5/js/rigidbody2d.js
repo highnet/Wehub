@@ -33,14 +33,15 @@ class RigidBody2D {
             this._velocity2D.y += this._mass * Physics.gravity;
         }
 
-        this._transform.y += this._velocity2D.y;
         this._transform.x += this._velocity2D.x;
+        this._transform.y += this._velocity2D.y;
 
         // TODO: reuseable collision system
         if (this._transform.y > height) {
             this._velocity2D.y = 0;
             this._transform.y = height;
         }
+
     }
 
 }
