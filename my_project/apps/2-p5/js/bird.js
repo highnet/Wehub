@@ -17,7 +17,7 @@ class Bird extends GameObject {
 
     flap() {
         if (this.flapCooldownTimer == 0) {
-            this._rigidBody.addForce(createVector(0, this._flapStrength * -1));
+            this._rigidBody.changeVelocity(createVector(0, this._flapStrength * -1));
             this.flapCooldownTimer = this.flapCooldown;
         }
     }

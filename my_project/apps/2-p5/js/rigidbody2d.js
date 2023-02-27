@@ -28,7 +28,7 @@ class RigidBody2D {
         this._mass = value;
     }
 
-    addForce(force2D) {
+    changeVelocity(force2D) {
         this._velocity2D = createVector(
             this._velocity2D.x + force2D.x,
             this.velocity2D.y + force2D.y
@@ -38,7 +38,7 @@ class RigidBody2D {
 
     update() {
         if (this._useGravity) {
-            this._velocity2D.y += this._mass * Physics.gravity;
+            this.changeVelocity(createVector(0, this._mass * Physics.gravity))
         }
 
         this._transform.x += this._velocity2D.x;
