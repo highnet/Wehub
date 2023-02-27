@@ -7,6 +7,7 @@ class Bird extends GameObject {
         super(x, y);
         this._rigidBody = new RigidBody2D(this.transform, mass, useGravity);
 
+        // TODO: reuseable cooldown system
         this.flapCooldown = .5;
         this.flapCooldownTimer = 0.0;
 
