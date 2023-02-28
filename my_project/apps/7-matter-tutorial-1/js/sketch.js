@@ -47,6 +47,10 @@ var ground = Bodies.rectangle(0, 300, 600, 20, {
   }
 });
 
+function mousePressed() {
+  console.log("BLA");
+}
+
 // add all of the bodies to the world
 Composite.add(engine.world, [boxA, ground]);
 
@@ -58,6 +62,33 @@ var runner = Runner.create();
 
 // run the engine
 Runner.run(runner, engine);
+
+// create a mouse constraint with a mouse input
+var mouse = Matter.Mouse.create(render.canvas);
+var mouseConstraint = Matter.MouseConstraint.create(engine, {
+  mouse: mouse,
+  constraint: {
+    stiffness: 0.2,
+    render: {
+      visible: false
+    }
+  }
+});
+
+// add mouse constraint to world
+Matter.World.add(engine.world, mouseConstraint);
+
+// add an event listener for mousedown event on mouse constraint
+Matter.Events.on(mouseConstraint, 'mousedown', function (event) {
+  // get the body that is being clicked by using mouseConstraint.body property
+  var body = event.source.body;
+  console.log(">click<");
+
+  // if there is a body being clicked (not empty space), then do a console log saying "click"
+  if (body) {
+    console.log("ouch!");
+  }
+});
 
 Events.on(engine, 'afterUpdate', function () {
 });
