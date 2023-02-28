@@ -1,61 +1,111 @@
-// module aliases
 var Engine = Matter.Engine,
   Render = Matter.Render,
-  Runner = Matter.Runner,
-  Composites = Matter.Composites,
-  Common = Matter.Common,
-  MouseConstraint = Matter.MouseConstraint,
-  Mouse = Matter.Mouse,
-  Composite = Matter.Composite,
-  Bodies = Matter.Bodies,
-  Events = Matter.Events;
-Body = Matter.Body;
+  World = Matter.World,
+  Bodies = Matter.Bodies;
 
-// create an engine
-var engine = Engine.create();
+var _engine;
+var _world;
 
-var updateTime = 1000 / 60;
-Matter.Engine.update(engine, [delta = updateTime], [correction = 1]);
+var _boxes = [];
+var _ground;
 
-// create a renderer
-var render = Render.create({
-  element: document.body,
-  engine,
-  options: {
-    width: 800,
-    height: 800,
-    wireframes: false,
-    background: 'rgb(255,0,0)' // or '#ff0000' or other valid color string
+function setup() {
+  createCanvas(300, 300);
+
+  _engine = Engine.create();
+  _world = _engine.world;
+  Matter.Runner.run(_engine);
+
+
+  _boxes.push(this.prefabGround());
+  _boxes.push(this.prefabWall("left"));
+  _boxes.push(this.prefabWall("right"));
+
+}
+
+
+function prefabWall(position) {
+  if (position == "left") {
+    return new Box
+      (
+        [31, 200, 31],
+        0,
+        height,
+        20,
+        height * 2,
+        true,
+        0,
+        0.1
+      );
+  } else {
+    return new Box
+      (
+        [31, 200, 31],
+        width,
+        height,
+        20,
+        height * 2,
+        true,
+        0,
+        0.1
+      );
   }
-})
 
-// create two boxes and a ground
-var boxA = Bodies.rectangle(120, 0, 100, 100, {
-  render: {
-    fillStyle: 'red',
-    strokeStyle: 'blue',
-    lineWidth: 3
+}
+
+function prefabGround() {
+  return new Box
+    (
+      [255, 51, 51],
+      0,
+      height,
+      width * 2,
+      20,
+      true,
+      0.6,
+      0.1
+    );
+}
+
+function prefabBox(x, y) {
+  return new Box
+    (
+      this.randomRGB(),
+      x,
+      y,
+      random(5, 15),
+      random(5, 15),
+      false,
+      0.6,
+      0.1
+
+    )
+}
+
+function mousePressed() {
+  _boxes.push(this.prefabBox(mouseX, mouseY));
+}
+
+function mouseDragged() {
+  _boxes.push(this.prefabBox(mouseX, mouseY));
+
+}
+
+function draw() {
+
+  background(51);
+
+  for (box of _boxes) {
+    box.show();
   }
-});
-var boxB = Bodies.rectangle(450, 50, 80, 80);
-var boxC = Bodies.rectangle(100, 50, 80, 80);
-var boxD = Bodies.rectangle(200, 50, 80, 80);
+}
 
-var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+function randomRGB() {
+  // generate three random numbers between 0 and 255
+  let r = Math.floor(Math.random() * 256);
+  let g = Math.floor(Math.random() * 256);
+  let b = Math.floor(Math.random() * 256);
 
-// add all of the bodies to the world
-Composite.add(engine.world, [boxA, boxB, boxC, boxD, ground]);
-
-// run the renderer
-Render.run(render);
-
-// create runner
-var runner = Runner.create();
-
-// run the engine
-Runner.run(runner, engine);
-
-Events.on(engine, 'afterUpdate', function () {
-  console.log('afterUpdate');
-  Body.applyForce(boxB, { x: boxB.position.x, y: boxB.position.y }, { x: 0.001, y: 0 });
-});
+  // return an array with the three numbers
+  return [r, g, b];
+}
