@@ -2,24 +2,24 @@
     "$schema": "../node_modules/wehub/config.schema.json",
     "apps": [
         {
-            "name": "1-hello-world",
-            "url": "/hub/wetouch/1-hello-world/",
-            "path": "./apps/1-hello-world/"
+            "name": "1-pagejs",
+            "url": "/hub/wetouch/1-pagejs/",
+            "path": "./apps/1-pagejs/"
         },
         {
-            "name": "2-p5",
-            "url": "/hub/wetouch/2-p5/",
-            "path": "./apps/2-p5/"
+            "name": "2-calculator",
+            "url": "/hub/wetouch/2-calculator/",
+            "path": "./apps/2-calculator/"
         },
         {
-            "name": "3-calculator",
-            "url": "/hub/wetouch/3-calculator/",
-            "path": "./apps/3-calculator/"
+            "name": "3-quiz",
+            "url": "/hub/wetouch/3-quiz/",
+            "path": "./apps/3-quiz/"
         },
         {
-            "name": "4-quiz",
-            "url": "/hub/wetouch/4-quiz/",
-            "path": "./apps/4-quiz/"
+            "name": "4-p5",
+            "url": "/hub/wetouch/4-p5/",
+            "path": "./apps/4-p5/"
         },
         {
             "name": "5-matter",
@@ -27,14 +27,14 @@
             "path": "./apps/5-matter/"
         },
         {
-            "name": "6-matter-tutorial-0",
-            "url": "/hub/wetouch/6-matter-tutorial-0/",
-            "path": "./apps/6-matter-tutorial-0/"
+            "name": "6-matter-with-p5-as-render-engine",
+            "url": "/hub/wetouch/6-matter-with-p5-as-render-engine/",
+            "path": "./apps/6-matter-with-p5-as-render-engine/"
         },
         {
-            "name": "7-matter-tutorial-1",
-            "url": "/hub/wetouch/7-matter-tutorial-1/",
-            "path": "./apps/7-matter-tutorial-1/"
+            "name": "7-matter-with-matter-as-render-engine",
+            "url": "/hub/wetouch/7-matter-with-matter-as-render-engine/",
+            "path": "./apps/7-matter-with-matter-as-render-engine/"
         }
     ],
     "server": {
