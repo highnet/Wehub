@@ -23,4 +23,8 @@ class Transform2D {
     set x(value) {
         this._x = value;
     }
+
+    getPosition2D() {
+        return createVector(this._x, this._y);
+    }
 }
