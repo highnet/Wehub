@@ -2,8 +2,9 @@ class Bird extends GameObject {
 
     _rigidBody;
     _flapStrength;
+    _color;
 
-    constructor(x, y, mass, useGravity, flapStrength) {
+    constructor(x, y, mass, useGravity, flapStrength, color) {
         super(x, y);
         this._rigidBody = new RigidBody2D(this.transform, mass, useGravity);
 
@@ -12,6 +13,7 @@ class Bird extends GameObject {
         this.flapCooldownTimer = 0.0;
 
         this._flapStrength = flapStrength;
+        this._color = color;
 
     }
 
@@ -35,7 +37,7 @@ class Bird extends GameObject {
             }
         }
 
-        if (keyIsDown(32)) {
+        if (keyIsDown(32) || mouseIsPressed) {
             this.flap();
         }
 
@@ -44,7 +46,7 @@ class Bird extends GameObject {
     }
 
     show() {
-        fill(255, 255, 0);
+        fill(this._color);
         ellipse(this.transform._x, this.transform.y, 16, 16)
     }
 
