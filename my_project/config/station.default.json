@@ -20,6 +20,16 @@
             "name": "4-quiz",
             "url": "/hub/wetouch/4-quiz/",
             "path": "./apps/4-quiz/"
+        },
+        {
+            "name": "5-matter",
+            "url": "/hub/wetouch/5-matter/",
+            "path": "./apps/5-matter/"
+        },
+        {
+            "name": "6-matter-tutorial",
+            "url": "/hub/wetouch/6-matter-tutorial/",
+            "path": "./apps/6-matter-tutorial/"
         }
     ],
     "server": {
