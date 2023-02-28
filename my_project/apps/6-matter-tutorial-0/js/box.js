@@ -4,8 +4,9 @@ class Box {
     _body;
     _width;
     _height;
+    _angle;
 
-    constructor(color, x, y, w, h, isStatic, restitution, friction) {
+    constructor(color, x, y, w, h, isStatic, restitution, friction, angle) {
         this._color = color;
         this._body = Bodies.rectangle(
             x,
@@ -15,7 +16,8 @@ class Box {
             {
                 isStatic: isStatic,
                 restitution: restitution,
-                friction: friction
+                friction: friction,
+                angle: angle
             });
         this._width = w;
         this._height = h;

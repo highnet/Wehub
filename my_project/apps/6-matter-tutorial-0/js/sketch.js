@@ -35,7 +35,8 @@ function prefabWall(position) {
         height * 2,
         true,
         0,
-        0.1
+        0.1,
+        0,
       );
   } else {
     return new Box
@@ -47,10 +48,10 @@ function prefabWall(position) {
         height * 2,
         true,
         0,
-        0.1
+        0.1,
+        0
       );
   }
-
 }
 
 function prefabGround() {
@@ -63,7 +64,8 @@ function prefabGround() {
       20,
       true,
       0.6,
-      0.1
+      0.1,
+      radians(1)
     );
 }
 
@@ -77,8 +79,8 @@ function prefabBox(x, y) {
       random(5, 15),
       false,
       0.6,
-      0.1
-
+      0.1,
+      0
     )
 }
 

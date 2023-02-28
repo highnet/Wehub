@@ -27,9 +27,14 @@
             "path": "./apps/5-matter/"
         },
         {
-            "name": "6-matter-tutorial",
-            "url": "/hub/wetouch/6-matter-tutorial/",
-            "path": "./apps/6-matter-tutorial/"
+            "name": "6-matter-tutorial-0",
+            "url": "/hub/wetouch/6-matter-tutorial-0/",
+            "path": "./apps/6-matter-tutorial-0/"
+        },
+        {
+            "name": "7-matter-tutorial-1",
+            "url": "/hub/wetouch/7-matter-tutorial-1/",
+            "path": "./apps/7-matter-tutorial-1/"
         }
     ],
     "server": {
