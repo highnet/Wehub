@@ -112,8 +112,6 @@ function spawnWallPrefabs() {
   Composite.add(engine.world, [boxA, ground, roof, leftWall, rightWall]);
 }
 
-
-
 function spawnMouseConstraint() {
   // create a mouse constraint with a mouse input
   var mouse = Matter.Mouse.create(render.canvas);
