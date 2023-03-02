@@ -17,8 +17,19 @@ var renderer;
 var runner;
 
 // set up matter environment
-setupMatter();
 awake();
+start();
+
+function awake() {
+  createEngine();
+  createRenderer();
+  createRunner();
+}
+
+function start() {
+  spawnWallPrefabs();
+  spawnMouseConstraint();
+}
 
 function createRenderer() {
   // create a renderer
@@ -50,12 +61,6 @@ function createRunner() {
 
   // run the engine
   Runner.run(runner, engine);
-}
-
-function setupMatter() {
-  createEngine();
-  createRenderer();
-  createRunner();
 }
 
 function spawnWallPrefabs() {
@@ -107,10 +112,7 @@ function spawnWallPrefabs() {
   Composite.add(engine.world, [boxA, ground, roof, leftWall, rightWall]);
 }
 
-function awake() {
-  spawnWallPrefabs();
-  spawnMouseConstraint();
-}
+
 
 function spawnMouseConstraint() {
   // create a mouse constraint with a mouse input
