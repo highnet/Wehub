@@ -58,7 +58,7 @@ function setupMatter() {
   createRunner();
 }
 
-function awake() {
+function spawnWallPrefabs() {
   var boxA = Bodies.rectangle(150, 150, 15, 15, {
     render: {
       fillStyle: 'yellow',
@@ -105,7 +105,14 @@ function awake() {
 
   // add all of the bodies to the world
   Composite.add(engine.world, [boxA, ground, roof, leftWall, rightWall]);
+}
 
+function awake() {
+  spawnWallPrefabs();
+  spawnMouseConstraint();
+}
+
+function spawnMouseConstraint() {
   // create a mouse constraint with a mouse input
   var mouse = Matter.Mouse.create(render.canvas);
   var mouseConstraint = Matter.MouseConstraint.create(engine, {
@@ -126,19 +133,18 @@ function awake() {
     // get the body that is being clicked by using mouseConstraint.body property
     var body = event.source.body;
 
-    var box = Bodies.rectangle(event.source.mouse.mousedownPosition.x, event.source.mouse.mousedownPosition.y, Matter.Common.random(5, 15), Matter.Common.random(5, 15), {
-      render: {
-        fillStyle: "#" + Math.floor(Math.random() * 16777215).toString(16),
-        strokeStyle: 'white',
-        lineWidth: 3
-      }
-    });
-    Composite.add(engine.world, [box]);
-
-
     // if there is a body being clicked (not empty space), then do a console log saying "click"
     if (body) {
       console.log("ouch!");
+    } else {
+      var box = Bodies.rectangle(event.source.mouse.mousedownPosition.x, event.source.mouse.mousedownPosition.y, Matter.Common.random(5, 15), Matter.Common.random(5, 15), {
+        render: {
+          fillStyle: "#" + Math.floor(Math.random() * 16777215).toString(16),
+          strokeStyle: 'white',
+          lineWidth: 3
+        }
+      });
+      Composite.add(engine.world, [box]);
     }
   });
 }
