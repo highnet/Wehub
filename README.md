@@ -1,12 +1,4 @@
 # Wehub Test Projects
-1. hello_world
-2. p5
-3. calculator
-4. quiz
-
-
-# Tutorial
-https://wissen.wetouch.at/wehub-tutorial-pt-1/
 
 # Author
 Joaquin Telleria www.highnet.xyz
