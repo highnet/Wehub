@@ -27,8 +27,19 @@ function awake() {
 }
 
 function start() {
-  spawnWallPrefabs();
   spawnMouseConstraint();
+  spawnWallPrefabs();
+  spawnBoxPrefab(
+    engine.world,
+    200,
+    200,
+    10,
+    10,
+    "#" + Math.floor(Math.random() * 16777215).toString(16),
+    'white',
+    3,
+    false
+  );
 }
 
 function createRenderer() {
@@ -64,52 +75,69 @@ function createRunner() {
 }
 
 function spawnWallPrefabs() {
-  var boxA = Bodies.rectangle(150, 150, 15, 15, {
-    render: {
-      fillStyle: 'yellow',
-      strokeStyle: 'white',
-      lineWidth: 3
-    }
-  });
 
-  var ground = Bodies.rectangle(0, 300, 600, 20, {
-    isStatic: true,
-    render: {
-      fillStyle: 'blue',
-      strokeStyle: 'white',
-      lineWidth: 3
-    }
-  });
+  spawnBoxPrefab(
+    engine.world,
+    0,
+    300,
+    600,
+    20,
+    'blue',
+    'white',
+    3,
+    true
+  );
 
-  var roof = Bodies.rectangle(0, 0, 600, 20, {
-    isStatic: true,
-    render: {
-      fillStyle: 'red',
-      strokeStyle: 'white',
-      lineWidth: 3
-    }
-  });
+  spawnBoxPrefab(
+    engine.world,
+    0,
+    0,
+    600,
+    20,
+    'red',
+    'white',
+    3,
+    true
+  )
 
-  var leftWall = Bodies.rectangle(0, 0, 20, 600, {
-    isStatic: true,
-    render: {
-      fillStyle: 'green',
-      strokeStyle: 'white',
-      lineWidth: 3
-    }
-  });
+  spawnBoxPrefab(
+    engine.world,
+    0,
+    0,
+    20,
+    600,
+    'green',
+    'white',
+    3,
+    true
+  )
 
-  var rightWall = Bodies.rectangle(300, 0, 20, 600, {
-    isStatic: true,
-    render: {
-      fillStyle: 'yellow',
-      strokeStyle: 'white',
-      lineWidth: 3
-    }
-  });
+  spawnBoxPrefab(
+    engine.world,
+    300,
+    0,
+    20,
+    600,
+    'yellow',
+    'white',
+    3,
+    true
+  )
 
-  // add all of the bodies to the world
-  Composite.add(engine.world, [boxA, ground, roof, leftWall, rightWall]);
+}
+
+function spawnBoxPrefab(parent, xPos, yPos, width, height, fillStyle, strokeStyle, lineWidth, isStatic) {
+  let b = new Box(
+    parent,
+    xPos,
+    yPos,
+    width,
+    height,
+    fillStyle,
+    strokeStyle,
+    lineWidth,
+    isStatic
+  );
 }
 
 function spawnMouseConstraint() {
@@ -137,14 +165,17 @@ function spawnMouseConstraint() {
     if (body) {
       console.log("ouch!");
     } else {
-      var box = Bodies.rectangle(event.source.mouse.mousedownPosition.x, event.source.mouse.mousedownPosition.y, Matter.Common.random(5, 15), Matter.Common.random(5, 15), {
-        render: {
-          fillStyle: "#" + Math.floor(Math.random() * 16777215).toString(16),
-          strokeStyle: 'white',
-          lineWidth: 3
-        }
-      });
-      Composite.add(engine.world, [box]);
+      spawnBoxPrefab(
+        engine.world,
+        event.source.mouse.mousedownPosition.x,
+        event.source.mouse.mousedownPosition.y,
+        10,
+        10,
+        "#" + Math.floor(Math.random() * 16777215).toString(16),
+        'white',
+        3,
+        false
+      );
     }
   });
 }
