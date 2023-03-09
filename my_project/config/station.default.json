@@ -35,6 +35,11 @@
             "name": "7-matter-with-matter-as-render-engine",
             "url": "/hub/wetouch/7-matter-with-matter-as-render-engine/",
             "path": "./apps/7-matter-with-matter-as-render-engine/"
+        },
+        {
+            "name": "8-p5-loadmodel",
+            "url": "/hub/wetouch/8-p5-loadmodel/",
+            "path": "./apps/8-p5-loadmodel/"
         }
     ],
     "server": {
