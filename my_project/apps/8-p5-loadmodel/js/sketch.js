@@ -6,7 +6,7 @@ _height = 300;
 let teapot;
 
 function preload() {
-  octahedron = loadModel("./octahedron.obj");
+  teapot = loadModel("./octahedron.obj");
 }
 
 function setup() {
