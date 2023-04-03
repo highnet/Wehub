@@ -49,7 +49,14 @@
     },
     "extensions": {
         "Electron": {
-            "enabled": false
+            "enabled": "$IN_PRODUCTION",
+            "windows": [
+                {
+                    "app": "3-quiz",
+                    "focus": true,
+                    "startEvent": "SERVER_READY"
+                }
+            ]
         },
         "Helloworld": {
             "enabled": true
